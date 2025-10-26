@@ -48,7 +48,7 @@
 
         // ✅ chỉ lấy section nằm trong nội dung vừa load (không dính section của index)
         let section = null;
-        const sections = temp.querySelectorAll('section');
+        const sections = temp.querySelectorAll('tail-section');
         if (sections.length > 0) {
           // Ưu tiên section có id (VD: #tail-section)
           section = temp.querySelector('section[id]') || sections[0];
