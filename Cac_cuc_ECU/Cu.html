@@ -1,0 +1,456 @@
+<section class="container-fluid">
+  <div class="inner">
+    <h2 class="text-center mb-4 font-weight-bold" style="color:#184e9e;">CÁC CỰC ECU</h2>
+
+    <!-- Hình tổng quan -->
+    <div class="mb-4">
+      <img src="../img/Cu1.png" alt="Sơ đồ ECU - 1" class="img-fluid rounded shadow-sm mb-3" />
+      <img src="../img/Cu2.png" alt="Sơ đồ ECU - 2" class="img-fluid rounded shadow-sm" />
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <p class="mb-1"><strong>a.</strong> Tháo giắc IA, ID, IF và IM của J/B.</p>
+        <p class="mb-1"><strong>b.</strong> Đo điện trở và điện áp giữa các cực chỉ ra của giắc nối phía dây điện và mát thân xe.</p>
+
+        <h4 class="mt-4">Điện áp tiêu chuẩn</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm mb-3">
+            <thead class="thead-light">
+              <tr>
+                <th>Các ký hiệu</th>
+                <th>Màu dây</th>
+                <th>Mô tả cực</th>
+                <th>Điều kiện</th>
+                <th>Điều kiện tiêu chuẩn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>IA-1 – Mass</td>
+                <td>B – Mass</td>
+                <td>Nguồn cấp ắc quy</td>
+                <td>Luôn luôn</td>
+                <td>10 – 14 V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="mt-4">Điện trở tiêu chuẩn</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>Các ký hiệu</th>
+                <th>Màu dây</th>
+                <th>Mô tả cực</th>
+                <th>Điều kiện</th>
+                <th>Điều kiện tiêu chuẩn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GND1 (IF-10) – Mass</td>
+                <td>W-B – Mass</td>
+                <td>Nối mass</td>
+                <td>Luôn luôn</td>
+                <td>&lt; 1 Ω</td>
+              </tr>
+              <tr>
+                <td>GND2 (IM-9) – Mass</td>
+                <td>B – Mass</td>
+                <td>Nối mass</td>
+                <td>Luôn luôn</td>
+                <td>&lt; 1 Ω</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mt-3 mb-1">Nếu kết quả không như tiêu chuẩn, có thể hư hỏng phía dây điện.</p>
+        <p class="mb-1"><strong>c.</strong> Nối lại giắc nối IA, ID, IF và IM của J/B.</p>
+        <p class="mb-0"><strong>d.</strong> Đo điện trở và điện áp giữa các cực chỉ ra của giắc nối J/B phía dây điện và mass thân xe.</p>
+      </div>
+    </div>
+
+    <!-- Bảng mẫu mở rộng (điện áp/điện trở khác) -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h4 class="mb-3">Một số tín hiệu mẫu (điện áp)</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm mb-3">
+            <thead class="thead-light">
+              <tr>
+                <th>Ký hiệu</th>
+                <th>Màu dây</th>
+                <th>Mô tả</th>
+                <th>Điều kiện</th>
+                <th>Tiêu chuẩn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HRLY (ID-3) – Mass</td>
+                <td>P – Mass</td>
+                <td>Tín hiệu ra dẫn động rơ-le đèn pha</td>
+                <td>
+                  <div>Công tắc đèn: HEAD</div>
+                  <div>Không ở HEAD</div>
+                </td>
+                <td>
+                  <div>&lt; 1 V</div>
+                  <div>10 – 14 V</div>
+                </td>
+              </tr>
+              <tr>
+                <td>DIM (ID-9) – Mass</td>
+                <td>V – Mass</td>
+                <td>Điều khiển rơ-le pha/cốt</td>
+                <td>
+                  <div>HIGH / HIGH FLASH</div>
+                  <div>LOW</div>
+                </td>
+                <td>
+                  <div>&lt; 1 V</div>
+                  <div>10 – 14 V</div>
+                </td>
+              </tr>
+              <tr>
+                <td>HEAD (E6-17) – Mass</td>
+                <td>P – Mass</td>
+                <td>Tín hiệu vào công tắc HEAD</td>
+                <td>
+                  <div>HEAD</div>
+                  <div>Không HEAD</div>
+                </td>
+                <td>
+                  <div>&lt; 1 V</div>
+                  <div>10 – 14 V</div>
+                </td>
+              </tr>
+              <!-- Bạn có thể thêm các dòng khác tương tự phần bạn đã liệt kê -->
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-0 text-muted"><em>*1: without Smart Entry &amp; Start; *2: with Smart Entry &amp; Start</em></p>
+      </div>
+    </div>
+
+    <!-- Dạng sóng (minh hoạ) -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h4 class="mb-3">Dạng sóng tham khảo</h4>
+        <div class="row">
+          <div class="col-12 col-lg-6 mb-3">
+            <img src="../img/xung.png" alt="Dạng sóng" class="img-fluid rounded shadow-sm" />
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm">
+                <tbody>
+                  <tr>
+                    <th style="width:35%;">Hạng mục</th>
+                    <td>Thiết lập oscilloscope</td>
+                  </tr>
+                  <tr>
+                    <th>Đặt dụng cụ đo</th>
+                    <td>5 V/div, 5 ms/div</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mb-0">Nếu ánh sáng môi trường mạnh hơn, độ rộng xung A sẽ hẹp hơn.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECU cân bằng đèn pha -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h3 class="mb-3">ECU Cân Bằng Đèn Pha</h3>
+        <div class="row">
+          <div class="col-12 col-lg-6 mb-3">
+            <img src="../img/ecu_pha.png" alt="ECU cân bằng đèn pha" class="img-fluid rounded shadow-sm" />
+          </div>
+          <div class="col-12">
+            <h5 class="mt-2">Điện áp tiêu chuẩn</h5>
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm mb-3">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Ký hiệu (Số cực)</th>
+                    <th>Màu dây</th>
+                    <th>Mô tả cực</th>
+                    <th>Điều kiện</th>
+                    <th>Tiêu chuẩn</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>IG (A20-1) – Mass</td>
+                    <td>GR – Mass</td>
+                    <td>Cấp nguồn IG1</td>
+                    <td>
+                      <div>Khóa OFF</div>
+                      <div>Khóa ON (IG)</div>
+                    </td>
+                    <td>
+                      <div>&lt; 1 V</div>
+                      <div>10 – 14 V</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 class="mt-3">Điện trở tiêu chuẩn</h5>
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm mb-3">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Ký hiệu (Số cực)</th>
+                    <th>Màu dây</th>
+                    <th>Mô tả cực</th>
+                    <th>Điều kiện</th>
+                    <th>Tiêu chuẩn</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>E1 (A20-9) – Mass</td>
+                    <td>W – Mass</td>
+                    <td>Nối mass</td>
+                    <td>Luôn luôn</td>
+                    <td>&lt; 1 Ω</td>
+                  </tr>
+                  <tr>
+                    <td>SGR (A20-21) – E1 (A20-9)</td>
+                    <td>G – W</td>
+                    <td>Mass cảm biến điều khiển độ cao (sau)</td>
+                    <td>Luôn luôn</td>
+                    <td>&lt; 1 Ω</td>
+                  </tr>
+                  <tr>
+                    <td>RH- (A20-23) – E1 (A20-9)</td>
+                    <td>V – W</td>
+                    <td>Mass mô-tơ cân bằng phải</td>
+                    <td>Luôn luôn</td>
+                    <td>&lt; 1 Ω</td>
+                  </tr>
+                  <tr>
+                    <td>LH- (A20-24) – E1 (A20-9)</td>
+                    <td>GR – W</td>
+                    <td>Mass mô-tơ cân bằng trái</td>
+                    <td>Luôn luôn</td>
+                    <td>&lt; 1 Ω</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 class="mt-3">Một số tín hiệu vào/ra tiêu biểu</h5>
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Ký hiệu</th>
+                    <th>Màu dây</th>
+                    <th>Mô tả</th>
+                    <th>Điều kiện</th>
+                    <th>Tiêu chuẩn</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>B2 (A20-3) – E1 (A20-9)</td>
+                    <td>P – W</td>
+                    <td>Tín hiệu vào đèn cốt</td>
+                    <td>
+                      <div>Đèn cốt ON</div>
+                      <div>Đèn cốt OFF</div>
+                    </td>
+                    <td>
+                      <div>&lt; 1.5 V</div>
+                      <div>≈ 5 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SPDL (A20-5) – E1 (A20-9)</td>
+                    <td>W – W</td>
+                    <td>Giá trị ban đầu (DLC3 LVL–GND)</td>
+                    <td>
+                      <div>LVL &amp; GND nối tắt</div>
+                      <div>Không nối tắt</div>
+                    </td>
+                    <td>
+                      <div>&lt; 1.5 V</div>
+                      <div>≈ 5 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>WNG (A20-6) – E1 (A20-9)</td>
+                    <td>P – W</td>
+                    <td>Tín hiệu điều khiển đèn cảnh báo</td>
+                    <td>
+                      <div>Đèn cảnh báo ON</div>
+                      <div>Đèn cảnh báo OFF</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="mt-3 mb-0">Nếu kết quả không đúng tiêu chuẩn, có thể hư hỏng phía dây điện.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hệ thống gạt nước rửa kính -->
+    <h2 class="mb-3">HỆ THỐNG GẠT NƯỚC RỬA KÍNH</h2>
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-lg-6 mb-3">
+            <img src="../img/Cu_gatmua.png" alt="Sơ đồ gạt nước" class="img-fluid rounded shadow-sm" />
+          </div>
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Ký hiệu (Số cực)</th>
+                    <th>Màu dây</th>
+                    <th>Mô tả cực</th>
+                    <th>Điều kiện</th>
+                    <th>Tiêu chuẩn</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>W (E26-4) – Mass</td>
+                    <td>GR – Mass</td>
+                    <td>Mạch công tắc rửa kính trước</td>
+                    <td>
+                      <div>Công tắc rửa: ON</div>
+                      <div>Công tắc rửa: OFF</div>
+                    </td>
+                    <td>
+                      <div>&lt; 1 Ω</div>
+                      <div>&gt;= 10 kΩ</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>IG (E26-12) – Mass</td>
+                    <td>L – Mass</td>
+                    <td>Tín hiệu IG</td>
+                    <td>
+                      <div>Khóa ON (IG)</div>
+                      <div>Khóa OFF</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>WIG (E26-23) – Mass</td>
+                    <td>B – Mass</td>
+                    <td>Tín hiệu WIG</td>
+                    <td>
+                      <div>Khóa ON (IG)</div>
+                      <div>Khóa OFF</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>E (E26-26) – Mass</td>
+                    <td>W-B – Mass</td>
+                    <td>Mass thân xe</td>
+                    <td>Luôn luôn</td>
+                    <td>&lt; 1 Ω</td>
+                  </tr>
+                  <tr>
+                    <td>+2S (E26-1) – Mass</td>
+                    <td>P – Mass</td>
+                    <td>Tín hiệu tốc độ LO</td>
+                    <td>
+                      <div>IG ON, gạt LO</div>
+                      <div>IG ON, khác LO</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>+1 (E26-2) – Mass</td>
+                    <td>P – Mass</td>
+                    <td>Tín hiệu tốc độ thấp mô-tơ (LO)</td>
+                    <td>
+                      <div>Mô-tơ chạy LO</div>
+                      <div>Mô-tơ OFF</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>+2 (E26-3) – Mass</td>
+                    <td>R – Mass</td>
+                    <td>Tín hiệu tốc độ cao mô-tơ (HI)</td>
+                    <td>
+                      <div>Mô-tơ chạy HI</div>
+                      <div>Mô-tơ OFF</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>+SM (E26-10) – Mass</td>
+                    <td>Y – Mass</td>
+                    <td>Điều khiển mô-tơ gạt trước</td>
+                    <td>
+                      <div>Mô-tơ chạy LO/HI</div>
+                      <div>Mô-tơ OFF</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>C1 (E26-17) – C0 (E26-16)</td>
+                    <td>P – R</td>
+                    <td>Nguồn IG </td>
+                    <td>
+                      <div>Khóa ON (IG)</div>
+                      <div>Khóa OFF</div>
+                    </td>
+                    <td>
+                      <div>10 – 14 V</div>
+                      <div>&lt; 1 V</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div> <!-- row -->
+      </div>
+    </div>
+  </div>
+</section>

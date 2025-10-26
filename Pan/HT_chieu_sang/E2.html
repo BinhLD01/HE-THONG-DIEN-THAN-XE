@@ -1,0 +1,161 @@
+<section>
+  <h3 class="text-center mb-4">E2</h3>
+
+  <div class="container-fluid mt-4">
+    <div class="accordion" role="tablist">
+
+      <!-- BƯỚC 1 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#step1Content" aria-expanded="true" style="color:black;">
+              BƯỚC 1: CHUẨN BỊ DỤNG CỤ
+            </a>
+          </h5>
+        </div>
+        <div id="step1Content" class="collapse show" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+              <li>2. ĐỒNG HỒ VOM</li>
+              <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 2 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#step2Content" style="color:black;">
+              BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="step2Content" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>TAIL: Đèn Tail không hoạt động.</li>
+              <li>HEAD-LOW: Không hoạt động.</li>
+              <li>HEAD-HIGH: Không hoạt động.</li>
+              <li>FLASH: Không hoạt động.</li>
+              <li>AUTO: Không hoạt động.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 3 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#step3Content" style="color:black;">
+              BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
+            </a>
+          </h5>
+        </div>
+        <div id="step3Content" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <ul style="font-size: larger;">
+                  <li>1. Đứt dây mass E2.</li>
+                </ul>
+              </div>
+              <div class="col-md-8">
+                <img src="../../img/Pan/E2.png" alt="Sơ đồ E2" style="width: 100%; border-radius: 10px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 4 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#step4Content" style="color:black;">
+              BƯỚC 4: ĐO KIỂM
+            </a>
+          </h5>
+        </div>
+        <div id="step4Content" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <h4>* Khóa điện bật On</h4>
+            <table class="table table-bordered" style="font-size: larger;">
+              <thead>
+                <tr>
+                  <th>Vị trí đo kiểm</th>
+                  <th>Điện áp</th>
+                  <th>Ghi chú</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Kiểm tra mass E2</td>
+                  <td>EL dimmer SW & mass E2 = 0V</td>
+                  <td>Nếu điện áp = 12V → đứt mass E2.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 5 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#step5Content" style="color:black;">
+              BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="step5Content" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>Nếu điện áp tại EL là 12V → đứt dây mass E2.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 6 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#step6Content" style="color:black;">
+              BƯỚC 6: KHẮC PHỤC HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="step6Content" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>Tiến hành nối lại dây mass E2.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.card-header a').forEach(button => {
+      button.addEventListener('click', function() {
+        const collapseElement = document.querySelector(this.getAttribute('href'));
+        if (collapseElement) $(collapseElement).collapse('toggle');
+      });
+    });
+  </script>
+
+  <style>
+    table tbody tr:hover {
+      background-color: #f0f8ff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</section>

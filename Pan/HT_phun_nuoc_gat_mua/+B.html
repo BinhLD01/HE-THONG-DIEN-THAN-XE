@@ -1,0 +1,150 @@
+<section id="pan-wiper-plusB" class="container-fluid mt-3">
+  <h3 class="mb-3">+B / A3</h3>
+
+  <div class="accordion" role="tablist">
+    <!-- BƯỚC 1 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5 class="mb-0">
+          <a data-toggle="collapse" href="#step1Content" aria-expanded="true" style="color:black;">
+            BƯỚC 1: CHUẨN BỊ DỤNG CỤ
+          </a>
+        </h5>
+      </div>
+      <div id="step1Content" class="collapse show" role="tabpanel">
+        <div class="card-body">
+          <ul style="list-style:none;padding-left:0;margin-bottom:0;">
+            <li style="font-size:larger;">1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+            <li style="font-size:larger;">2. ĐỒNG HỒ VOM</li>
+            <li style="font-size:larger;">3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BƯỚC 2 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#step2Content" aria-expanded="false" style="color:black;">
+            BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
+          </a>
+        </h5>
+      </div>
+      <div id="step2Content" class="collapse" role="tabpanel">
+        <div class="card-body">
+          <ul style="list-style:none;padding-left:0;margin-bottom:0;">
+            <li style="font-size:larger;">LO: Motor gạt nước không hoạt động</li>
+            <li style="font-size:larger;">HI: Motor gạt nước không hoạt động</li>
+            <li style="font-size:larger;">INT: Motor gạt nước không hoạt động</li>
+            <li style="font-size:larger;">WASHER SW: Motor rửa kính hoạt động bình thường</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BƯỚC 3 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#step3Content" aria-expanded="false" style="color:black;">
+            BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
+          </a>
+        </h5>
+      </div>
+      <div id="step3Content" class="collapse" role="tabpanel">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <ul style="list-style:none;padding-left:0;margin-bottom:0;">
+                <li style="font-size:larger;">1. Đứt cầu chì 25A WIP</li>
+                <li style="font-size:larger;">2. Đứt dây từ chân II2 (BCM) nối chân B+ Wiper SW</li>
+                <li style="font-size:larger;">3. Đứt dây mass của motor gạt nước</li>
+                <li style="font-size:larger;">4. Hỏng motor gạt nước</li>
+              </ul>
+            </div>
+            <div class="col-md-8">
+              <img src="../../img/Pan/+B.png" alt="+B" style="width:100%;border-radius:8px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BƯỚC 4 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#step4Content" aria-expanded="false" style="color:black;">
+            BƯỚC 4: ĐO KIỂM
+          </a>
+        </h5>
+      </div>
+      <div id="step4Content" class="collapse" role="tabpanel">
+        <div class="card-body">
+          <h3>* Khóa điện bật ON, công tắc bật ở vị trí HIGH</h3>
+          <table class="table table-bordered" style="font-size:larger;">
+            <tbody>
+              <tr>
+                <td>Khu vực nghi ngờ</td>
+                <td style="width:40%;">Vị trí đo kiểm</td>
+                <td>Ghi chú</td>
+              </tr>
+              <tr>
+                <td>II2 (BCM)</td>
+                <td>II2 & MASS E2 = 12V</td>
+                <td>Nếu 12V → nguồn BCM bình thường</td>
+              </tr>
+              <tr>
+                <td>+B (Wiper SW)</td>
+                <td>+B & E3 = 0V</td>
+                <td>Mất nguồn từ II2 → +B (Wiper SW)</td>
+              </tr>
+              <tr>
+                <td>E (Motor)</td>
+                <td>E & E3 = 0V</td>
+                <td>Nếu 0V → mass còn tốt</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- BƯỚC 5 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#step5Content" aria-expanded="false" style="color:black;">
+            BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
+          </a>
+        </h5>
+      </div>
+      <div id="step5Content" class="collapse" role="tabpanel">
+        <div class="card-body">
+          <ul style="list-style:none;padding-left:0;margin-bottom:0;">
+            <li style="font-size:larger;">Nếu điện áp tại chân +B (Wiper SW) = 0V ⇒ đứt dây từ II2 (BCM) đến +B (Wiper SW)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BƯỚC 6 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#step6Content" aria-expanded="false" style="color:black;">
+            BƯỚC 6: KHẮC PHỤC HƯ HỎNG
+          </a>
+        </h5>
+      </div>
+      <div id="step6Content" class="collapse" role="tabpanel">
+        <div class="card-body">
+          <ul style="list-style:none;padding-left:0;margin-bottom:0;">
+            <li style="font-size:larger;">Nối lại dây từ II2 (BCM) → chân +B của Wiper SW</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

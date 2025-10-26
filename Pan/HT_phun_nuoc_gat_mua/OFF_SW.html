@@ -1,0 +1,151 @@
+<section id="pan-off-sw" class="container-fluid mt-4">
+  <h3>OFF_SW</h3>
+
+  <div class="accordion" role="tablist">
+    <!-- Step 1 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a data-toggle="collapse" href="#step1Content" aria-expanded="true">BƯỚC 1: CHUẨN BỊ DỤNG CỤ</a>
+        </h5>
+      </div>
+      <div id="step1Content" class="collapse show">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+            <li>2. ĐỒNG HỒ VOM</li>
+            <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step2Content">BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG</a>
+        </h5>
+      </div>
+      <div id="step2Content" class="collapse">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>LO: Motor gạt nước hoạt động bình thường</li>
+            <li>HI: Motor gạt nước hoạt động bình thường</li>
+            <li>INT: Motor gạt nước không hoạt động</li>
+            <li>WASHER SW: Motor rửa kính hoạt động bình thường, motor gạt nước không quay</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step3Content">BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ</a>
+        </h5>
+      </div>
+      <div id="step3Content" class="collapse">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <ul style="list-style:none;">
+                <li>1. Đứt dây từ chân IC2 (BCM) đến chân B của motor gạt nước</li>
+                <li>2. Đứt dây từ chân +S Wiper SW đến chân +S motor gạt nước</li>
+                <li>3. Đứt tiếp điểm INT của Wiper SW</li>
+                <li>4. Hỏng motor gạt nước</li>
+              </ul>
+            </div>
+            <div class="col-md-8">
+              <img src="../../img/Pan/OFF_SW.png" alt="OFF_SW" style="width:100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step4Content">BƯỚC 4: ĐO KIỂM</a>
+        </h5>
+      </div>
+      <div id="step4Content" class="collapse">
+        <div class="card-body">
+          <h5>*Khóa điện bật ON và công tắc ở vị trí OFF</h5>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>Khu vực nghi ngờ</td>
+                    <td>Vị trí đo kiểm</td>
+                    <td>Ghi chú</td>
+                  </tr>
+                  <tr data-img-src="../../img/Pan/OFF_1.png">
+                    <td>Công tắc INT</td>
+                    <td>+S (Wiper SW) & MASS E3 = 12V</td>
+                    <td>Nếu có 12V → bình thường</td>
+                  </tr>
+                  <tr data-img-src="../../img/Pan/OFF_2.png">
+                    <td>Dây +S</td>
+                    <td>+S Motor & E3 = 0V</td>
+                    <td>Kiểm tra dây nối từ +S SW đến motor</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6 text-center">
+              <img id="content" src="" alt="" style="width:80%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step5Content">BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG</a>
+        </h5>
+      </div>
+      <div id="step5Content" class="collapse">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>Nếu điện áp tại +S của Wiper SW = 0V → đứt tiếp điểm OFF</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step6Content">BƯỚC 6: KHẮC PHỤC HƯ HỎNG</a>
+        </h5>
+      </div>
+      <div id="step6Content" class="collapse">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>Thay công tắc Windshield Wiper SW mới</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const rows = document.querySelectorAll('table tbody tr');
+    const contentImage = document.getElementById('content');
+    rows.forEach(row => {
+      row.addEventListener('click', function() {
+        const imgSrc = row.getAttribute('data-img-src');
+        if (imgSrc) contentImage.src = imgSrc;
+      });
+    });
+  </script>
+</section>

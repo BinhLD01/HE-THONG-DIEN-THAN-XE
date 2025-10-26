@@ -1,0 +1,91 @@
+<!-- BẮT ĐẦU NỘI DUNG CHÍNH -->
+<section class="content-card">
+  <h1 class="content-title">HỆ THỐNG CHIẾU SÁNG</h1>
+
+  <div id="stepsAccordion" class="accordion" role="tablist">
+
+    <!-- STEP 1 -->
+    <div class="card">
+      <div class="card-header" id="step1Heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#step1" aria-expanded="false" aria-controls="step1">
+            <h4>Khi light control switch bật ở chế độ <strong>Tail</strong></h4>
+          </button>
+        </h5>
+      </div>
+      <div id="step1" class="collapse" aria-labelledby="step1Heading" data-parent="#stepsAccordion">
+        <div class="card-body">
+          <ul style="padding-left:18px;">
+            <li><h5>Dòng điện điều khiển: <code>BATT → FL MAIN 3.0W → Cuộn dây Head relay No.1 (1–2) → HRLY → Mass</code>. Tiếp điểm (3–4) đóng.</h5></li>
+            <li><h5>Dòng chính: <code>BATT → FL MAIN 3.0W → Head relay No.1 (3–4) → Head relay No.2 (3–4) → Đèn Head → Mass</code>. Đèn Head sáng chế độ <strong>Low</strong>.</h5></li>
+          </ul>
+          <img src="../img/NLHD/TAIL.png" alt="Sơ đồ chế độ Tail" class="diagram">
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="card">
+      <div class="card-header" id="step2Heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#step2" aria-expanded="false" aria-controls="step2">
+            <h4>Khi light control switch bật <strong>Head</strong>, Dimmer ở <strong>Low</strong> (VH = 0V, VHRLY = 0V)</h4>
+          </button>
+        </h5>
+      </div>
+      <div id="step2" class="collapse" aria-labelledby="step2Heading" data-parent="#stepsAccordion">
+        <div class="card-body">
+          <ul style="padding-left:18px;">
+            <li><h5>Dòng điện điều khiển: <code>BATT → FL MAIN 3.0W → Cuộn dây Head relay No.1 (1–2) → HRLY → Mass</code>. Tiếp điểm (3–4) đóng.</h5></li>
+            <li><h5>Dòng chính: <code>BATT → FL MAIN 3.0W → Head relay No.1 (3–4) → Head relay No.2 (3–4) → Đèn Head → Mass</code>. Đèn Head sáng <strong>Low</strong>.</h5></li>
+          </ul>
+          <img src="../img/NLHD/HEAD - LOW.png" alt="Chế độ Head - Low" class="diagram">
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="card">
+      <div class="card-header" id="step3Heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#step3" aria-expanded="false" aria-controls="step3">
+            <h4>Khi light control switch bật <strong>Head</strong>, Dimmer ở <strong>High</strong> (VH = 0V, VHU = 0V, VHRLY = 0V, VDIM = 0V)</h4>
+          </button>
+        </h5>
+      </div>
+      <div id="step3" class="collapse" aria-labelledby="step3Heading" data-parent="#stepsAccordion">
+        <div class="card-body">
+          <ul style="padding-left:18px;">
+            <li><h5>Điều khiển 1: <code>BATT → FL MAIN 3.0W → Cuộn dây Head relay No.1 (1–2) → HRLY → Mass</code> ⇒ Head relay No.1 (3–4) đóng.</h5></li>
+            <li><h5>Điều khiển 2: <code>BATT → FL MAIN 3.0W → (3–4) Head relay No.1 → Cuộn dây Head relay No.2 (1–2) → DIM → Mass</code> ⇒ Head relay No.2 (3–5) đóng.</h5></li>
+            <li><h5>Dòng chính: <code>BATT → FL MAIN 3.0W → Head relay No.1 (3–4) → Head relay No.2 (3–5) → Đèn Head → Mass</code> ⇒ Đèn sáng chế độ <strong>High</strong>.</h5></li>
+          </ul>
+          <img src="../img/NLHD/HEAD - HIGH.png" alt="Chế độ Head - High" class="diagram">
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="card">
+      <div class="card-header" id="step4Heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#step4" aria-expanded="false" aria-controls="step4">
+            <h4>Khi light control switch bật <strong>Head</strong>, Dimmer ở <strong>Flash</strong> (VH = 0V, VHF = 0V, VHRLY = 0V, VDIM = 0V)</h4>
+          </button>
+        </h5>
+      </div>
+      <div id="step4" class="collapse" aria-labelledby="step4Heading" data-parent="#stepsAccordion">
+        <div class="card-body">
+          <ul style="padding-left:18px;">
+            <li><h5>Điều khiển 1: <code>BATT → FL MAIN 3.0W → Cuộn dây Head relay No.1 (1–2) → HRLY → Mass</code> ⇒ Head relay No.1 (3–4) đóng.</h5></li>
+            <li><h5>Điều khiển 2: <code>BATT → FL MAIN 3.0W → (3–4) Head relay No.1 → Cuộn dây Head relay No.2 (1–2) → DIM → Mass</code> ⇒ Head relay No.2 (3–5) đóng.</h5></li>
+            <li><h5>Dòng chính: <code>BATT → FL MAIN 3.0W → Head relay No.1 (3–4) → Head relay No.2 (3–5) → Đèn Head → Mass</code> ⇒ Đèn sáng <strong>High</strong> (nháy pha).</h5></li>
+          </ul>
+          <img src="../img/NLHD/HEAD - PLASH.png" alt="Chế độ Head - Flash" class="diagram">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /accordion -->
+</section>
+<!-- KẾT THÚC NỘI DUNG CHÍNH -->

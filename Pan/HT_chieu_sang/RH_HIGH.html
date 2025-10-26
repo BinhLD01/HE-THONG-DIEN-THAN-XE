@@ -1,0 +1,158 @@
+<section id="tail">
+  <header class="text-center mb-4">
+    <h1>TAIL</h1>
+  </header>
+
+  <div class="container-fluid mt-4">
+    <div class="accordion" role="tablist">
+      <!-- BƯỚC 1 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#tail-step1" aria-expanded="true" style="color: black;">
+              BƯỚC 1: CHUẨN BỊ DỤNG CỤ
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step1" class="collapse show" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+              <li>2. ĐỒNG HỒ VOM</li>
+              <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 2 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step2" style="color: black;">
+              BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step2" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>TAIL: Đèn Tail không hoạt động.</li>
+              <li>HEAD-LOW: Hoạt động bình thường.</li>
+              <li>HEAD-HIGH: Đèn pha bên phải không sáng.</li>
+              <li>FLASH: Đèn pha bên phải không sáng.</li>
+              <li>AUTO: Đèn Tail không sáng.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 3 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step3" style="color: black;">
+              BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step3" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <ul style="font-size: larger;">
+                  <li>1. Đứt cầu chì 15A HLP (RH).</li>
+                  <li>2. Hỏng đèn Head.</li>
+                </ul>
+              </div>
+              <div class="col-md-8">
+                <img src="../../img/Pan/RH_right.png" alt="Head Light Tail" style="width:100%; border-radius:10px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 4 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step4" style="color: black;">
+              BƯỚC 4: ĐO KIỂM
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step4" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <h4>* Khóa điện bật ON và công tắc ở vị trí HEAD</h4>
+            <table class="table table-bordered" style="font-size: larger;">
+              <thead>
+                <tr>
+                  <th>Khu vực nghi ngờ</th>
+                  <th style="width:40%;">Vị trí đo</th>
+                  <th>Ghi chú</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cầu chì 15A HLP(RH)</td>
+                  <td>1B & A1 = 12V</td>
+                  <td>Nếu 1B & A1 = 0V → cầu chì còn sử dụng được.</td>
+                </tr>
+                <tr>
+                  <td>Đèn HEAD</td>
+                  <td>Nút sau đèn & A1</td>
+                  <td>Giá trị điện áp 12V ⇒ đứt đèn.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 5 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step5" style="color: black;">
+              BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step5" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>Điện áp tại bóng đèn là 12V thì đứt dây mass bóng đèn.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 6 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step6" style="color: black;">
+              BƯỚC 6: KHẮC PHỤC HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step6" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>Thay đèn khác hoặc cầu chì nếu bị đứt.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #tail table tbody tr:hover {
+      background-color: #f0f8ff;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+  </style>
+</section>

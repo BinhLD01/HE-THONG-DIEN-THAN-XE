@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu thành viên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            color: #333;
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .member {
+            background-color: #fff;
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .member h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .member p {
+            color: #777;
+        }
+
+        .member .role {
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>THÀNH VIÊN TRONG NHÓM</h1>
+
+        <div class="team">
+            <!-- Thành viên 1 -->
+            <div class="member" onclick="openModal('modal1')">
+                <img src="img/Nghiep.jpg" alt="Thành viên 1">
+                <h2>TỐNG MINH NGHIỆP</h2>
+                <p class="role">DHOT16C</p>
+            </div>
+
+            <!-- Thành viên 2 -->
+            <div class="member" onclick="openModal('modal2')">
+                <img src="img/Nghia.jpg" alt="Thành viên 2">
+                <h2>NGUYỄN TRỌNG NGHĨA</h2>
+                <p class="role">DHOT16C(Leader)</p>
+            </div>
+
+            <!-- Thành viên 3 -->
+            <div class="member" onclick="openModal('modal3')">
+                <img src="img/Vy.jpg" alt="Thành viên 3">
+                <h2>ĐỖ NGỌC TƯỜNG VY</h2>
+                <p class="role">DHOT16B</p>
+            </div>
+
+            <!-- Thành viên 4 -->
+            <div class="member" onclick="openModal('modal4')">
+                <img src="img/Phi.jpg" alt="Thành viên 4">
+                <h2>NGUYỄN ANH PHI</h2>
+                <p class="role">DHOT16C</p>
+            </div>
+            <!-- Thành viên 5 -->
+            <div class="member" onclick="openModal('modal4')">
+                <img src="img/Huy.jpg" alt="Thành viên 5">
+                <h2>ĐẶNG NGUYỄN QUỐC HUY</h2>
+                <p class="role">DHOT16C</p>
+            </div>
+        </div>
+    </div>
+
+   
+    <script>
+        // Mở modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        // Đóng modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Đóng modal khi click ra ngoài nội dung modal
+        window.onclick = function(event) {
+            var modals = document.getElementsByClassName('modal');
+            for (var i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
+    

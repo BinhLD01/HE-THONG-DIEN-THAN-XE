@@ -1,0 +1,219 @@
+<section id="head-hrly-section">
+  <h3 class="text-center mb-4">HEAD &amp; HRLY</h3>
+
+  <div class="container-fluid mt-4">
+    <div class="accordion" role="tablist">
+
+      <!-- BƯỚC 1 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#head-step1" aria-expanded="true" style="color:black;">
+              BƯỚC 1: CHUẨN BỊ DỤNG CỤ
+            </a>
+          </h5>
+        </div>
+        <div id="head-step1" class="collapse show" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+              <li>2. ĐỒNG HỒ VOM</li>
+              <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 2 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#head-step2" style="color:black;">
+              BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="head-step2" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>TAIL: Đèn Tail hoạt động bình thường.</li>
+              <li>HEAD-LOW: Không hoạt động.</li>
+              <li>HEAD-HIGH: Không hoạt động.</li>
+              <li>FLASH: Không hoạt động.</li>
+              <li>AUTO: Hoạt động bình thường.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 3 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#head-step3" style="color:black;">
+              BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
+            </a>
+          </h5>
+        </div>
+        <div id="head-step3" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <ul style="font-size: larger;">
+                  <li>1. Đứt cầu chì FL MAIN 3.0W.</li>
+                  <li>2. Hư HEAD RELAY NO.1.</li>
+                  <li>3. Đứt dây chân 2 của HEAD RELAY NO.1 ↔ chân HRLY (BCM).</li>
+                  <li>4. Đứt dây chân 4 của HEAD RELAY NO.1 ↔ chân 3 của HEAD RELAY NO.2.</li>
+                  <li>5. Đứt dây mass A1.</li>
+                  <li>6. Đứt dây chân HEAD (BCM) ↔ chân H của Light Control SW.</li>
+                  <li>7. Hỏng tiếp điểm HEAD trong Light Control SW.</li>
+                </ul>
+              </div>
+              <div class="col-md-8">
+                <img src="/img/Pan/Pan_head.png" alt="Sơ đồ khu vực nghi ngờ HEAD/HRLY" style="width:100%;border-radius:10px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 4 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#head-step4" style="color:black;">
+              BƯỚC 4: ĐO KIỂM
+            </a>
+          </h5>
+        </div>
+        <div id="head-step4" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <h4>* Khóa điện ON &amp; công tắc ở vị trí HEAD</h4>
+                <table class="table table-bordered" style="font-size: larger;">
+                  <thead>
+                    <tr>
+                      <th>Khu vực nghi ngờ</th>
+                      <th style="width:40%;">Vị trí đo</th>
+                      <th>Ghi chú</th>
+                    </tr>
+                  </thead>
+                  <tbody id="head-measure-table">
+                    <tr data-img-src="/img/Pan/Pan_N01.png">
+                      <td>Relay NO.1</td>
+                      <td>Chân 2 relay &amp; Mass = 12V</td>
+                      <td>Nếu 0V ⇒ relay hỏng/không cấp nguồn coil.</td>
+                    </tr>
+                    <tr data-img-src="/img/Pan/HEAD_ID9.png">
+                      <td>ID9</td>
+                      <td>ID3 &amp; E2</td>
+                      <td>0V ⇒ đứt dây ID9.</td>
+                    </tr>
+                    <tr data-img-src="/img/Pan/HEAD_N02.png">
+                      <td>Relay NO.2</td>
+                      <td>Chân 2 relay &amp; Mass E2</td>
+                      <td>0V ⇒ relay NO.2 hỏng/không kéo.</td>
+                    </tr>
+                    <tr data-img-src="/img/Pan/HEAD_low.png">
+                      <td>HEAD-LOW</td>
+                      <td>Ngay sau đèn HEAD-LOW</td>
+                      <td>0V ⇒ đứt mass A1 (hoặc mạch nguồn).</td>
+                    </tr>
+                    <tr data-img-src="/img/Pan/HEAD_bcm.png">
+                      <td>HEAD (BCM)</td>
+                      <td>17A BCM &amp; Mass E2</td>
+                      <td>12V ⇒ mạch OK; 0V ⇒ mất tín hiệu từ SW/BCM.</td>
+                    </tr>
+                    <tr data-img-src="/img/Pan/HEAD_SW.png">
+                      <td>Light Control SW (HEAD)</td>
+                      <td>Tiếp điểm HEAD SW &amp; Mass E2</td>
+                      <td>Bật HEAD để kiểm tra thông mạch.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="col-md-8">
+                <img id="head-preview" src="/img/Pan/Pan_head.png" alt="Preview đo kiểm" style="width:100%;border-radius:10px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 5 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#head-step5" style="color:black;">
+              BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="head-step5" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>HEAD (BCM) = 12V ⇒ đứt dây từ HEAD (BCM) → H (Light Control SW).</li>
+              <li>ID3 = 0V ⇒ đứt dây từ chân 9(1D) → ID3.</li>
+              <li>Tại đèn HEAD = 12V nhưng không sáng ⇒ đứt mass A1.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 6 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#head-step6" style="color:black;">
+              BƯỚC 6: KHẮC PHỤC HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="head-step6" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size: larger;">
+              <li>Nối lại dây từ HEAD (BCM) → H (Light Control SW).</li>
+              <li>Nối lại dây từ chân 9(1D) → ID3.</li>
+              <li>Nối lại mass A1.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Toggle collapse (Bootstrap đã có, đây chỉ là hỗ trợ khi inject)
+    document.querySelectorAll('#head-hrly-section .card-header a').forEach(a => {
+      a.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) $(target).collapse('toggle');
+      });
+    });
+
+    // Preview ảnh theo dòng bảng
+    (function () {
+      const table = document.getElementById('head-measure-table');
+      const preview = document.getElementById('head-preview');
+      if (!table || !preview) return;
+
+      table.querySelectorAll('tr[data-img-src]').forEach(tr => {
+        tr.style.cursor = 'pointer';
+        tr.addEventListener('click', function () {
+          const src = this.getAttribute('data-img-src');
+          if (src) preview.src = src;
+        });
+      });
+    })();
+  </script>
+
+  <style>
+    #head-hrly-section table tbody tr:hover {
+      background-color: #f0f8ff;
+      transition: background-color .25s ease;
+    }
+  </style>
+</section>

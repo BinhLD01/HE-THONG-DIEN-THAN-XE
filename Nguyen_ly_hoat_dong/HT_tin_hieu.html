@@ -1,0 +1,69 @@
+<!-- BẮT ĐẦU NỘI DUNG CHÍNH -->
+<section class="content-card">
+  <h1 class="content-title">HỆ THỐNG TÍN HIỆU</h1>
+
+  <div id="stepsAccordion" class="accordion" role="tablist">
+    
+    <!-- BƯỚC 1 -->
+    <div class="card">
+      <div class="card-header" id="step1Heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#step1" aria-expanded="false" aria-controls="step1">
+            <h4>Khi Turn Switch bật ở chế độ <strong>LH</strong> (EL = 0V)</h4>
+          </button>
+        </h5>
+      </div>
+      <div id="step1" class="collapse" aria-labelledby="step1Heading" data-parent="#stepsAccordion">
+        <div class="card-body">
+          <ul style="padding-left:18px;">
+            <li><h5>Dòng điện điều khiển: Chân 14IF (BCM) → Chân IG Turn Signal Flasher → Chân EL Turn Signal Flasher → Chân TL công tắc E21 → Mass. Tiếp điểm LL đóng.</h5></li>
+            <li><h5>Dòng chính: 14IF (BCM) → IG Turn Signal Flasher → Tiếp điểm LL → LL → II6 (BCM) → IP12 &amp; ID7 (BCM) → Đèn xi nhan trái → Mass ⇒ Xi nhan trái chớp.</h5></li>
+          </ul>
+          <img src="../img/NLHD/EL.png" alt="Turn LH" class="diagram">
+        </div>
+      </div>
+    </div>
+
+    <!-- BƯỚC 2 -->
+    <div class="card">
+      <div class="card-header" id="step2Heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#step2" aria-expanded="false" aria-controls="step2">
+            <h4>Khi Turn Switch bật ở chế độ <strong>RH</strong> (ER = 0V)</h4>
+          </button>
+        </h5>
+      </div>
+      <div id="step2" class="collapse" aria-labelledby="step2Heading" data-parent="#stepsAccordion">
+        <div class="card-body">
+          <ul style="padding-left:18px;">
+            <li><h5>Dòng điện điều khiển: 14IF (BCM) → IG Turn Signal Flasher → ER Turn Signal Flasher → TR công tắc E21 → Mass. Tiếp điểm LR đóng.</h5></li>
+            <li><h5>Dòng chính: 14IF (BCM) → IG Turn Signal Flasher → Tiếp điểm LR → LR → II1 (BCM) → IL9 &amp; IC3 (BCM) → Đèn xi nhan phải → Mass ⇒ Xi nhan phải chớp.</h5></li>
+          </ul>
+          <img src="../img/NLHD/ER.png" alt="Turn RH" class="diagram">
+        </div>
+      </div>
+    </div>
+
+    <!-- BƯỚC 3 -->
+    <div class="card">
+      <div class="card-header" id="step3Heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#step3" aria-expanded="false" aria-controls="step3">
+            <h4>Khi bật công tắc <strong>Hazard</strong> (HAZ = 0V)</h4>
+          </button>
+        </h5>
+      </div>
+      <div id="step3" class="collapse" aria-labelledby="step3Heading" data-parent="#stepsAccordion">
+        <div class="card-body">
+          <ul style="padding-left:18px;">
+            <li><h5>Dòng điện điều khiển: BATT → Chân B Turn Signal Flasher → HAZ Turn Signal Flasher → Hazard Warning Signal SW → Mass. Tiếp điểm LL &amp; LR đóng.</h5></li>
+            <li><h5>Dòng chính: BATT → B Turn Signal Flasher → (LL &amp; LR) → (LL &amp; LR) → (II6 &amp; II1) (BCM) → (IP12, IL9, ID7, IC3) → Đèn xi nhan → Mass ⇒ Hai bên cùng chớp.</h5></li>
+          </ul>
+          <img src="../img/NLHD/HAZ.png" alt="Hazard" class="diagram">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /accordion -->
+</section>
+<!-- KẾT THÚC NỘI DUNG CHÍNH -->

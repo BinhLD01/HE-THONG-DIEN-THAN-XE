@@ -1,0 +1,173 @@
+<section id="tail-section">
+  <h3 class="text-center mb-4">TAIL</h3>
+
+  <div class="container-fluid mt-4">
+    <div class="accordion" role="tablist">
+
+      <!-- BƯỚC 1 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#tail-step1" aria-expanded="true" style="color:black;">
+              BƯỚC 1: CHUẨN BỊ DỤNG CỤ
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step1" class="collapse show" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size:larger;">
+              <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+              <li>2. ĐỒNG HỒ VOM</li>
+              <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 2 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step2" style="color:black;">
+              BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step2" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size:larger;">
+              <li>TAIL: Hoạt động bình thường.</li>
+              <li>HEAD-LOW: Hoạt động bình thường.</li>
+              <li>HEAD-HIGH: Đèn Pha không sáng.</li>
+              <li>FLASH: Đèn Pha không sáng.</li>
+              <li>AUTO: Hoạt động bình thường.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 3 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step3" style="color:black;">
+              BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step3" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <ul style="font-size:larger;">
+                  <li>1. Đứt dây nối từ chân 2 HEAD RELAY NO.2 đến chân DIM (BCM).</li>
+                  <li>2. Hỏng cuộn dây của HEAD RELAY NO.2.</li>
+                  <li>3. Đứt dây nối từ chân 5 của HEAD RELAY NO.2 đến đèn Head.</li>
+                </ul>
+              </div>
+              <div class="col-md-8">
+                <img src="../../img/Pan/NO.02.png" alt="Sơ đồ HEAD RELAY NO.2" style="width:100%;border-radius:10px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 4 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step4" style="color:black;">
+              BƯỚC 4: ĐO KIỂM
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step4" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <h4>* Khóa điện bật ON và công tắc bật ở vị trí HEAD</h4>
+            <table class="table table-bordered" style="font-size:larger;">
+              <thead>
+                <tr>
+                  <th>Khu vực nghi ngờ</th>
+                  <th style="width:40%;">Vị trí đo</th>
+                  <th>Ghi chú</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ĐIM (BCM)</td>
+                  <td>
+                    <ul>
+                      <li>ID9 &amp; Mass = 12V</li>
+                      <li>ID9 &amp; Mass = 0V</li>
+                    </ul>
+                  </td>
+                  <td>Nếu điện áp tại ID9 &amp; mass = 12V → có nguồn vào bình thường.</td>
+                </tr>
+                <tr>
+                  <td>Relay NO.02</td>
+                  <td>Chân 2 Relay &amp; Mass A1 = 12V</td>
+                  <td>Nếu không có điện áp → relay đứt hoặc không kích được.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 5 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step5" style="color:black;">
+              BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step5" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size:larger;">
+              <li>Nếu điện áp tại đèn Head = 0V → đứt dây từ chân 5 của HEAD RELAY NO.2 đến đèn Head.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 6 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#tail-step6" style="color:black;">
+              BƯỚC 6: KHẮC PHỤC HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="tail-step6" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul style="font-size:larger;">
+              <li>Nối lại dây từ chân 5 của HEAD RELAY NO.2 đến đèn Head.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('#tail-section .card-header a').forEach(a => {
+      a.addEventListener('click', function () {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) $(target).collapse('toggle');
+      });
+    });
+  </script>
+
+  <style>
+    #tail-section table tbody tr:hover {
+      background-color:#f0f8ff;
+      transition:background-color .3s ease;
+      cursor:pointer;
+    }
+  </style>
+</section>

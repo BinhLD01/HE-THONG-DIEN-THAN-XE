@@ -1,0 +1,111 @@
+/* Đặt cấu trúc cơ bản cho container */
+.container {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr; /* Tỉ lệ cột: giảm cột bên trái và bên phải */
+    gap: 20px; /* Khoảng cách giữa các cột */
+    max-width: 100vw; /* Chiều rộng tối đa bằng chiều rộng viewport */
+    height: 100vh; /* Chiều cao bằng chiều cao viewport */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng thể */
+    overflow: hidden; /* Ẩn phần dư thừa */
+    display: flex;
+    align-items: center;
+}
+
+/* Định dạng các cột */
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ẩn phần dư thừa */
+    max-height: 100%; /* Chiều cao tối đa 100% của container */
+    box-sizing: border-box;
+}
+
+.main-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1; /* Cột chính rộng hơn */
+    max-width: 100%; /* Chiều rộng tối đa 100% của cột chính */
+}
+
+/* Định dạng các hình ảnh và nội dung */
+.more {
+    width: 100%; /* Chiều rộng của mỗi hình ảnh và nội dung trong các cột bên */
+    text-align: center;
+}
+
+img {
+    width: 100%; /* Điều chỉnh để hình ảnh vừa vặn trong cột */
+    height: auto;
+    border-radius: 8px; /* Bo góc hình ảnh */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tạo bóng cho hình ảnh */
+    transition: transform 0.3s ease; /* Hiệu ứng zoom khi hover */
+    max-height: 150px; /* Giới hạn chiều cao hình ảnh để phù hợp với chiều cao của cột */
+    object-fit: cover; /* Cắt hình ảnh để vừa với chiều cao mà không làm thay đổi tỷ lệ khung hình */
+}
+
+img:hover {
+    transform: scale(1.05); /* Zoom nhẹ khi hover */
+}
+
+/* Định dạng tiêu đề và thông tin */
+.Instructors-information1, .Instructors-information2, .Instructors-information3,
+.Instructors-information4, .Instructors-information5, .Instructors-information6 {
+    font-size: 14px;
+    color: #333; /* Màu chữ tối cho dễ đọc */
+    margin-top: 5px;
+    line-height: 1.4; /* Khoảng cách giữa các dòng */
+}
+
+.Instructors-information7 {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    color: #555; /* Màu chữ nhẹ nhàng hơn */
+}
+
+.Instructors-information7 li {
+    margin-bottom: 5px;
+}
+
+.Instructors {
+    background-color: #f9f9f9; /* Nền sáng cho cột chính */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng liên kết quay lại */
+.multitasking {
+    text-align: center;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+.multitasking ul {
+    list-style: none;
+    padding: 0;
+}
+
+.multitasking li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.multitasking a {
+    text-decoration: none;
+    color: #007bff; /* Màu liên kết */
+    font-weight: bold;
+}
+
+.multitasking a:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+}

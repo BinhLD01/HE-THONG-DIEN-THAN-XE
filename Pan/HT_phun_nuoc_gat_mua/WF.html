@@ -1,0 +1,163 @@
+<section id="pan-wf" class="container-fluid mt-4">
+  <h3>WF</h3>
+
+  <div class="accordion" role="tablist">
+    <!-- Step 1 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a data-toggle="collapse" href="#step1Content" aria-expanded="true">BƯỚC 1: CHUẨN BỊ DỤNG CỤ</a>
+        </h5>
+      </div>
+      <div id="step1Content" class="collapse show">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+            <li>2. ĐỒNG HỒ VOM</li>
+            <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step2Content">BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG</a>
+        </h5>
+      </div>
+      <div id="step2Content" class="collapse">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>LO: Motor gạt nước hoạt động bình thường</li>
+            <li>HI: Motor gạt nước hoạt động bình thường</li>
+            <li>INT: Motor gạt nước hoạt động bình thường</li>
+            <li>WASHER SW: Motor rửa kính không hoạt động</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step3Content">BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ</a>
+        </h5>
+      </div>
+      <div id="step3Content" class="collapse">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <ul style="list-style:none;">
+                <li>1. Đứt cầu chì 10A WASH</li>
+                <li>2. Đứt dây từ IC12 (BCM) đến motor rửa kính</li>
+                <li>3. Hỏng motor rửa kính</li>
+                <li>4. Đứt dây từ motor rửa kính đến chân WF của Wiper SW</li>
+                <li>5. Đứt dây mass EW của Wiper SW</li>
+                <li>6. Đứt tiếp điểm công tắc rửa kính</li>
+              </ul>
+            </div>
+            <div class="col-md-8">
+              <img src="../../img/Pan/WF.png" alt="WF" style="width:100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step4Content">BƯỚC 4: ĐO KIỂM</a>
+        </h5>
+      </div>
+      <div id="step4Content" class="collapse">
+        <div class="card-body">
+          <h5>*Khóa điện bật ON, công tắc ở vị trí phun nước</h5>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>Khu vực nghi ngờ</td>
+                    <td>Vị trí đo kiểm</td>
+                    <td>Ghi chú</td>
+                  </tr>
+                  <tr data-img-src="../../img/Pan/WF_1.png">
+                    <td>Cầu chì 10A WASH</td>
+                    <td>IC12 (BCM) & MASS A3</td>
+                    <td>Nếu có 12V → bình thường</td>
+                  </tr>
+                  <tr data-img-src="../../img/Pan/WF_2.png">
+                    <td>Dây IC12 (BCM) → motor rửa kính</td>
+                    <td>Chân 1 motor rửa kính & A3</td>
+                    <td>Kiểm tra dây nối từ IC12 đến motor</td>
+                  </tr>
+                  <tr data-img-src="../../img/Pan/WF_3.png">
+                    <td>Dây motor → WF</td>
+                    <td>Chân 2 motor & A3</td>
+                    <td>Kiểm tra dây nối từ motor đến WF</td>
+                  </tr>
+                  <tr data-img-src="../../img/Pan/WF_4.png">
+                    <td>Mass EW</td>
+                    <td>EW & A3</td>
+                    <td>Kiểm tra mass của Wiper SW</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6 text-center">
+              <img id="content" src="" alt="" style="width:80%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step5Content">BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG</a>
+        </h5>
+      </div>
+      <div id="step5Content" class="collapse">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>Nếu điện áp tại chân 2 motor rửa kính = 12V → đứt dây từ motor đến chân WF của Wiper SW</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="card">
+      <div class="card-header" role="tab">
+        <h5>
+          <a class="collapsed" data-toggle="collapse" href="#step6Content">BƯỚC 6: KHẮC PHỤC HƯ HỎNG</a>
+        </h5>
+      </div>
+      <div id="step6Content" class="collapse">
+        <div class="card-body">
+          <ul style="list-style:none;">
+            <li>Thay công tắc Windshield Wiper SW mới</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const rows = document.querySelectorAll('table tbody tr');
+    const contentImage = document.getElementById('content');
+    rows.forEach(row => {
+      row.addEventListener('click', function() {
+        const imgSrc = row.getAttribute('data-img-src');
+        if (imgSrc) contentImage.src = imgSrc;
+      });
+    });
+  </script>
+</section>

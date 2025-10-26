@@ -1,0 +1,84 @@
+<section>
+  <header class="text-center mb-4">
+    <h1>HỆ THỐNG CHIẾU SÁNG (PAN)</h1>
+  </header>
+
+  <!-- Các ô chọn -->
+  <div class="text-center mb-4">
+    <div class="selectable-box"><a href="Pan/HT_chieu_sang/TAIL.html">TAIL / S1 / SN</a></div>
+    <div class="selectable-box"><a href="Pan/HT_chieu_sang/HEAD.html">HEAD / HRLY / A1 / NO.01</a></div>
+    <div class="selectable-box"><a href="Pan/HT_chieu_sang/HU.html">HU / HF</a></div>
+    <div class="selectable-box"><a href="Pan/HT_chieu_sang/DIM.html">DIM</a></div>
+    <div class="selectable-box"><a href="Pan/HT_chieu_sang/E2.html">E2</a></div>
+    <div class="selectable-box"><a href="Pan/HT_chieu_sang/RH_HIGH.html">RH HIGH</a></div>
+  </div>
+
+  <!-- Vùng hiển thị nội dung chi tiết -->
+  <div id="content-area"
+       style="background:#fff; border-radius:20px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    <p class="text-center">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
+  </div>
+
+  <!-- Script chính -->
+  <script>
+    // Hàm nạp nội dung chi tiết vào content-area
+    function loadPanContent(url) {
+      const area = document.getElementById('content-area');
+      area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+
+      fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error("Không thể tải nội dung: " + url);
+          return response.text();
+        })
+        .then(html => {
+          const temp = document.createElement('div');
+          temp.innerHTML = html;
+          const section = temp.querySelector('section') || temp;
+          area.innerHTML = section.innerHTML;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .catch(err => {
+          area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
+        });
+    }
+
+    // ✅ Bắt sự kiện click động để đảm bảo luôn hoạt động
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('.selectable-box a');
+      if (!link) return;
+      e.preventDefault();
+      const url = link.getAttribute('href');
+      loadPanContent(url);
+    });
+  </script>
+
+  <!-- CSS -->
+  <style>
+    .selectable-box {
+      display: inline-block;
+      background-color: #f8f9fa;
+      border: 2px solid #007bff;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .selectable-box a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .selectable-box:hover {
+      background-color: #007bff;
+      border-color: #0056b3;
+    }
+
+    .selectable-box:hover a {
+      color: #fff;
+    }
+  </style>
+</section>

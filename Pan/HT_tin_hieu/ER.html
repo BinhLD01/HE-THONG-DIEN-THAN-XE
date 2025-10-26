@@ -1,0 +1,152 @@
+<section>
+  <header class="text-center mb-4">
+    <h1>ER</h1>
+  </header>
+
+  <div class="container-fluid mt-3">
+    <div class="accordion" role="tablist">
+
+      <!-- Bước 1 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#er_step1" aria-expanded="true" style="color:black;">
+              BƯỚC 1: CHUẨN BỊ DỤNG CỤ
+            </a>
+          </h5>
+        </div>
+        <div id="er_step1" class="collapse show" role="tabpanel">
+          <div class="card-body">
+            <ul>
+              <li style="font-size: larger;">1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+              <li style="font-size: larger;">2. ĐỒNG HỒ VOM</li>
+              <li style="font-size: larger;">3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bước 2 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#er_step2" aria-expanded="false" style="color:black;">
+              BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="er_step2" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul>
+              <li style="font-size: larger;">LH: Hoạt động bình thường.</li>
+              <li style="font-size: larger;">RH: Đèn xi nhan bên phải không hoạt động.</li>
+              <li style="font-size: larger;">Hazard SW: Hoạt động bình thường.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bước 3 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#er_step3" aria-expanded="false" style="color:black;">
+              BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
+            </a>
+          </h5>
+        </div>
+        <div id="er_step3" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <ul>
+                  <li style="font-size: larger;">1. Đứt dây nối từ chân ER (6) của Turn Signal Flasher đến chân TR của Headlamp Dimmer SW.</li>
+                  <li style="font-size: larger;">2. Đứt tiếp điểm công tắc RH.</li>
+                </ul>
+              </div>
+              <div class="col-md-8">
+                <img src="../../img/Pan/ER.png" alt="ER" style="width:80%;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bước 4 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#er_step4" aria-expanded="false" style="color:black;">
+              BƯỚC 4: ĐO KIỂM
+            </a>
+          </h5>
+        </div>
+        <div id="er_step4" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div><h3>*Khóa điện bật ON và công tắc bật ở vị trí EL</h3></div>
+                <table class="table table-bordered" style="font-size: larger;">
+                  <tbody>
+                    <tr>
+                      <td>Khu vực nghi ngờ</td>
+                      <td style="width:40%;">Vị trí đo kiểm</td>
+                      <td>Ghi chú</td>
+                    </tr>
+                    <tr>
+                      <td>Dây nối từ chân ER (6) của Turn Signal Flasher đến chân TR của Headlamp Dimmer SW.</td>
+                      <td>Chân TR của Headlamp Dimmer SW &amp; MASS E2</td>
+                      <td>Headlamp Dimmer SW bật OFF. Kiểm tra dây nối ER(6) → TR.</td>
+                    </tr>
+                    <tr>
+                      <td>Tiếp điểm RH.</td>
+                      <td>Chân TR của Headlamp Dimmer SW &amp; MASS E2</td>
+                      <td>Headlamp Dimmer SW bật RH. Kiểm tra tiếp điểm RH.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bước 5 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#er_step5" aria-expanded="false" style="color:black;">
+              BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="er_step5" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul>
+              <li style="font-size: larger;">Headlamp Dimmer SW bật OFF. Nếu điện áp tại chân TR là 0V ⇒ đứt dây nối ER(6) → TR.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bước 6 -->
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#er_step6" aria-expanded="false" style="color:black;">
+              BƯỚC 6: KHẮC PHỤC HƯ HỎNG
+            </a>
+          </h5>
+        </div>
+        <div id="er_step6" class="collapse" role="tabpanel">
+          <div class="card-body">
+            <ul>
+              <li style="font-size: larger;">Nối lại dây nối từ chân ER (6) của Turn Signal Flasher đến chân TR của Headlamp Dimmer SW.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
