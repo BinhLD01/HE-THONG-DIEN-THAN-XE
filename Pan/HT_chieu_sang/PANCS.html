@@ -20,15 +20,21 @@
   </div>
 
 
-
 <script>
-  // Nạp nội dung chi tiết vào content-area (AJAX + giữ trong khung)
+  function absolutizeAttr(root, selector, attr, baseUrlAbs) {
+    root.querySelectorAll(selector).forEach(el => {
+      const val = el.getAttribute(attr);
+      if (!val) return;
+      if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
+      el.setAttribute(attr, new URL(val, baseUrlAbs).href);
+    });
+  }
+
   function loadPanContent(url) {
     const area = document.getElementById('content-area');
     if (!area) return;
     area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
 
-    // Chuyển URL tương đối thành tuyệt đối theo trang hiện tại
     const absUrl = new URL(url, location.href).href;
 
     fetch(absUrl)
@@ -40,21 +46,39 @@
         const temp = document.createElement('div');
         temp.innerHTML = html;
 
-        // Chỉ lấy phần <section> chính
-        const section = temp.querySelector('section') || temp;
+        // ✅ chỉ lấy section nằm trong nội dung vừa load (không dính section của index)
+        let section = null;
+        const sections = temp.querySelectorAll('section');
+        if (sections.length > 0) {
+          // Ưu tiên section có id (VD: #tail-section)
+          section = temp.querySelector('section[id]') || sections[0];
+        } else {
+          section = temp;
+        }
 
-        // Chuẩn hóa các đường dẫn ảnh, css, script, link bên trong
-        section.querySelectorAll('img, link, script, a').forEach(el => {
-          const attr = el.tagName === 'A' || el.tagName === 'LINK' ? 'href' : 'src';
-          const val = el.getAttribute(attr);
-          if (!val || /^(https?:|#|mailto:|tel:|data:)/i.test(val)) return;
-          el.setAttribute(attr, new URL(val, absUrl).href);
+        // Chuẩn hoá link/ảnh/css/js bên trong
+        absolutizeAttr(section, 'img', 'src', absUrl);
+        absolutizeAttr(section, 'link', 'href', absUrl);
+        absolutizeAttr(section, 'script', 'src', absUrl);
+        absolutizeAttr(section, 'a', 'href', absUrl);
+
+        // ✅ Chèn riêng phần section đó vào #content-area
+        area.innerHTML = section.outerHTML;
+
+        // Giữ trải nghiệm SPA
+        area.querySelectorAll('a[href]').forEach(a => {
+          const href = a.getAttribute('href');
+          if (!href || href.startsWith('#') || /\.pdf$/i.test(href) || a.target === '_blank') return;
+          let u;
+          try { u = new URL(href, absUrl); } catch { return; }
+          if (u.origin === location.origin) {
+            a.addEventListener('click', (e) => {
+              e.preventDefault();
+              loadPanContent(u.href);
+            });
+          }
         });
 
-        // Gán vào content-area
-        area.innerHTML = section.innerHTML;
-
-        // Cuộn lên đầu
         window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(err => {
@@ -62,17 +86,13 @@
       });
   }
 
-  // ✅ Bắt sự kiện click trên các ô chọn, ngăn reload trang
-  document.addEventListener('click', e => {
+  // Bắt click trên các ô chọn
+  document.addEventListener('click', function (e) {
     const link = e.target.closest('.selectable-box a');
     if (!link) return;
-    e.preventDefault(); // Ngăn mở trang mới
-    const href = link.getAttribute('href');
-    if (href) loadPanContent(href);
+    e.preventDefault();
+    loadPanContent(link.getAttribute('href'));
   });
-
-  // ✅ Khi tải trang lần đầu, nếu muốn tự load sẵn phần nào thì thêm dòng này:
-  // window.addEventListener('DOMContentLoaded', () => loadPanContent('Pan/HT_chieu_sang/TAIL.html'));
 </script>
 
 
