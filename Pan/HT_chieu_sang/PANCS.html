@@ -21,68 +21,40 @@
 
 
 
-  <script>
-  // Chuyển mọi src/href tương đối -> tuyệt đối theo baseUrl (tuyệt đối)
-  function absolutizeAttr(root, selector, attr, baseUrlAbs) {
-    root.querySelectorAll(selector).forEach(el => {
-      const val = el.getAttribute(attr);
-      if (!val) return;
-      // Bỏ qua các loại không cần đổi
-      if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
-      el.setAttribute(attr, new URL(val, baseUrlAbs).href);
-    });
-  }
-
-  // Nạp nội dung chi tiết vào content-area (hỗ trợ GitHub Pages / subpath)
+<script>
+  // Nạp nội dung chi tiết vào content-area (AJAX + giữ trong khung)
   function loadPanContent(url) {
     const area = document.getElementById('content-area');
+    if (!area) return;
     area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
 
-    // 🔑 Luôn chuẩn hoá URL cần fetch thành tuyệt đối dựa trên trang hiện tại
-    const absUrl = new URL(url, window.location.href).href;
+    // Chuyển URL tương đối thành tuyệt đối theo trang hiện tại
+    const absUrl = new URL(url, location.href).href;
 
     fetch(absUrl)
-      .then(response => {
-        if (!response.ok) throw new Error("Không thể tải nội dung: " + absUrl);
-        return response.text();
+      .then(res => {
+        if (!res.ok) throw new Error('Không thể tải nội dung: ' + absUrl);
+        return res.text();
       })
       .then(html => {
         const temp = document.createElement('div');
         temp.innerHTML = html;
 
-        // Lấy phần cần hiển thị
+        // Chỉ lấy phần <section> chính
         const section = temp.querySelector('section') || temp;
 
-        // 🔧 Chuẩn hoá tất cả đường dẫn tương đối bên trong theo URL nguồn tuyệt đối
-        absolutizeAttr(section, 'img', 'src', absUrl);
-        absolutizeAttr(section, 'link', 'href', absUrl);
-        absolutizeAttr(section, 'script', 'src', absUrl);
-        absolutizeAttr(section, 'a', 'href', absUrl);
-
-        area.innerHTML = section.innerHTML;
-
-        // Giữ trải nghiệm SPA cho các link nội bộ vừa được nạp
-        area.querySelectorAll('a[href]').forEach(a => {
-          const href = a.getAttribute('href');
-          if (!href || href.startsWith('#') || /\.pdf$/i.test(href)) return;
-          if (a.target === '_blank') return; // tôn trọng mở tab mới
-
-          let u;
-          try {
-            u = new URL(href, window.location.href);
-          } catch {
-            return;
-          }
-
-          // Chỉ intercept link cùng origin (trong cùng site GH Pages)
-          if (u.origin === window.location.origin) {
-            a.addEventListener('click', (e) => {
-              e.preventDefault();
-              loadPanContent(u.href);
-            });
-          }
+        // Chuẩn hóa các đường dẫn ảnh, css, script, link bên trong
+        section.querySelectorAll('img, link, script, a').forEach(el => {
+          const attr = el.tagName === 'A' || el.tagName === 'LINK' ? 'href' : 'src';
+          const val = el.getAttribute(attr);
+          if (!val || /^(https?:|#|mailto:|tel:|data:)/i.test(val)) return;
+          el.setAttribute(attr, new URL(val, absUrl).href);
         });
 
+        // Gán vào content-area
+        area.innerHTML = section.innerHTML;
+
+        // Cuộn lên đầu
         window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(err => {
@@ -90,14 +62,19 @@
       });
   }
 
-  // ✅ Bắt sự kiện click động trên các ô chọn
-  document.addEventListener('click', function (e) {
+  // ✅ Bắt sự kiện click trên các ô chọn, ngăn reload trang
+  document.addEventListener('click', e => {
     const link = e.target.closest('.selectable-box a');
     if (!link) return;
-    e.preventDefault();
-    loadPanContent(link.getAttribute('href'));
+    e.preventDefault(); // Ngăn mở trang mới
+    const href = link.getAttribute('href');
+    if (href) loadPanContent(href);
   });
+
+  // ✅ Khi tải trang lần đầu, nếu muốn tự load sẵn phần nào thì thêm dòng này:
+  // window.addEventListener('DOMContentLoaded', () => loadPanContent('Pan/HT_chieu_sang/TAIL.html'));
 </script>
+
 
 
   <!-- CSS -->
