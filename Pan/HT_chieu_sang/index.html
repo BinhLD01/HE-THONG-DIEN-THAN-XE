@@ -18,40 +18,75 @@
        style="background:#fff; border-radius:20px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
     <p class="text-center">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
   </div>
-
-  <!-- Script chính -->
-  <script>
-    // Hàm nạp nội dung chi tiết vào content-area
-    function loadPanContent(url) {
-      const area = document.getElementById('content-area');
-      area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-
-      fetch(url)
-        .then(response => {
-          if (!response.ok) throw new Error("Không thể tải nội dung: " + url);
-          return response.text();
-        })
-        .then(html => {
-          const temp = document.createElement('div');
-          temp.innerHTML = html;
-          const section = temp.querySelector('section') || temp;
-          area.innerHTML = section.innerHTML;
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        })
-        .catch(err => {
-          area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-        });
-    }
-
-    // ✅ Bắt sự kiện click động để đảm bảo luôn hoạt động
-    document.addEventListener('click', function (e) {
-      const link = e.target.closest('.selectable-box a');
-      if (!link) return;
-      e.preventDefault();
-      const url = link.getAttribute('href');
-      loadPanContent(url);
+<!-- Script chính (bản vá) -->
+<script>
+  // Biến đường dẫn tương đối => tuyệt đối theo baseUrl
+  function absolutizeAttr(root, selector, attr, baseUrl) {
+    root.querySelectorAll(selector).forEach(el => {
+      const val = el.getAttribute(attr);
+      if (!val) return;
+      // Bỏ qua các loại không cần đổi
+      if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
+      el.setAttribute(attr, new URL(val, baseUrl).href);
     });
-  </script>
+  }
+
+  // Nạp nội dung chi tiết vào content-area và chuẩn hoá đường dẫn
+  function loadPanContent(url) {
+    const area = document.getElementById('content-area');
+    area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error("Không thể tải nội dung: " + url);
+        return response.text();
+      })
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+
+        // Lấy phần cần hiển thị
+        const section = temp.querySelector('section') || temp;
+
+        // 🔧 Chuẩn hoá tất cả đường dẫn tương đối bên trong theo URL nguồn
+        absolutizeAttr(section, 'img', 'src', url);
+        absolutizeAttr(section, 'link', 'href', url);
+        absolutizeAttr(section, 'script', 'src', url);
+        absolutizeAttr(section, 'a', 'href', url);
+
+        area.innerHTML = section.innerHTML;
+
+        // Giữ trải nghiệm SPA cho các link nội bộ trong phần vừa load
+        area.querySelectorAll('a[href]').forEach(a => {
+          const href = a.getAttribute('href');
+          if (!href || /\.pdf$/i.test(href) || href.startsWith('#')) return;
+          try {
+            const u = new URL(href, location.href);
+            // Chỉ intercept link cùng host (trong repo) để load vào content-area
+            if (u.origin === location.origin) {
+              a.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadPanContent(u.href);
+              });
+            }
+          } catch (_) {}
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      })
+      .catch(err => {
+        area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
+      });
+  }
+
+  // ✅ Bắt sự kiện click động để luôn hoạt động
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('.selectable-box a');
+    if (!link) return;
+    e.preventDefault();
+    loadPanContent(link.getAttribute('href'));
+  });
+</script>
 
   <!-- CSS -->
   <style>
