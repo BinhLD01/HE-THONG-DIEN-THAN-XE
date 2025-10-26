@@ -4,7 +4,7 @@
   </header>
 
   <!-- Các ô chọn -->
-  <div class="text-center mb-4">
+  <div class="text-center mb-4" id="pan-menu">
     <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/+1.html">+1</a></div>
     <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/+B.html">+B / A3</a></div>
     <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/+2.html">+2</a></div>
@@ -23,14 +23,51 @@
     <p class="text-center">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
   </div>
 
-  <!-- Script AJAX -->
   <script>
-    // Hàm chỉ load nội dung vào content-area của trang này
+    // --- Helper: chuẩn hoá đường dẫn (img/link/script/a) theo base của file con
+    function absolutizeAttr(root, selector, attr, baseUrl) {
+      root.querySelectorAll(selector).forEach(el => {
+        const val = el.getAttribute(attr);
+        if (!val) return;
+        if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return; // bỏ qua external
+        try {
+          el.setAttribute(attr, new URL(val, baseUrl).href);
+        } catch (_) {}
+      });
+    }
+
+    // --- Helper: encode riêng tên file cuối (để hỗ trợ '+' ...)
+    function encodeLastSegment(pathOrUrl) {
+      // Nếu là URL tuyệt đối -> lấy pathname để xử lý, sau đó ghép lại
+      try {
+        const u = new URL(pathOrUrl, window.location.href);
+        const parts = u.pathname.split('/');
+        if (parts.length) {
+          const last = parts.pop();
+          // nếu có phần mở rộng .html, chỉ encode phần tên file
+          if (last) parts.push(encodeURIComponent(last));
+          u.pathname = parts.join('/');
+        }
+        return u.href;
+      } catch {
+        // Trường hợp là đường dẫn tương đối
+        const parts = pathOrUrl.split('/');
+        if (parts.length) {
+          const last = parts.pop();
+          if (last) parts.push(encodeURIComponent(last));
+        }
+        return parts.join('/');
+      }
+    }
+
+    // --- Loader: nạp file con vào #content-area
     function loadPanContent(url) {
       const area = document.getElementById('content-area');
       area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
 
-      fetch(url)
+      const encodedUrl = encodeLastSegment(url);
+
+      fetch(encodedUrl)
         .then(response => {
           if (!response.ok) throw new Error("Không thể tải nội dung: " + url);
           return response.text();
@@ -39,7 +76,30 @@
           const temp = document.createElement('div');
           temp.innerHTML = html;
           const section = temp.querySelector('section') || temp;
+
+          // Chuẩn hoá asset paths dựa trên encodedUrl
+          absolutizeAttr(section, 'img', 'src', encodedUrl);
+          absolutizeAttr(section, 'link', 'href', encodedUrl);
+          absolutizeAttr(section, 'script', 'src', encodedUrl);
+          absolutizeAttr(section, 'a', 'href', encodedUrl);
+
           area.innerHTML = section.innerHTML;
+
+          // Cho các link .html nội bộ bên trong phần vừa nạp tiếp tục nạp vào content-area
+          area.querySelectorAll('a[href]').forEach(a => {
+            const href = a.getAttribute('href');
+            if (!href || href.startsWith('#') || /\.pdf$/i.test(href)) return;
+            try {
+              const u = new URL(href, encodedUrl);
+              if (u.origin === location.origin && /\.html?$/i.test(u.pathname)) {
+                a.addEventListener('click', e => {
+                  e.preventDefault();
+                  loadPanContent(u.href);
+                });
+              }
+            } catch(_) {}
+          });
+
           window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(err => {
@@ -52,17 +112,26 @@
       const link = e.target.closest('.selectable-box a');
       if (!link) return;
       e.preventDefault();
+
+      // Cập nhật trạng thái active
+      document.querySelectorAll('#pan-menu .selectable-box').forEach(b => b.classList.remove('active'));
+      const box = link.closest('.selectable-box');
+      if (box) box.classList.add('active');
+
       const url = link.getAttribute('href');
       loadPanContent(url);
     });
 
     // ✅ Tự động mở sẵn mục WF khi vào trang
     window.addEventListener('DOMContentLoaded', () => {
+      const wfLink = document.querySelector('#pan-menu a[href$="WF.html"]');
+      if (wfLink) {
+        wfLink.closest('.selectable-box')?.classList.add('active');
+      }
       loadPanContent('Pan/HT_phun_nuoc_gat_mua/WF.html');
     });
   </script>
 
-  <!-- CSS -->
   <style>
     .selectable-box {
       display: inline-block;
@@ -72,22 +141,25 @@
       padding: 10px 15px;
       margin: 5px;
       cursor: pointer;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
+      transition: background-color .3s ease, border-color .3s ease, transform .1s ease;
     }
-
     .selectable-box a {
       text-decoration: none;
       color: #007bff;
       font-weight: bold;
     }
-
     .selectable-box:hover {
       background-color: #007bff;
       border-color: #0056b3;
+      transform: translateY(-1px);
     }
+    .selectable-box:hover a { color: #fff; }
 
-    .selectable-box:hover a {
-      color: #fff;
+    /* Trạng thái đang chọn */
+    .selectable-box.active {
+      background-color: #007bff;
+      border-color: #0056b3;
     }
+    .selectable-box.active a { color: #fff; }
   </style>
 </section>
