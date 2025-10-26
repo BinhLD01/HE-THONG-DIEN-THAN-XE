@@ -118,9 +118,9 @@
               <details>
                 <summary>Nguyên lý hoạt động</summary>
                 <ul>
-                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_chieu_sang.html')">HỆ THỐNG CHIẾU SÁNG</a></li>
-                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_tin_hieu.html')">HỆ THỐNG TÍN HIỆU</a></li>
-                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html')">HỆ THỐNG PHUN NƯỚC GẠT MƯA</a></li>
+                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_chieu_sang.html')">Hệ Thống Chiếu Sáng</a></li>
+                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_tin_hieu.html')">Hệ Thống Tin Hiệu</a></li>
+                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html')">Hệ Thống Phun Nước Gạt Mưa</a></li>
                 </ul>
               </details>
             </li>
@@ -165,84 +165,35 @@
 
   <!-- SCRIPT -->
   <script>
-    // --- Helpers: chuẩn hoá URL ---
-    const toAbs = (path, fromUrl) => new URL(path, fromUrl).href;
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainContent = document.getElementById('main-content');
 
-    // Sửa mọi URL tương đối (src/href/srcset) bên trong một DOM node theo gốc sourceUrl
-    function fixRelativeUrls(root, sourceUrl) {
-      const rewrite = (selector, attr) => {
-        root.querySelectorAll(selector).forEach(el => {
-          const val = el.getAttribute(attr);
-          if (!val) return;
-          // Bỏ qua URL tuyệt đối, data:, mailto:, tel:, và anchor #
-          if (/^(https?:|data:|mailto:|tel:|#)/i.test(val)) return;
-          el.setAttribute(attr, toAbs(val, sourceUrl));
-        });
-      };
-      rewrite('img[src]', 'src');
-      rewrite('img[srcset]', 'srcset');
-      rewrite('source[srcset]', 'srcset');
-      rewrite('script[src]', 'src');
-      rewrite('link[href]', 'href');
-      rewrite('a[href]', 'href'); // để link bên trong vẫn dẫn đúng sau khi chèn
-    }
-
-    // Tải trang con và chèn nội dung chính
-    function loadContent(url) {
-      const main = document.getElementById('main-content');
-      main.classList.add('loading');
-      main.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-
-      fetch(url)
-        .then(res => {
-          if (!res.ok) throw new Error('Không thể tải nội dung: ' + url);
-          return res.text();
-        })
-        .then(html => {
-          const temp = document.createElement('html');
-          temp.innerHTML = html;
-          const from = temp.querySelector('section') || temp.querySelector('body') || temp;
-
-          const cloned = from.cloneNode(true);
-          fixRelativeUrls(cloned, url);
-
-          main.innerHTML = cloned.outerHTML;
-          main.classList.remove('loading');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        })
-        .catch(err => {
-          main.classList.remove('loading');
-          main.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-        });
-    }
-
-    // Bắt click link để dùng fetch, trừ Trang chủ (hard reload) và link đặc biệt
+    // Bắt sự kiện click cho tất cả link
     document.addEventListener('click', function (e) {
       const link = e.target.closest('.toc-panel a, .navbar a, .sidebar a');
       if (!link) return;
 
       const url = link.getAttribute('href') || '';
 
-      const goHome =
+      // Cho phép reload Trang chủ
+      const isHome =
         link.hasAttribute('data-hard') ||
         /(^|\/)index\.html(?:[#?].*)?$/i.test(url) ||
         url === '/' ||
         url === window.location.pathname;
 
-      const special = !url || url === '#' || /\.pdf$/i.test(url);
+      // Bỏ qua các file đặc biệt
+      const isSpecial =
+        !url ||
+        url === '#' ||
+        /\.pdf$/i.test(url);
 
-      if (goHome || special) return; // cho phép trình duyệt điều hướng bình thường
+      if (isHome || isSpecial) return; // Cho trình duyệt tự reload
 
       e.preventDefault();
-      loadContent(url);
-    });
-
-    // Loader riêng cho khu vực PAN (nếu có)
-    function loadPanContent(url) {
-      const area = document.getElementById('content-area');
-      if (!area) return;
-
-      area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+      mainContent.classList.add('loading');
+      mainContent.innerHTML =
+        '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
 
       fetch(url)
         .then(res => {
@@ -250,20 +201,65 @@
           return res.text();
         })
         .then(html => {
-          const temp = document.createElement('html');
+          const temp = document.createElement('div');
           temp.innerHTML = html;
-          const from = temp.querySelector('section') || temp.querySelector('body') || temp;
-
-          const cloned = from.cloneNode(true);
-          fixRelativeUrls(cloned, url);
-
-          area.innerHTML = cloned.innerHTML;
+          const section = temp.querySelector('section') || temp;
+          mainContent.innerHTML = section.outerHTML;
+          mainContent.classList.remove('loading');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(err => {
-          area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
+          mainContent.classList.remove('loading');
+          mainContent.innerHTML =
+            `<p style="color:red;text-align:center;">${err.message}</p>`;
         });
-    }
+    });
+  });
+
+  function loadContent(url) {
+    const main = document.getElementById('main-content');
+    main.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error("Không thể tải nội dung: " + url);
+        return res.text();
+      })
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const section = temp.querySelector('section') || temp;
+        main.innerHTML = section.outerHTML;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      })
+      .catch(err => {
+        main.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
+      });
+  }
+
+  // Hàm load nội dung trong trang PAN
+  function loadPanContent(url) {
+    const area = document.getElementById('content-area');
+    if (!area) return;
+
+    area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error("Không thể tải nội dung: " + url);
+        return res.text();
+      })
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const section = temp.querySelector('section') || temp;
+        area.innerHTML = section.innerHTML;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      })
+      .catch(err => {
+        area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
+      });
+  }
   </script>
 </body>
 </html>
