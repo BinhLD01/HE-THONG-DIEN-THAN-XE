@@ -1,10 +1,10 @@
-<section data-fragment>
-  <header class="text-center mb-4">
-    <h1>HỆ THỐNG TÍN HIỆU (PAN)</h1>
+<section data-fragment class="content-card text-center">
+  <header class="mb-4">
+    <h1 class="content-title">HỆ THỐNG TÍN HIỆU (PAN)</h1>
   </header>
 
   <!-- Các ô chọn -->
-  <div class="text-center mb-4 pan-grid" id="pan-menu">
+    <div class="text-center mb-4 pan-grid" id="pan-menu">
     <a class="selectable-box" href="Pan/HT_tin_hieu/LH_SW.html">LH_SW</a>
     <a class="selectable-box" href="Pan/HT_tin_hieu/EL.html">EL</a>
     <a class="selectable-box" href="Pan/HT_tin_hieu/ER.html">ER</a>
@@ -16,144 +16,8 @@
   </div>
 
   <!-- Khu vực hiển thị nội dung -->
-  <div id="content-area"
-       class="content-card"
-       style="background:#fff;border-radius:20px;padding:20px;box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-    <p class="text-center">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
+  <div id="content-area" class="content-card">
+    <p class="text-center text-secondary">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
   </div>
 
-  <script>
-    (function initPanSignal(){
-      const menu = document.getElementById('pan-menu');
-      if (!menu || menu.dataset.bound === '1') return;
-      menu.dataset.bound = '1';
-
-      function pickFragment(doc) {
-        return doc.querySelector('[data-fragment]') ||
-               doc.querySelector('main#page-content') ||
-               doc.querySelector('main') ||
-               doc.querySelector('section') ||
-               doc.body || doc;
-      }
-
-      function absolutizeAttr(root, selector, attr, baseAbs) {
-        root.querySelectorAll(selector).forEach(el => {
-          const val = el.getAttribute(attr);
-          if (!val) return;
-          if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
-          try { el.setAttribute(attr, new URL(val, baseAbs).href); } catch(_){}
-        });
-      }
-
-      async function loadPanContent(url) {
-        const area = document.getElementById('content-area');
-        if (!area) return;
-
-        const absUrl = new URL(url, location.href).href;
-        area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-
-        try {
-          const res = await fetch(absUrl);
-          if (!res.ok) throw new Error("Không thể tải nội dung: " + url);
-          const html = await res.text();
-
-          const doc = new DOMParser().parseFromString(html, 'text/html');
-          const frag = pickFragment(doc);
-
-          absolutizeAttr(frag, 'img', 'src', absUrl);
-          absolutizeAttr(frag, 'link', 'href', absUrl);
-          absolutizeAttr(frag, 'script', 'src', absUrl);
-          absolutizeAttr(frag, 'a', 'href', absUrl);
-
-          area.innerHTML = frag.innerHTML;
-
-          // Link nội bộ bên trong chi tiết -> tiếp tục load vào content-area
-          area.querySelectorAll('a[href]').forEach(a => {
-            const href = a.getAttribute('href');
-            if (!href || href.startsWith('#') || /\.pdf$/i.test(href) || a.target === '_blank') return;
-            let u; try { u = new URL(href, absUrl); } catch { return; }
-            if (u.origin === location.origin && /\.html?$/i.test(u.pathname)) {
-              a.addEventListener('click', ev => {
-                ev.preventDefault();
-                setActiveByHref(u.href);
-                loadPanContent(u.href);
-              });
-            }
-          });
-
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } catch (err) {
-          area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-        }
-      }
-
-      function clearActive() {
-        document.querySelectorAll('#pan-menu .selectable-box').forEach(el => el.classList.remove('active'));
-      }
-      function setActiveByHref(hrefAbs) {
-        clearActive();
-        try {
-          const pathTarget = new URL(hrefAbs, location.href).pathname;
-          document.querySelectorAll('#pan-menu .selectable-box').forEach(a => {
-            const p = new URL(a.getAttribute('href'), location.href).pathname;
-            if (p === pathTarget) a.classList.add('active');
-          });
-        } catch(_){}
-      }
-
-      // Delegation click cho menu
-      document.addEventListener('click', function (e) {
-        const a = e.target.closest('#pan-menu .selectable-box');
-        if (!a) return;
-        if (!document.getElementById('content-area')) return;
-        e.preventDefault();
-        setActiveByHref(a.href);
-        loadPanContent(a.getAttribute('href'));
-      });
-
-      // Mặc định mở HAZ
-      const defaultHref = 'Pan/HT_tin_hieu/HAZ.html';
-      setActiveByHref(defaultHref);
-      loadPanContent(defaultHref);
-    })();
-  </script>
-
-  <style>
-    /* Lưới 3 cột, co về 2/1 khi nhỏ */
-    .pan-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(220px, 1fr));
-      gap: 12px;
-      justify-items: stretch;
-    }
-    @media (max-width: 992px){ .pan-grid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 576px){ .pan-grid{ grid-template-columns: 1fr; } }
-
-    .selectable-box{
-      display:block;
-      text-align:center;
-      background:#f8f9fa;
-      border:2px solid #007bff;
-      border-radius:12px;
-      padding:12px 14px;
-      font-weight:700;
-      color:#007bff;
-      text-decoration:none;
-      transition: background-color .2s, border-color .2s, transform .15s, box-shadow .15s;
-      box-shadow: 0 2px 6px rgba(0,0,0,.06);
-    }
-    .selectable-box:hover{
-      background:#007bff;
-      border-color:#0056b3;
-      color:#fff;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 14px rgba(0,0,0,.15);
-    }
-    .selectable-box.active{
-      background:#007bff;
-      border-color:#0056b3;
-      color:#fff;
-      box-shadow: 0 6px 14px rgba(0,0,0,.15);
-    }
-  </style>
 </section>
