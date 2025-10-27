@@ -282,40 +282,62 @@ nav.navbar .dropdown a.active {
   margin-top: 20px;
 }
 
-/* ========== HOME: thẻ chọn hệ thống ========== */
-.system-cards{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:2rem;
-  margin-top:2rem;
+/* ========== HOME: thẻ chọn hệ thống ========== *//* ====== 3 ô ngang hàng ====== */
+.system-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột bằng nhau */
+  gap: 2rem; /* khoảng cách giữa các ô */
+  justify-items: center;
+  align-items: stretch;
+  margin-top: 2rem;
 }
 
-.system-card{
-  flex:0 1 300px;
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 4px 10px rgba(0,0,0,.15);
-  text-align:center;
-  text-decoration:none;
-  color:inherit;
-  transition:transform .2s, box-shadow .2s;
-  overflow:hidden;
+/* ====== style từng ô ====== */
+.system-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
 }
-.system-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 8px 16px rgba(0,0,0,.25);
+
+.system-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
-.system-card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
+
+.system-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
-.system-card h4{
-  font-weight:700;
-  margin:1rem 0;
-  color:#0b2c6b;
+
+.system-card h4 {
+  font-weight: 700;
+  margin: 1rem 0;
+  color: #0b2c6b;
 }
+
+/* Responsive: 2 ô hàng ở tablet, 1 ô ở điện thoại */
+@media (max-width: 992px) {
+  .system-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .system-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 /* Responsive nhỏ cho thẻ lớn */
 @media (max-width: 576px){
