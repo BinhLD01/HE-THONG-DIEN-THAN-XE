@@ -1,176 +1,276 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới thiệu thành viên</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giới thiệu thành viên</title>
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
+  <style>
+    :root{
+      --brand:#184e9e;
+      --brand-2:#0a4bb1;
+      --bg:#eff9fc;
+      --card:#ffffff;
+      --ink:#262261;
+      --muted:#6b7280;
+      --ring:rgba(10,75,177,.35);
+      --shadow:0 8px 20px rgba(0,0,0,.12);
+      --shadow-sm:0 4px 10px rgba(0,0,0,.10);
+    }
 
-        h1 {
-            text-align: center;
-            padding: 20px 0;
-            color: #333;
-        }
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family:"Times New Roman", serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
 
-        .team {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
+    /* Layout */
+    .container{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
 
-        .member {
-            background-color: #fff;
-            width: 300px;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            cursor: pointer;
-        }
+    /* Top bar */
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-bottom: 18px;
+    }
+    .back-btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(180deg, #1f67d8, var(--brand));
+      color:#fff;text-decoration:none;font-weight:700;
+      padding:10px 14px;border-radius:999px;
+      box-shadow:var(--shadow-sm);
+      transition:transform .15s, box-shadow .15s, opacity .15s;
+    }
+    .back-btn:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+    .back-btn:active{ transform:translateY(0); opacity:.9; }
+    .back-btn svg{ width:18px;height:18px; }
 
-        .member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
+    h1.page-title{
+      font-family:"Patua One", serif;
+      text-align:center;
+      color:#d21313;
+      font-size: clamp(24px, 4.8vw, 44px);
+      letter-spacing:.3px;
+      margin: 10px 0 8px;
+      text-wrap: balance;
+    }
+    p.page-sub{
+      text-align:center;margin:0 0 20px;color:var(--muted);
+    }
 
-        .member h2 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #333;
-        }
+    /* Team grid */
+    .team{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+    @media (max-width: 1024px){
+      .team{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    @media (max-width: 768px){
+      .team{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 520px){
+      .team{ grid-template-columns: 1fr; }
+    }
 
-        .member p {
-            color: #777;
-        }
+    /* Member card */
+    .member{
+      background:var(--card);
+      border-radius:18px;
+      padding:18px 16px;
+      text-align:center;
+      box-shadow:var(--shadow-sm);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      cursor:pointer;
+      border:2px solid transparent;
+      height:100%;
+      display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .member:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow);
+      border-color:var(--ring);
+    }
+    .avatar{
+      width:160px;height:160px;margin:0 auto 14px;
+      border-radius:50%;
+      overflow:hidden;border:4px solid #e5eefc;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
+    }
+    .avatar img{
+      width:100%;height:100%;object-fit:cover;display:block;
+    }
+    .member h2{
+      margin:6px 0 6px;
+      font-size: clamp(18px, 2.4vw, 22px);
+      color:var(--ink);
+      line-height:1.2;
+    }
+    .role{ color:#445; font-style:italic; margin:0 0 6px; }
+    .meta{ color:var(--muted); margin:0 0 6px; font-size:14px; }
 
-        .member .role {
-            font-style: italic;
-            color: #555;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-            border-radius: 10px;
-            text-align: left;
-        }
-
-        .modal-content h2 {
-            margin-top: 0;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-    </style>
+    /* Modal */
+    .modal{
+      position: fixed; inset:0; display:none;
+      background: rgba(0,0,0,.45);
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal[open]{ display:block; }
+    .modal-card{
+      max-width: 720px; margin: 6svh auto 0;
+      background:#fff; border-radius:16px; padding:20px;
+      box-shadow: var(--shadow);
+      position:relative;
+      animation: pop .18s ease;
+    }
+    @keyframes pop{ from{transform:scale(.98);opacity:.6} to{transform:none;opacity:1} }
+    .modal-close{
+      position:absolute; top:10px; right:10px;
+      width:36px;height:36px; border-radius:999px; border:none;
+      background:#f3f6ff; color:#002;
+      font-size:20px; line-height:36px; text-align:center;
+      cursor:pointer;
+      transition: filter .15s;
+    }
+    .modal-close:hover{ filter: brightness(.95); }
+    .modal h3{ margin:0 0 8px; font-size:22px; color:var(--brand-2); }
+    .modal p{ margin:6px 0; color:#333; }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>THÀNH VIÊN TRONG NHÓM</h1>
-
-        <div class="team">
-            <!-- Thành viên 1 -->
-            <div class="member" onclick="openModal('modal1')">
-                <img src="img/Nghiep.jpg" alt="Thành viên 1">
-                <h2>TỐNG MINH NGHIỆP</h2>
-                <p class="role">DHOT16C</p>
-            </div>
-
-            <!-- Thành viên 2 -->
-            <div class="member" onclick="openModal('modal2')">
-                <img src="img/Nghia.jpg" alt="Thành viên 2">
-                <h2>NGUYỄN TRỌNG NGHĨA</h2>
-                <p class="role">DHOT16C(Leader)</p>
-            </div>
-
-            <!-- Thành viên 3 -->
-            <div class="member" onclick="openModal('modal3')">
-                <img src="img/Vy.jpg" alt="Thành viên 3">
-                <h2>ĐỖ NGỌC TƯỜNG VY</h2>
-                <p class="role">DHOT16B</p>
-            </div>
-
-            <!-- Thành viên 4 -->
-            <div class="member" onclick="openModal('modal4')">
-                <img src="img/Phi.jpg" alt="Thành viên 4">
-                <h2>NGUYỄN ANH PHI</h2>
-                <p class="role">DHOT16C</p>
-            </div>
-            <!-- Thành viên 5 -->
-            <div class="member" onclick="openModal('modal4')">
-                <img src="img/Huy.jpg" alt="Thành viên 5">
-                <h2>ĐẶNG NGUYỄN QUỐC HUY</h2>
-                <p class="role">DHOT16C</p>
-            </div>
-        </div>
+  <div class="container">
+    <!-- Top -->
+    <div class="topbar">
+      <a class="back-btn" href="index.html" data-hard>
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Về trang chủ
+      </a>
     </div>
 
-   
-    <script>
-        // Mở modal
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-        }
+    <h1 class="page-title">THÀNH VIÊN TRONG NHÓM</h1>
+    <p class="page-sub">Nhấn vào từng thẻ để xem chi tiết</p>
 
-        // Đóng modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
+    <div class="team">
+      <!-- 1 -->
+      <article class="member" data-modal="modal1">
+        <div class="avatar"><img src="img/Nghiep.jpg" alt="Đỗ Trung Thành"></div>
+        <h2>Đỗ Trung Thành</h2>
+        <!-- <p class="role">DHOT16C</p>
+        <p class="meta">Điện - Điện tử ô tô</p> -->
+      </article>
 
-        // Đóng modal khi click ra ngoài nội dung modal
-        window.onclick = function(event) {
-            var modals = document.getElementsByClassName('modal');
-            for (var i = 0; i < modals.length; i++) {
-                if (event.target == modals[i]) {
-                    modals[i].style.display = "none";
-                }
-            }
-        }
-    </script>
+      <!-- 2 -->
+      <article class="member" data-modal="modal2">
+        <div class="avatar"><img src="img/Nghia.jpg" alt="Đoàn Quang Thái"></div>
+        <h2>Đoàn Quang Thái</h2>
+        <!-- <p class="role">—</p>
+        <p class="meta">Thiết kế & tài liệu</p> -->
+      </article>
 
+      <!-- 3 -->
+      <article class="member" data-modal="modal3">
+        <div class="avatar"><img src="img/Vy.jpg" alt="Phan Tấn Thành"></div>
+        <h2>Phan Tấn Thành</h2>
+        <!-- <p class="role">—</p>
+        <p class="meta">Mạch & đấu nối</p> -->
+      </article>
+
+      <!-- 4 -->
+      <article class="member" data-modal="modal4">
+        <div class="avatar"><img src="img/Phi.jpg" alt="Lê Trọng Phúc"></div>
+        <h2>Lê Trọng Phúc</h2>
+        <!-- <p class="role">—</p>
+        <p class="meta">Lắp đặt & vận hành</p> -->
+      </article>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="modal1" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Đóng" data-close>×</button>
+      <h3>Đỗ Trung Thành</h3>
+      <!-- <p><strong>Lớp:</strong> DHOT16C</p>
+      <p><strong>Nhiệm vụ:</strong> Đi dây, kiểm tra tín hiệu, hoàn thiện sơ đồ chiếu sáng.</p> -->
+    </div>
+  </div>
+
+  <div id="modal2" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Đóng" data-close>×</button>
+      <h3>Đoàn Quang Thái</h3>
+      <!-- <p><strong>Nhiệm vụ:</strong> Tài liệu kỹ thuật, trình bày nội dung & hình ảnh hệ thống tín hiệu.</p> -->
+    </div>
+  </div>
+
+  <div id="modal3" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Đóng" data-close>×</button>
+      <h3>Phan Tấn Thành</h3>
+      <!-- <p><strong>Nhiệm vụ:</strong> Sơ đồ mạch, test phun nước gạt mưa & an toàn điện.</p> -->
+    </div>
+  </div>
+
+  <div id="modal4" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Đóng" data-close>×</button>
+      <h3>Lê Trọng Phúc</h3>
+      <!-- <p><strong>Nhiệm vụ:</strong> Lắp đặt phần cơ khí, cố định giắc & bố trí dây dẫn.</p> -->
+    </div>
+  </div>
+
+  <script>
+    // Mở/đóng modal
+    function openModal(id){
+      const m = document.getElementById(id);
+      if (!m) return;
+      m.setAttribute('open','');
+      // trap Esc
+      function onEsc(ev){
+        if (ev.key === 'Escape'){ closeModal(id); }
+      }
+      m._esc = onEsc;
+      document.addEventListener('keydown', onEsc);
+    }
+    function closeModal(id){
+      const m = document.getElementById(id);
+      if (!m) return;
+      m.removeAttribute('open');
+      if (m._esc){ document.removeEventListener('keydown', m._esc); m._esc = null; }
+    }
+
+    // Delegation: click card để mở modal
+    document.addEventListener('click', (e)=>{
+      const card = e.target.closest('.member');
+      if (card && card.dataset.modal){
+        openModal(card.dataset.modal);
+        return;
+      }
+      // nút đóng
+      if (e.target.matches('[data-close]')){
+        const modal = e.target.closest('.modal');
+        if (modal) closeModal(modal.id);
+        return;
+      }
+      // click ra nền tối
+      const modalBg = e.target.classList.contains('modal') ? e.target : null;
+      if (modalBg && modalBg.hasAttribute('open')){
+        closeModal(modalBg.id);
+      }
+    });
+  </script>
 </body>
 </html>
-    
