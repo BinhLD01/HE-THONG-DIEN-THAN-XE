@@ -11,15 +11,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 
   <!-- CSS riêng -->
   <link rel="stylesheet" href="CSS/style.css" />
 
   <style>
-    /* Hiệu ứng "Đang tải..." */
     #main-content.loading::after {
       content: "Đang tải nội dung...";
       display: block;
@@ -29,7 +26,6 @@
       margin-top: 20px;
     }
 
-    /* Ảnh chính trang chủ */
     .home-hero {
       max-width: 900px;
       width: 100%;
@@ -37,6 +33,42 @@
       display: block;
       margin: 0 auto;
       border-radius: 10px;
+    }
+
+    .system-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .system-card {
+      flex: 0 1 300px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s, box-shadow .2s;
+      overflow: hidden;
+    }
+
+    .system-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    }
+
+    .system-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .system-card h4 {
+      font-weight: 700;
+      margin: 1rem 0;
     }
   </style>
 </head>
@@ -58,43 +90,43 @@
   </header>
 
   <!-- NAVBAR -->
-  <nav class="navbar" role="navigation" aria-label="Chính">
+  <nav class="navbar" role="navigation">
     <ul>
-      <li><a href="index.html" data-hard="1">Trang chủ</a></li>
+      <li><a href="index.html" data-hard>Trang chủ</a></li>
       <li>
         <a href="#">Giới thiệu ▾</a>
         <ul class="dropdown">
-          <li><a href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
-          <li><a href="Gioi_thieu/Chi_tiet_mo_hinh.html">Chi tiết mô hình</a></li>
-          <li><a href="Gioi_thieu/Hoat_dong_mo_hinh.html">Hoạt động mô hình</a></li>
-          <li><a href="Gioi_thieu/Ket_qua.html">Kết quả đạt được</a></li>
+          <li><a data-ajax href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
+          <li><a data-ajax href="Gioi_thieu/Chi_tiet_mo_hinh.html">Chi tiết mô hình</a></li>
+          <li><a data-ajax href="Gioi_thieu/Hoat_dong_mo_hinh.html">Hoạt động mô hình</a></li>
+          <li><a data-ajax href="Gioi_thieu/Ket_qua.html">Kết quả đạt được</a></li>
         </ul>
       </li>
       <li>
         <a href="#">Nguyên lý hoạt động ▾</a>
         <ul class="dropdown">
-          <li><a href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Hệ thống chiếu sáng</a></li>
-          <li><a href="Nguyen_ly_hoat_dong/HT_tin_hieu.html">Hệ thống tín hiệu</a></li>
-          <li><a href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html">Phun nước gạt mưa</a></li>
+          <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Hệ thống chiếu sáng</a></li>
+          <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html">Hệ thống tín hiệu</a></li>
+          <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html">Phun nước gạt mưa</a></li>
         </ul>
       </li>
       <li>
         <a href="#">Pan ▾</a>
         <ul class="dropdown">
-          <li><a href="Pan/HT_chieu_sang/PANCS.html">Chiếu sáng</a></li>
-          <li><a href="Pan/HT_tin_hieu/PANTH.html">Tín hiệu</a></li>
-          <li><a href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Phun nước gạt mưa</a></li>
+          <li><a data-ajax href="Pan/HT_chieu_sang/PANCS.html">Chiếu sáng</a></li>
+          <li><a data-ajax href="Pan/HT_tin_hieu/PANTH.html">Tín hiệu</a></li>
+          <li><a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Phun nước gạt mưa</a></li>
         </ul>
       </li>
-      <li><a href="Lien_he.html">Liên hệ thực tiễn</a></li>
-      <li><a href="TAI_LIEU.html">Tài liệu tham khảo</a></li>
-      <li><a href="Cac_cuc_ECU/Cu.html">Phụ lục</a></li>
+      <li><a data-ajax href="Lien_he.html">Liên hệ</a></li>
+      <li><a data-ajax href="TAI_LIEU.html">Tài liệu tham khảo</a></li>
+      <li><a data-ajax href="Cac_cuc_ECU/Cu.html">Phụ lục</a></li>
     </ul>
   </nav>
 
   <div class="divider"></div>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="page">
     <div class="row align-items-start">
       <!-- Mục lục -->
@@ -106,10 +138,10 @@
               <details>
                 <summary>Giới thiệu</summary>
                 <ul>
-                  <li><a href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
-                  <li><a href="Gioi_thieu/Chi_tiet_mo_hinh.html">Chi tiết mô hình</a></li>
-                  <li><a href="Gioi_thieu/Hoat_dong_mo_hinh.html">Hoạt động mô hình</a></li>
-                  <li><a href="Gioi_thieu/Ket_qua.html">Kết quả đạt được</a></li>
+                  <li><a data-ajax href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
+                  <li><a data-ajax href="Gioi_thieu/Chi_tiet_mo_hinh.html">Chi tiết mô hình</a></li>
+                  <li><a data-ajax href="Gioi_thieu/Hoat_dong_mo_hinh.html">Hoạt động mô hình</a></li>
+                  <li><a data-ajax href="Gioi_thieu/Ket_qua.html">Kết quả đạt được</a></li>
                 </ul>
               </details>
             </li>
@@ -118,9 +150,9 @@
               <details>
                 <summary>Nguyên lý hoạt động</summary>
                 <ul>
-                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_chieu_sang.html')">Hệ Thống Chiếu Sáng</a></li>
-                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_tin_hieu.html')">Hệ Thống Tin Hiệu</a></li>
-                  <li><a href="#" onclick="loadContent('Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html')">Hệ Thống Phun Nước Gạt Mưa</a></li>
+                  <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Hệ Thống Chiếu Sáng</a></li>
+                  <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html">Hệ Thống Tín Hiệu</a></li>
+                  <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html">Hệ Thống Phun Nước Gạt Mưa</a></li>
                 </ul>
               </details>
             </li>
@@ -129,14 +161,14 @@
               <details>
                 <summary>Pan</summary>
                 <ul>
-                  <li><a href="Pan/HT_chieu_sang/PANCS.html">Pan chiếu sáng</a></li>
-                  <li><a href="Pan/HT_tin_hieu/PANTH.html">Pan tín hiệu</a></li>
-                  <li><a href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Pan phun nước gạt mưa</a></li>
+                  <li><a data-ajax href="Pan/HT_chieu_sang/PANCS.html">Pan chiếu sáng</a></li>
+                  <li><a data-ajax href="Pan/HT_tin_hieu/PANTH.html">Pan tín hiệu</a></li>
+                  <li><a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Pan phun nước gạt mưa</a></li>
                 </ul>
               </details>
             </li>
 
-            <li><a href="Lien_he.html">Liên hệ</a></li>
+            <li><a data-ajax href="Lien_he.html">Liên hệ</a></li>
           </ul>
         </nav>
       </aside>
@@ -147,7 +179,22 @@
           <h1 class="content-title text-danger font-weight-bold mb-4">
             MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006
           </h1>
-          <img src="img/Mat_sau_mo_hinh.png" alt="Mặt sau mô hình" class="home-hero">
+
+          <!-- Các ô chọn hệ thống -->
+          <div class="system-cards">
+            <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
+              <img src="img/chieu_sang.jpg" alt="Chiếu sáng">
+              <h4>HỆ THỐNG CHIẾU SÁNG</h4>
+            </a>
+            <a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html" class="system-card">
+              <img src="img/tin_hieu.jpg" alt="Tín hiệu">
+              <h4>HỆ THỐNG TÍN HIỆU</h4>
+            </a>
+            <a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html" class="system-card">
+              <img src="img/phun_nuoc.jpg" alt="Phun nước">
+              <h4>HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
+            </a>
+          </div>
         </section>
       </section>
     </div>
@@ -159,7 +206,7 @@
   <footer class="site-footer">
     <p class="footer-left">GVHD: Th.S Đỗ Sĩ Hải</p>
     <div class="links-container">
-      <a href="Instructors.html" class="arrow">→ Sinh Viên Thực Hiện</a>
+      <a data-ajax href="Instructors.html" class="arrow">→ Sinh Viên Thực Hiện</a>
     </div>
   </footer>
 
@@ -168,32 +215,27 @@
   document.addEventListener('DOMContentLoaded', function () {
     const mainContent = document.getElementById('main-content');
 
-    // Bắt sự kiện click cho tất cả link
     document.addEventListener('click', function (e) {
-      const link = e.target.closest('.toc-panel a, .navbar a, .sidebar a');
+      const link = e.target.closest('a[data-ajax], .toc-panel a, .navbar a');
       if (!link) return;
-
       const url = link.getAttribute('href') || '';
+      const isSpecial = !url || url === '#' || /\.pdf$/i.test(url);
+      if (isSpecial) return;
 
-      // Cho phép reload Trang chủ
-      const isHome =
-        link.hasAttribute('data-hard') ||
-        /(^|\/)index\.html(?:[#?].*)?$/i.test(url) ||
-        url === '/' ||
-        url === window.location.pathname;
-
-      // Bỏ qua các file đặc biệt
-      const isSpecial =
-        !url ||
-        url === '#' ||
-        /\.pdf$/i.test(url);
-
-      if (isHome || isSpecial) return; // Cho trình duyệt tự reload
+      const isHome = link.hasAttribute('data-hard') ||
+                     /(^|\/)index\.html(?:[#?].*)?$/i.test(url) ||
+                     url === '/' || url === window.location.pathname;
+      if (isHome) return;
 
       e.preventDefault();
-      mainContent.classList.add('loading');
-      mainContent.innerHTML =
-        '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+      loadInto('#main-content', url);
+    });
+
+    function loadInto(targetSelector, url) {
+      const target = document.querySelector(targetSelector);
+      if (!target) return;
+      target.classList.add('loading');
+      target.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
 
       fetch(url)
         .then(res => {
@@ -201,49 +243,40 @@
           return res.text();
         })
         .then(html => {
-          const temp = document.createElement('div');
-          temp.innerHTML = html;
-          const section = temp.querySelector('section') || temp;
-          mainContent.innerHTML = section.outerHTML;
-          mainContent.classList.remove('loading');
+          target.innerHTML = extractContent(html);
+          target.classList.remove('loading');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(err => {
-          mainContent.classList.remove('loading');
-          mainContent.innerHTML =
-            `<p style="color:red;text-align:center;">${err.message}</p>`;
+          target.classList.remove('loading');
+          target.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
         });
-    });
+    }
+
+    function extractContent(html) {
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      const pickers = [
+        'main#page-content',
+        'section[data-content="main"]',
+        'main .content-card',
+        'main',
+        'section.content-card',
+        'section'
+      ];
+      for (const sel of pickers) {
+        const node = temp.querySelector(sel);
+        if (node) return node.innerHTML;
+      }
+      return temp.innerHTML;
+    }
   });
 
-  function loadContent(url) {
-    const main = document.getElementById('main-content');
-    main.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-
-    fetch(url)
-      .then(res => {
-        if (!res.ok) throw new Error("Không thể tải nội dung: " + url);
-        return res.text();
-      })
-      .then(html => {
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-        const section = temp.querySelector('section') || temp;
-        main.innerHTML = section.outerHTML;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      })
-      .catch(err => {
-        main.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-      });
-  }
-
-  // Hàm load nội dung trong trang PAN
+  // Load nội dung trong trang PAN
   function loadPanContent(url) {
     const area = document.getElementById('content-area');
     if (!area) return;
-
     area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-
     fetch(url)
       .then(res => {
         if (!res.ok) throw new Error("Không thể tải nội dung: " + url);
@@ -252,8 +285,10 @@
       .then(html => {
         const temp = document.createElement('div');
         temp.innerHTML = html;
-        const section = temp.querySelector('section') || temp;
-        area.innerHTML = section.innerHTML;
+        const node = temp.querySelector('main#page-content') ||
+                     temp.querySelector('section[data-content="main"]') ||
+                     temp.querySelector('section');
+        area.innerHTML = node ? node.innerHTML : html;
         window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(err => {
