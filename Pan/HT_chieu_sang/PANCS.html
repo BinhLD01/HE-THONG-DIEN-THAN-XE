@@ -1,128 +1,20 @@
-<section>
-  <header class="text-center mb-4">
-    <h1>HỆ THỐNG CHIẾU SÁNG (PAN)</h1>
+<section data-fragment class="content-card text-center">
+  <header class="mb-4">
+    <h1 class="content-title">HỆ THỐNG CHIẾU SÁNG (PAN)</h1>
   </header>
 
-  <!-- Các ô chọn -->
-  <div class="text-center mb-4">
-    <div class="selectable-box"><a href="Pan/HT_chieu_sang/TAIL.html">TAIL / S1 / SN</a></div>
-    <div class="selectable-box"><a href="Pan/HT_chieu_sang/HEAD.html">HEAD / HRLY / A1 / NO.01</a></div>
-    <div class="selectable-box"><a href="Pan/HT_chieu_sang/HU.html">HU / HF</a></div>
-    <div class="selectable-box"><a href="Pan/HT_chieu_sang/DIM.html">DIM</a></div>
-    <div class="selectable-box"><a href="Pan/HT_chieu_sang/E2.html">E2</a></div>
-    <div class="selectable-box"><a href="Pan/HT_chieu_sang/RH_HIGH.html">RH HIGH</a></div>
+  <!-- Lưới ô chọn -->
+  <div class="text-center mb-4 pan-grid">
+    <a href="Pan/HT_chieu_sang/TAIL.html" class="selectable-box">TAIL / S1 / SN</a>
+    <a href="Pan/HT_chieu_sang/HEAD.html" class="selectable-box">HEAD / HRLY / A1 / NO.01</a>
+    <a href="Pan/HT_chieu_sang/HU.html" class="selectable-box">HU / HF</a>
+    <a href="Pan/HT_chieu_sang/DIM.html" class="selectable-box">DIM</a>
+    <a href="Pan/HT_chieu_sang/E2.html" class="selectable-box">E2</a>
+    <a href="Pan/HT_chieu_sang/RH_HIGH.html" class="selectable-box">RH HIGH</a>
   </div>
 
-  <!-- Vùng hiển thị nội dung chi tiết -->
-  <div id="content-area"
-       style="background:#fff; border-radius:20px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-    <p class="text-center">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
+  <!-- Vùng hiển thị chi tiết -->
+  <div id="content-area" class="content-card">
+    <p class="text-center text-secondary">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
   </div>
-
-
-<script>
-  function absolutizeAttr(root, selector, attr, baseUrlAbs) {
-    root.querySelectorAll(selector).forEach(el => {
-      const val = el.getAttribute(attr);
-      if (!val) return;
-      if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
-      el.setAttribute(attr, new URL(val, baseUrlAbs).href);
-    });
-  }
-
-  function loadPanContent(url) {
-    const area = document.getElementById('content-area');
-    if (!area) return;
-    area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-
-    const absUrl = new URL(url, location.href).href;
-
-    fetch(absUrl)
-      .then(res => {
-        if (!res.ok) throw new Error('Không thể tải nội dung: ' + absUrl);
-        return res.text();
-      })
-      .then(html => {
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-
-        // ✅ chỉ lấy section nằm trong nội dung vừa load (không dính section của index)
-        let section = null;
-        const sections = temp.querySelectorAll('tail-section');
-        if (sections.length > 0) {
-          // Ưu tiên section có id (VD: #tail-section)
-          section = temp.querySelector('section[id]') || sections[0];
-        } else {
-          section = temp;
-        }
-
-        // Chuẩn hoá link/ảnh/css/js bên trong
-        absolutizeAttr(section, 'img', 'src', absUrl);
-        absolutizeAttr(section, 'link', 'href', absUrl);
-        absolutizeAttr(section, 'script', 'src', absUrl);
-        absolutizeAttr(section, 'a', 'href', absUrl);
-
-        // ✅ Chèn riêng phần section đó vào #content-area
-        area.innerHTML = section.outerHTML;
-
-        // Giữ trải nghiệm SPA
-        area.querySelectorAll('a[href]').forEach(a => {
-          const href = a.getAttribute('href');
-          if (!href || href.startsWith('#') || /\.pdf$/i.test(href) || a.target === '_blank') return;
-          let u;
-          try { u = new URL(href, absUrl); } catch { return; }
-          if (u.origin === location.origin) {
-            a.addEventListener('click', (e) => {
-              e.preventDefault();
-              loadPanContent(u.href);
-            });
-          }
-        });
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      })
-      .catch(err => {
-        area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-      });
-  }
-
-  // Bắt click trên các ô chọn
-  document.addEventListener('click', function (e) {
-    const link = e.target.closest('.selectable-box a');
-    if (!link) return;
-    e.preventDefault();
-    loadPanContent(link.getAttribute('href'));
-  });
-</script>
-
-
-
-  <!-- CSS -->
-  <style>
-    .selectable-box {
-      display: inline-block;
-      background-color: #f8f9fa;
-      border: 2px solid #007bff;
-      border-radius: 8px;
-      padding: 10px 15px;
-      margin: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .selectable-box a {
-      text-decoration: none;
-      color: #007bff;
-      font-weight: bold;
-    }
-
-    .selectable-box:hover {
-      background-color: #007bff;
-      border-color: #0056b3;
-    }
-
-    .selectable-box:hover a {
-      color: #fff;
-    }
-  </style>
 </section>

@@ -194,6 +194,8 @@
               <img src="img/GT_phunuoc.jpg" alt="Phun nước">
               <h4>HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
             </a>
+            
+
           </div>
         </section>
       </section>
@@ -295,6 +297,80 @@
         area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
       });
   }
+
+
+  // Ưu tiên lấy đúng khối nội dung trong file con
+  function pickFragment(root) {
+    return root.querySelector('[data-fragment]') ||
+           root.querySelector('main#page-content') ||
+           root.querySelector('main') ||
+           root.querySelector('section') ||
+           root;
+  }
+
+  // Chuẩn hoá src/href tương đối bên trong fragment khi cần (PAN chi tiết có ảnh/link)
+  function absolutizeAttr(root, selector, attr, baseAbs) {
+    root.querySelectorAll(selector).forEach(el => {
+      const val = el.getAttribute(attr);
+      if (!val) return;
+      if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
+      el.setAttribute(attr, new URL(val, baseAbs).href);
+    });
+  }
+
+  async function loadPanContent(url) {
+    const area = document.getElementById('content-area');
+    if (!area) return;
+    const absUrl = new URL(url, location.href).href;
+
+    area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+    try {
+      const res = await fetch(absUrl);
+      if (!res.ok) throw new Error('Không thể tải nội dung: ' + absUrl);
+      const html = await res.text();
+
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const frag = pickFragment(doc);
+
+      absolutizeAttr(frag, 'img', 'src', absUrl);
+      absolutizeAttr(frag, 'link', 'href', absUrl);
+      absolutizeAttr(frag, 'script', 'src', absUrl);
+      absolutizeAttr(frag, 'a', 'href', absUrl);
+
+      // Chỉ chèn phần bên trong fragment
+      area.innerHTML = frag.innerHTML;
+
+      // Các link nội bộ bên trong chi tiết -> tiếp tục load mềm vào content-area
+      area.querySelectorAll('a[href]').forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || /\.pdf$/i.test(href) || a.target === '_blank') return;
+        let u; try { u = new URL(href, absUrl); } catch { return; }
+        if (u.origin === location.origin) {
+          a.addEventListener('click', ev => {
+            ev.preventDefault();
+            loadPanContent(u.href);
+          });
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
+    }
+  }
+
+  // Bắt click các ô chọn trong PAN (ở cấp document để áp dụng cho fragment mới chèn)
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('.selectable-box');
+    if (!link) return;
+    // Chỉ xử lý khi có #content-area trên trang hiện tại (tức đang ở PAN)
+    if (!document.getElementById('content-area')) return;
+    e.preventDefault();
+    loadPanContent(link.getAttribute('href'));
+  });
+
+
+
   </script>
 </body>
 </html>
