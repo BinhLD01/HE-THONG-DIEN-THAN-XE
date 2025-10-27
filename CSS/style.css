@@ -27,6 +27,7 @@ nav.navbar{
   padding: 0;
   width: 100%;
   position: relative;
+  z-index: 20;
 }
 nav.navbar ul{
   list-style: none;
@@ -98,7 +99,7 @@ nav.navbar ul li .dropdown li a:hover{
 .divider{ background-color: #3696b9; height: 3px; width: 100%; }
 
 /* ========== MAIN CONTENT ========== */
-.page{ max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
+.page{ max-width: 1400px; margin: 0 auto; padding: 24px 16px; }
 .content-card{
   background: #fff;
   border-radius: 24px;
@@ -110,7 +111,7 @@ nav.navbar ul li .dropdown li a:hover{
   color: #d21313;
   text-align: center;
   font-weight: bold;
-  font-size: clamp(22px, 5vw, 44px);
+  font-size: clamp(26px, 5.2vw, 48px);
   margin: 0 0 16px;
 }
 .content-image{
@@ -240,10 +241,7 @@ nav.navbar a:focus-visible,
     animation: fadeIn .25s ease;
   }
 }
-nav.navbar ul > li:last-child .dropdown {
-  right: 0;
-  left: auto;
-}
+nav.navbar ul > li:last-child .dropdown { right: 0; left: auto; }
 @media (max-width: 992px) {
   nav.navbar ul > li > a { min-height: 44px; }
   .toc-panel a { padding: 8px 10px; }
@@ -265,12 +263,7 @@ nav.navbar ul > li:last-child .dropdown {
   .page { padding: 12px 10px; }
   .content-card { padding: 16px 12px; }
 }
-nav.navbar { z-index: 20; }
-nav.navbar .dropdown a.active {
-  background-color: #0a4bb1;
-  color: #fff;
-}
-
+nav.navbar .dropdown a.active { background-color: #0a4bb1; color: #fff; }
 
 /* ========== MAIN CONTENT: state loading ========== */
 #main-content.loading::after{
@@ -282,69 +275,55 @@ nav.navbar .dropdown a.active {
   margin-top: 20px;
 }
 
-/* ========== HOME: thẻ chọn hệ thống ========== *//* ====== 3 ô ngang hàng ====== */
-.system-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cột bằng nhau */
-  gap: 2rem; /* khoảng cách giữa các ô */
-  justify-items: center;
+/* ========== HOME: THẺ CHỌN HỆ THỐNG (3×3) ========== */
+.system-cards{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 cột cố định trên desktop */
+  gap: 2rem;
+  justify-items: stretch;
   align-items: stretch;
   margin-top: 2rem;
 }
-
-/* ====== style từng ô ====== */
-.system-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.system-card{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-align:center;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
   transition: transform .2s, box-shadow .2s;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
+  text-decoration:none;
+  color:inherit;
 }
-
-.system-card:hover {
+.system-card:hover{
   transform: translateY(-6px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
-
-.system-card img {
-  width: 100%;
-  height: 200px;
+.system-card img{
+  width:100%;
+  aspect-ratio: 16 / 9;   /* đồng bộ chiều cao ảnh */
   object-fit: cover;
 }
-
-.system-card h4 {
-  font-weight: 700;
-  margin: 1rem 0;
-  color: #0b2c6b;
+.system-card h4{
+  font-weight:700;
+  margin:1rem 0;
+  color:#0b2c6b;
 }
 
-/* Responsive: 2 ô hàng ở tablet, 1 ô ở điện thoại */
-@media (max-width: 992px) {
-  .system-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* Tablet: 2 cột */
+@media (max-width: 768px){
+  .system-cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Mobile: 1 cột */
+@media (max-width: 520px){
+  .system-cards{ grid-template-columns: 1fr; }
 }
 
-@media (max-width: 576px) {
-  .system-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* Responsive nhỏ cho thẻ lớn */
-@media (max-width: 576px){
-  .system-card{ flex-basis: 100%; }
-}
-
-
+/* ========== PAN GRID (nút chọn bên trong PAN) ========== */
 .pan-grid{
   display:grid;
   grid-template-columns: repeat(3, minmax(220px, 1fr));
@@ -372,5 +351,11 @@ nav.navbar .dropdown a.active {
   border-color:#0056b3;
   color:#fff;
   transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+.selectable-box.active{
+  background:#007bff;
+  border-color:#0056b3;
+  color:#fff;
   box-shadow: 0 6px 14px rgba(0,0,0,.15);
 }
