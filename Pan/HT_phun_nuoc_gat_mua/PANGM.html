@@ -1,165 +1,180 @@
-<section>
+<section data-fragment>
   <header class="text-center mb-4">
     <h1>HỆ THỐNG PHUN NƯỚC GẠT MƯA (PAN)</h1>
   </header>
 
   <!-- Các ô chọn -->
-  <div class="text-center mb-4" id="pan-menu">
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/+1.html">+1</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/+B.html">+B / A3</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/+2.html">+2</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/+S.html">+S</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/A3.html">A3</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/EW.html">EW / WASHER_SW</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/HI_SW.html">HI_SW</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/LO_SW.html">LO_SW</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/OFF_SW.html">OFF_SW</a></div>
-    <div class="selectable-box"><a href="Pan/HT_phun_nuoc_gat_mua/WF.html">WF</a></div>
+  <div class="text-center mb-4 pan-grid" id="pan-menu">
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/+1.html">+1</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/+B.html">+B / A3</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/+2.html">+2</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/+S.html">+S</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/A3.html">A3</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/EW.html">EW / WASHER_SW</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/HI_SW.html">HI_SW</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/LO_SW.html">LO_SW</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/OFF_SW.html">OFF_SW</a>
+    <a class="selectable-box" href="Pan/HT_phun_nuoc_gat_mua/WF.html">WF</a>
   </div>
 
   <!-- Vùng hiển thị nội dung chi tiết -->
   <div id="content-area"
+       class="content-card"
        style="background:#fff; border-radius:20px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
     <p class="text-center">Hãy chọn một mục ở trên để hiển thị nội dung chi tiết tại đây.</p>
   </div>
 
   <script>
-    // --- Helper: chuẩn hoá đường dẫn (img/link/script/a) theo base của file con
-    function absolutizeAttr(root, selector, attr, baseUrl) {
-      root.querySelectorAll(selector).forEach(el => {
-        const val = el.getAttribute(attr);
-        if (!val) return;
-        if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return; // bỏ qua external
-        try {
-          el.setAttribute(attr, new URL(val, baseUrl).href);
-        } catch (_) {}
-      });
-    }
+    (function initPanWiper(){
+      // Tránh bind nhiều lần nếu fragment được chèn lại
+      const menu = document.getElementById('pan-menu');
+      if (!menu || menu.dataset.bound === '1') return;
+      menu.dataset.bound = '1';
 
-    // --- Helper: encode riêng tên file cuối (để hỗ trợ '+' ...)
-    function encodeLastSegment(pathOrUrl) {
-      // Nếu là URL tuyệt đối -> lấy pathname để xử lý, sau đó ghép lại
-      try {
-        const u = new URL(pathOrUrl, window.location.href);
-        const parts = u.pathname.split('/');
-        if (parts.length) {
-          const last = parts.pop();
-          // nếu có phần mở rộng .html, chỉ encode phần tên file
-          if (last) parts.push(encodeURIComponent(last));
-          u.pathname = parts.join('/');
-        }
-        return u.href;
-      } catch {
-        // Trường hợp là đường dẫn tương đối
-        const parts = pathOrUrl.split('/');
-        if (parts.length) {
-          const last = parts.pop();
-          if (last) parts.push(encodeURIComponent(last));
-        }
-        return parts.join('/');
+      function pickFragment(doc) {
+        return doc.querySelector('[data-fragment]') ||
+               doc.querySelector('main#page-content') ||
+               doc.querySelector('main') ||
+               doc.querySelector('section') ||
+               doc.body || doc;
       }
-    }
 
-    // --- Loader: nạp file con vào #content-area
-    function loadPanContent(url) {
-      const area = document.getElementById('content-area');
-      area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
+      function absolutizeAttr(root, selector, attr, baseAbs) {
+        root.querySelectorAll(selector).forEach(el => {
+          const val = el.getAttribute(attr);
+          if (!val) return;
+          if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
+          try { el.setAttribute(attr, new URL(val, baseAbs).href); } catch(_){}
+        });
+      }
 
-      const encodedUrl = encodeLastSegment(url);
+      // Encode riêng "tên file cuối" để hỗ trợ dấu '+'
+      function encodeLastSegment(u) {
+        const url = new URL(u, location.href);
+        const parts = url.pathname.split('/');
+        if (parts.length) {
+          const last = parts.pop();
+          if (last) parts.push(encodeURIComponent(last));
+          url.pathname = parts.join('/');
+        }
+        return url.href;
+      }
 
-      fetch(encodedUrl)
-        .then(response => {
-          if (!response.ok) throw new Error("Không thể tải nội dung: " + url);
-          return response.text();
-        })
-        .then(html => {
-          const temp = document.createElement('div');
-          temp.innerHTML = html;
-          const section = temp.querySelector('section') || temp;
+      async function loadPanContent(url) {
+        const area = document.getElementById('content-area');
+        if (!area) return;
+        area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
 
-          // Chuẩn hoá asset paths dựa trên encodedUrl
-          absolutizeAttr(section, 'img', 'src', encodedUrl);
-          absolutizeAttr(section, 'link', 'href', encodedUrl);
-          absolutizeAttr(section, 'script', 'src', encodedUrl);
-          absolutizeAttr(section, 'a', 'href', encodedUrl);
+        const absEncoded = encodeLastSegment(url);
 
-          area.innerHTML = section.innerHTML;
+        try {
+          const res = await fetch(absEncoded);
+          if (!res.ok) throw new Error('Không thể tải nội dung: ' + url);
+          const html = await res.text();
 
-          // Cho các link .html nội bộ bên trong phần vừa nạp tiếp tục nạp vào content-area
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const frag = pickFragment(doc);
+
+          // Chuẩn hoá đường dẫn tương đối trong fragment
+          absolutizeAttr(frag, 'img', 'src', absEncoded);
+          absolutizeAttr(frag, 'link', 'href', absEncoded);
+          absolutizeAttr(frag, 'script', 'src', absEncoded);
+          absolutizeAttr(frag, 'a', 'href', absEncoded);
+
+          // Chèn NỘI DUNG bên trong fragment (tránh lồng section/main thừa)
+          area.innerHTML = frag.innerHTML;
+
+          // Bắt link nội bộ tiếp → load mềm vào content-area
           area.querySelectorAll('a[href]').forEach(a => {
             const href = a.getAttribute('href');
-            if (!href || href.startsWith('#') || /\.pdf$/i.test(href)) return;
-            try {
-              const u = new URL(href, encodedUrl);
-              if (u.origin === location.origin && /\.html?$/i.test(u.pathname)) {
-                a.addEventListener('click', e => {
-                  e.preventDefault();
-                  loadPanContent(u.href);
-                });
-              }
-            } catch(_) {}
+            if (!href || href.startsWith('#') || /\.pdf$/i.test(href) || a.target === '_blank') return;
+            let u; try { u = new URL(href, absEncoded); } catch { return; }
+            if (u.origin === location.origin && /\.html?$/i.test(u.pathname)) {
+              a.addEventListener('click', ev => {
+                ev.preventDefault();
+                setActiveByHref(u.href);
+                loadPanContent(u.href);
+              });
+            }
           });
 
           window.scrollTo({ top: 0, behavior: 'smooth' });
-        })
-        .catch(err => {
+        } catch (err) {
           area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-        });
-    }
-
-    // Sự kiện click động (dành cho các ô chọn)
-    document.addEventListener('click', function (e) {
-      const link = e.target.closest('.selectable-box a');
-      if (!link) return;
-      e.preventDefault();
-
-      // Cập nhật trạng thái active
-      document.querySelectorAll('#pan-menu .selectable-box').forEach(b => b.classList.remove('active'));
-      const box = link.closest('.selectable-box');
-      if (box) box.classList.add('active');
-
-      const url = link.getAttribute('href');
-      loadPanContent(url);
-    });
-
-    // ✅ Tự động mở sẵn mục WF khi vào trang
-    window.addEventListener('DOMContentLoaded', () => {
-      const wfLink = document.querySelector('#pan-menu a[href$="WF.html"]');
-      if (wfLink) {
-        wfLink.closest('.selectable-box')?.classList.add('active');
+        }
       }
-      loadPanContent('Pan/HT_phun_nuoc_gat_mua/WF.html');
-    });
+
+      function clearActive() {
+        document.querySelectorAll('#pan-menu .selectable-box').forEach(el => el.classList.remove('active'));
+      }
+      function setActiveByHref(hrefAbs) {
+        clearActive();
+        // So khớp theo pathname để tránh khác biệt query/hash
+        try {
+          const pathTarget = new URL(hrefAbs, location.href).pathname;
+          document.querySelectorAll('#pan-menu .selectable-box').forEach(a => {
+            const p = new URL(a.getAttribute('href'), location.href).pathname;
+            if (p === pathTarget) a.classList.add('active');
+          });
+        } catch(_) {}
+      }
+
+      // Delegation click cho menu
+      document.addEventListener('click', function (e) {
+        const a = e.target.closest('#pan-menu .selectable-box');
+        if (!a) return;
+        // đảm bảo đang ở fragment này (có content-area)
+        if (!document.getElementById('content-area')) return;
+        e.preventDefault();
+        setActiveByHref(a.href);
+        loadPanContent(a.getAttribute('href'));
+      });
+
+      // Mặc định mở WF (nếu có)
+      const defaultHref = 'Pan/HT_phun_nuoc_gat_mua/WF.html';
+      setActiveByHref(defaultHref);
+      loadPanContent(defaultHref);
+    })();
   </script>
 
   <style>
-    .selectable-box {
-      display: inline-block;
-      background-color: #f8f9fa;
-      border: 2px solid #007bff;
-      border-radius: 8px;
-      padding: 10px 15px;
-      margin: 5px;
-      cursor: pointer;
-      transition: background-color .3s ease, border-color .3s ease, transform .1s ease;
+    /* Lưới 3 cột, co về 2/1 khi màn hình nhỏ */
+    .pan-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 12px;
+      justify-items: stretch;
     }
-    .selectable-box a {
-      text-decoration: none;
-      color: #007bff;
-      font-weight: bold;
-    }
-    .selectable-box:hover {
-      background-color: #007bff;
-      border-color: #0056b3;
-      transform: translateY(-1px);
-    }
-    .selectable-box:hover a { color: #fff; }
+    @media (max-width: 992px){ .pan-grid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 576px){ .pan-grid{ grid-template-columns: 1fr; } }
 
-    /* Trạng thái đang chọn */
-    .selectable-box.active {
-      background-color: #007bff;
-      border-color: #0056b3;
+    .selectable-box{
+      display:block;
+      text-align:center;
+      background:#f8f9fa;
+      border:2px solid #007bff;
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:700;
+      color:#007bff;
+      text-decoration:none;
+      transition: background-color .2s, border-color .2s, transform .15s, box-shadow .15s;
+      box-shadow: 0 2px 6px rgba(0,0,0,.06);
     }
-    .selectable-box.active a { color: #fff; }
+    .selectable-box:hover{
+      background:#007bff;
+      border-color:#0056b3;
+      color:#fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,.15);
+    }
+
+    /* Active item */
+    .selectable-box.active{
+      background:#007bff;
+      border-color:#0056b3;
+      color:#fff;
+      box-shadow: 0 6px 14px rgba(0,0,0,.15);
+    }
   </style>
 </section>
