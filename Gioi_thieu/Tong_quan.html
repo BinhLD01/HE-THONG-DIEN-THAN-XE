@@ -34,19 +34,19 @@
       <h4>a) Nâng cao khả năng tiếp cận kiến thức</h4>
       <div class="plain-list">
         Bài giảng điện tử cho phép truyền đạt thông tin một cách trực quan, sinh động và logic, giúp sinh viên dễ dàng tiếp cận nội dung học tập.
-        Đồng thời, hình thức này còn thích hợp trong đào tạo kỹ thuật viên hoặc học viên khi cần làm quen với các hệ thống điện trên xe đời mới.<br><br>
+        Đồng thời, hình thức này còn thích hợp trong đào tạo kỹ thuật viên hoặc học viên khi cần làm quen với các hệ thống điện trên xe đời mới.
         Người học cần có kiến thức nền tảng về hệ thống chiếu sáng, tín hiệu và gạt mưa, đã được học ở các học phần lý thuyết. Khi kết hợp với việc chuẩn bị bài trước hoặc xem lại sau khi thực hành, quá trình học sẽ trở nên hiệu quả hơn, giúp củng cố kiến thức và nâng cao kỹ năng nghề nghiệp.
       </div>
 
       <h4>b) Tăng hiệu quả giảng dạy</h4>
       <div class="plain-list">
-        <strong>Tiết kiệm thời gian:</strong> Giảng viên chỉ cần xây dựng nội dung bài giảng một lần và có thể tái sử dụng cho nhiều khóa học, giúp giảm khối lượng công việc.<br><br>
+        <strong>Tiết kiệm thời gian:</strong> Giảng viên chỉ cần xây dựng nội dung bài giảng một lần và có thể tái sử dụng cho nhiều khóa học, giúp giảm khối lượng công việc.
         <strong>Dễ cập nhật:</strong> Bài giảng điện tử có thể bổ sung hoặc chỉnh sửa nhanh chóng, đảm bảo tính hiện đại và phù hợp với thực tế công nghệ ô tô.
       </div>
 
       <h4>c) Khuyến khích người học chủ động</h4>
       <div class="plain-list">
-        <strong>Phát triển năng lực tự học:</strong> Bài giảng điện tử tạo môi trường để sinh viên tự nghiên cứu, tìm hiểu mở rộng kiến thức, góp phần hình thành tư duy độc lập và kỹ năng học tập suốt đời.<br><br>
+        <strong>Phát triển năng lực tự học:</strong> Bài giảng điện tử tạo môi trường để sinh viên tự nghiên cứu, tìm hiểu mở rộng kiến thức, góp phần hình thành tư duy độc lập và kỹ năng học tập suốt đời.
         <strong>Giải pháp linh hoạt:</strong> Trong những trường hợp đặc biệt như dịch bệnh hoặc điều kiện địa lý khó khăn, bài giảng điện tử là phương án học tập thay thế hiệu quả, đảm bảo quá trình học không bị gián đoạn.
       </div>
     </section>
@@ -91,29 +91,25 @@
 
   <!-- CSS -->
   <style>
+    /* Toàn bộ nội dung sát lề trái */
     .overview {
-      padding: 0 6px;
+      padding: 0;
     }
-    .overview p {
+    .overview p,
+    .overview .plain-list {
+      margin: 0 0 14px 0;
+      padding: 0;
+      text-indent: 0;
       font-size: 18px;
       line-height: 1.7;
       color: #1f2a5a;
-      margin: 0 0 16px;
-      text-indent: 0;
-    }
-    .overview h3, .overview h4 {
-      margin: 12px 0 8px;
-      color: #0b2c6b;
-    }
-
-    /* Bỏ chấm đầu dòng, sát lề trái */
-    .plain-list {
-      font-size: 17px;
-      line-height: 1.7;
-      color: #1f2a5a;
-      margin: 0 0 14px;
-      padding: 0;
       text-align: justify;
+    }
+    .overview h3,
+    .overview h4 {
+      margin: 10px 0 6px 0;
+      padding: 0;
+      color: #0b2c6b;
     }
 
     /* Tabs */
@@ -122,22 +118,22 @@
       flex-wrap: wrap;
       gap: 8px;
       justify-content: center;
-      margin: 8px 0 18px;
+      margin: 6px 0 16px 0;
     }
     .pill-tabs .tab-btn {
       background: #eaf2ff;
       color: #184e9e;
       border: none;
       border-radius: 999px;
-      padding: 8px 16px;
+      padding: 8px 14px;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,.08);
       transition: all .2s ease;
     }
     .pill-tabs .tab-btn:hover {
-      transform: translateY(-2px);
       background: #dbe8ff;
+      transform: translateY(-1px);
     }
     .pill-tabs .tab-btn.active {
       background: #184e9e;
@@ -149,14 +145,13 @@
     }
 
     /* Bảng thời lượng */
-    .time-table-wrap { overflow: auto; margin-top: 10px; }
+    .time-table-wrap { overflow-x: auto; margin-top: 8px; }
     .time-table {
       width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
+      border-collapse: collapse;
+      border: 1px solid #cfd8e3;
+      border-radius: 8px;
       background: #fff;
-      box-shadow: 0 4px 12px rgba(0,0,0,.08);
-      border-radius: 12px;
     }
     .time-table th {
       background: #184e9e;
@@ -165,7 +160,7 @@
       text-align: left;
     }
     .time-table td {
-      padding: 10px;
+      padding: 8px 10px;
       border-top: 1px solid #e8eef9;
     }
     .time-table tbody tr:nth-child(odd) { background: #f7fbff; }
@@ -180,21 +175,21 @@
       const panels  = root.querySelectorAll('.tab-panel');
 
       function activate(id){
-        buttons.forEach(b => {
-          const active = b.dataset.tab === id;
-          b.classList.toggle('active', active);
-          b.setAttribute('aria-selected', active);
+        buttons.forEach(b=>{
+          const active = b.dataset.tab===id;
+          b.classList.toggle('active',active);
+          b.setAttribute('aria-selected',active);
         });
-        panels.forEach(p => {
-          const active = p.id === id;
-          p.hidden = !active;
+        panels.forEach(p=>{
+          const active=p.id===id;
+          p.hidden=!active;
         });
       }
 
-      buttons.forEach(b => b.addEventListener('click', () => activate(b.dataset.tab)));
+      buttons.forEach(b=>b.addEventListener('click',()=>activate(b.dataset.tab)));
 
-      const hash = location.hash.replace('#', '');
-      if (hash && root.querySelector('#'+hash)) activate(hash);
+      const hash=location.hash.replace('#','');
+      if(hash&&root.querySelector('#'+hash)) activate(hash);
     })();
   </script>
 </section>
