@@ -15,175 +15,6 @@
 
   <!-- CSS riêng -->
   <link rel="stylesheet" href="CSS/style.css" />
-
-  <style>
-    #main-content.loading::after {
-      content: "Đang tải nội dung...";
-      display: block;
-      text-align: center;
-      color: #184e9e;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    .home-hero {
-      max-width: 900px;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      border-radius: 10px;
-    }
-
-    .system-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .system-card {
-      flex: 0 1 300px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      text-align: center;
-      text-decoration: none;
-      color: inherit;
-      transition: transform .2s, box-shadow .2s;
-      overflow: hidden;
-    }
-
-    .system-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
-    }
-
-    .system-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .system-card h4 {
-      font-weight: 700;
-      margin: 1rem 0;
-    }
-
-    /* ===== Hero Slideshow (Camry) ===== */
-    .hero-slider{
-      position:relative;
-      width:100%;
-      margin: 0 auto 18px;
-      border-radius:16px;
-      overflow:hidden;
-      box-shadow:0 8px 22px rgba(0,0,0,.12);
-      background:#000;
-    }
-    .hero-slider .slides{ position:relative; }
-    .hero-slider figure{ margin:0; }
-
-    .hero-slider .slide{
-      position:absolute;
-      inset:0;
-      opacity:0;
-      transition: opacity .35s ease;
-      display:grid;
-      grid-template-rows: 1fr auto;
-    }
-    .hero-slider .slide.active{ opacity:1; position:relative; }
-
-    /* Giữ tỉ lệ 16:9 bằng padding trick */
-    .hero-slider .slide .media-wrap{
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%; /* 16:9 */
-      overflow: hidden;
-    }
-    .hero-slider img{
-      position: absolute;
-      inset: 0;
-      width:100%;
-      height:100%;
-      object-fit: cover;
-    }
-    .hero-slider figcaption{
-      background: linear-gradient( to right, rgba(0,0,0,.55), rgba(0,0,0,.15) );
-      color:#fff;
-      padding:8px 12px;
-      font-size:14px;
-    }
-
-    /* Nút điều hướng */
-    .hero-slider .nav{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:42px; height:42px;
-      border:none; border-radius:50%;
-      background:rgba(0,0,0,.45);
-      color:#fff; font-size:22px; line-height:42px;
-      text-align:center; cursor:pointer;
-      transition: background .2s, transform .2s;
-      user-select:none;
-    }
-    .hero-slider .nav:hover{ background:rgba(0,0,0,.65); transform:translateY(-50%) scale(1.05); }
-    .hero-slider .nav.prev{ left:10px; }
-    .hero-slider .nav.next{ right:10px; }
-
-    /* Dots */
-    .hero-slider .dots{
-      position:absolute;
-      left:0; right:0; bottom:10px;
-      display:flex; gap:8px; justify-content:center;
-    }
-    .hero-slider .dot{
-      width:10px; height:10px; border-radius:50%;
-      background:rgba(255,255,255,.5);
-      border:0; cursor:pointer;
-      transition: transform .2s, background .2s;
-    }
-    .hero-slider .dot:hover{ transform:scale(1.12); background:#fff; }
-    .hero-slider .dot.active{ background:#fff; }
-
-    @media (max-width: 576px){
-      .hero-slider figcaption{ font-size:13px; }
-    }
-
-    /* === Slideshow nhỏ gọn === */
-.hero-slider.hero--sm{
-  max-width: 720px;   /* chiều rộng tối đa (có thể chỉnh 680/640 tuỳ ý) */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* nếu muốn thấp hơn nữa: dùng tỉ lệ 14:9 thay vì 16:9 */
-/* bỏ comment dòng dưới để áp dụng */
-/*
-.hero-slider.hero--sm .slide .media-wrap{
-  padding-bottom: 64.28%;  /* ~14:9, cao vừa phải */
-}
-*/
-
-/* Thu nhỏ caption & nút điều hướng */
-.hero-slider.hero--sm figcaption{
-  font-size: 13px;
-  padding: 6px 10px;
-}
-.hero-slider.hero--sm .nav{
-  width: 34px; height: 34px;
-  font-size: 18px; line-height: 34px;
-}
-.hero-slider.hero--sm .nav.prev{ left: 8px; }
-.hero-slider.hero--sm .nav.next{ right: 8px; }
-
-/* Dots nhỏ hơn */
-.hero-slider.hero--sm .dot{
-  width: 8px; height: 8px;
-}
-  </style>
 </head>
 
 <body>
@@ -289,49 +120,57 @@
       <!-- Nội dung chính -->
       <section class="col-lg-9">
         <section id="main-content" class="content-card text-center">
-          <h1 class="content-title text-danger font-weight-bold mb-3">
-            MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006
-          </h1>
 
-          <!-- SLIDESHOW CAMRY -->
-          <div class="hero-slider hero--sm" id="camry-slider">
-            <div class="slides">
-              <figure class="slide active">
-                <div class="media-wrap">
-                  <img src="img/camry_1.jpg" alt="Toyota Camry - góc 1">
-                </div>
-                <figcaption>Camry – Góc tổng quan</figcaption>
-              </figure>
-              <figure class="slide">
-                <div class="media-wrap">
-                  <img src="img/camry_2.jpg" alt="Toyota Camry - góc 2">
-                </div>
-                <figcaption>Thiết kế phía trước</figcaption>
-              </figure>
-              <figure class="slide">
-                <div class="media-wrap">
-                  <img src="img/camry_3.jpg" alt="Toyota Camry - góc 3">
-                </div>
-                <figcaption>Đuôi xe & cụm đèn</figcaption>
-              </figure>
+          <!-- HERO 50/50: chữ (trái) + slideshow (phải) -->
+          <div class="hero-split row no-gutters align-items-center mb-3">
+            <div class="col-lg-6 pr-lg-3 hero-text text-left text-lg-left text-center">
+              <h1 class="content-title hero-title text-danger font-weight-bold mb-2">
+                MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006
+              </h1>
+              <p class="hero-sub lead mb-0">
+                Bài giảng điện tử – mô phỏng trực quan các hệ thống: chiếu sáng, tín hiệu,
+                phun nước gạt mưa &amp; các tình huống PAN thực tế.
+              </p>
             </div>
 
-            <!-- điều hướng -->
-            <button class="nav prev" aria-label="Ảnh trước">‹</button>
-            <button class="nav next" aria-label="Ảnh sau">›</button>
+            <div class="col-lg-6 pl-lg-3">
+              <div class="hero-slider hero--sm hero--fill" id="camry-slider">
+                <div class="slides">
+                  <figure class="slide active">
+                    <div class="media-wrap">
+                      <img src="img/camry_1.jpg" alt="Toyota Camry - góc 1">
+                    </div>
+                    <figcaption>Camry – Góc tổng quan</figcaption>
+                  </figure>
+                  <figure class="slide">
+                    <div class="media-wrap">
+                      <img src="img/camry_2.jpg" alt="Toyota Camry - góc 2">
+                    </div>
+                    <figcaption>Thiết kế phía trước</figcaption>
+                  </figure>
+                  <figure class="slide">
+                    <div class="media-wrap">
+                      <img src="img/camry_3.jpg" alt="Toyota Camry - góc 3">
+                    </div>
+                    <figcaption>Đuôi xe &amp; cụm đèn</figcaption>
+                  </figure>
+                </div>
 
-            <!-- chấm chỉ số -->
-            <div class="dots" aria-label="Chọn ảnh">
-              <button class="dot active" data-index="0" aria-label="Ảnh 1"></button>
-              <button class="dot" data-index="1" aria-label="Ảnh 2"></button>
-              <button class="dot" data-index="2" aria-label="Ảnh 3"></button>
+                <button class="nav prev" aria-label="Ảnh trước">‹</button>
+                <button class="nav next" aria-label="Ảnh sau">›</button>
+
+                <div class="dots" aria-label="Chọn ảnh">
+                  <button class="dot active" data-index="0" aria-label="Ảnh 1"></button>
+                  <button class="dot" data-index="1" aria-label="Ảnh 2"></button>
+                  <button class="dot" data-index="2" aria-label="Ảnh 3"></button>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- /SLIDESHOW CAMRY -->
+          <!-- /HERO 50/50 -->
 
-          <!-- Các ô chọn hệ thống -->
+          <!-- Các ô chọn hệ thống (3×3) -->
           <div class="system-cards">
-            <!-- Nguyên lý hoạt động -->
             <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
               <img src="img/HT-chieu-sang.png" alt="Chiếu sáng">
               <h4>HỆ THỐNG CHIẾU SÁNG</h4>
@@ -347,7 +186,6 @@
               <h4>HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
             </a>
 
-            <!-- PAN -->
             <a data-ajax href="Pan/HT_chieu_sang/PANCS.html" class="system-card">
               <img src="img/Pan_HT_Chieu_sang.png" alt="Pan chiếu sáng">
               <h4>PAN HỆ THỐNG CHIẾU SÁNG</h4>
@@ -441,32 +279,7 @@
     }
   });
 
-  // Load nội dung trong trang PAN
-  function loadPanContent(url) {
-    const area = document.getElementById('content-area');
-    if (!area) return;
-    area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-    fetch(url)
-      .then(res => {
-        if (!res.ok) throw new Error("Không thể tải nội dung: " + url);
-        return res.text();
-      })
-      .then(html => {
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-        const node = temp.querySelector('main#page-content') ||
-                     temp.querySelector('section[data-content="main"]') ||
-                     temp.querySelector('section');
-        area.innerHTML = node ? node.innerHTML : html;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      })
-      .catch(err => {
-        area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-      });
-  }
-
-
-  // Ưu tiên lấy đúng khối nội dung trong file con
+  // Chuẩn hoá & nạp nội dung trong PAN khi cần
   function pickFragment(root) {
     return root.querySelector('[data-fragment]') ||
            root.querySelector('main#page-content') ||
@@ -474,8 +287,6 @@
            root.querySelector('section') ||
            root;
   }
-
-  // Chuẩn hoá src/href tương đối bên trong fragment khi cần (PAN chi tiết có ảnh/link)
   function absolutizeAttr(root, selector, attr, baseAbs) {
     root.querySelectorAll(selector).forEach(el => {
       const val = el.getAttribute(attr);
@@ -484,7 +295,6 @@
       el.setAttribute(attr, new URL(val, baseAbs).href);
     });
   }
-
   async function loadPanContent(url) {
     const area = document.getElementById('content-area');
     if (!area) return;
@@ -504,10 +314,8 @@
       absolutizeAttr(frag, 'script', 'src', absUrl);
       absolutizeAttr(frag, 'a', 'href', absUrl);
 
-      // Chỉ chèn phần bên trong fragment
       area.innerHTML = frag.innerHTML;
 
-      // Các link nội bộ bên trong chi tiết -> tiếp tục load mềm vào content-area
       area.querySelectorAll('a[href]').forEach(a => {
         const href = a.getAttribute('href');
         if (!href || href.startsWith('#') || /\.pdf$/i.test(href) || a.target === '_blank') return;
@@ -526,19 +334,17 @@
     }
   }
 
-  // Bắt click các ô chọn trong PAN (ở cấp document để áp dụng cho fragment mới chèn)
+  // Bắt click các ô chọn trong PAN (ở cấp document)
   document.addEventListener('click', function (e) {
     const link = e.target.closest('.selectable-box');
     if (!link) return;
-    // Chỉ xử lý khi có #content-area trên trang hiện tại (tức đang ở PAN)
     if (!document.getElementById('content-area')) return;
     e.preventDefault();
     loadPanContent(link.getAttribute('href'));
   });
 
-
+  // Tabs cho các trang con (nếu có)
   (function () {
-    // Click tab -> kích hoạt trong phạm vi fragment gần nhất (.overview hoặc container)
     document.addEventListener('click', function (e) {
       const btn = e.target.closest('.pill-tabs .tab-btn');
       if (!btn) return;
@@ -547,25 +353,21 @@
       const id = btn.dataset.tab;
       if (!id) return;
 
-      // Tìm scope: ưu tiên fragment .overview gần nhất, fallback #main-content
       const scope = btn.closest('.overview') || document.querySelector('#main-content');
       if (!scope) return;
 
-      // Cập nhật nút
       scope.querySelectorAll('.pill-tabs .tab-btn').forEach(b => {
         const on = b.dataset.tab === id;
         b.classList.toggle('active', on);
         b.setAttribute('aria-selected', on ? 'true' : 'false');
       });
 
-      // Hiện/ẩn panel
       scope.querySelectorAll('.tab-panel').forEach(p => {
         const on = p.id === id;
         p.toggleAttribute('hidden', !on);
         p.classList.toggle('active', on);
       });
 
-      // Cập nhật hash (để quay lại đúng tab khi reload / back)
       try {
         const url = new URL(location.href);
         url.hash = id;
@@ -611,24 +413,16 @@
     function next(){ show(i + 1); }
     function prev(){ show(i - 1); }
 
-    function play(){
-      stop();
-      timer = setInterval(next, AUTOPLAY_MS);
-    }
-    function stop(){
-      if (timer) clearInterval(timer);
-      timer = null;
-    }
+    function play(){ stop(); timer = setInterval(next, AUTOPLAY_MS); }
+    function stop(){ if (timer) clearInterval(timer); timer = null; }
 
     nextBtn.addEventListener('click', () => { next(); play(); });
     prevBtn.addEventListener('click', () => { prev(); play(); });
     dots.forEach(d => d.addEventListener('click', () => { show(+d.dataset.index); play(); }));
 
-    // pause on hover (desktop)
     root.addEventListener('mouseenter', stop);
     root.addEventListener('mouseleave', play);
 
-    // init
     show(0);
     play();
   })();
