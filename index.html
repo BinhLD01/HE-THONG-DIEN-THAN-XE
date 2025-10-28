@@ -70,6 +70,87 @@
       font-weight: 700;
       margin: 1rem 0;
     }
+
+    /* ===== Hero Slideshow (Camry) ===== */
+    .hero-slider{
+      position:relative;
+      width:100%;
+      margin: 0 auto 18px;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 8px 22px rgba(0,0,0,.12);
+      background:#000;
+    }
+    .hero-slider .slides{ position:relative; }
+    .hero-slider figure{ margin:0; }
+
+    .hero-slider .slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition: opacity .35s ease;
+      display:grid;
+      grid-template-rows: 1fr auto;
+    }
+    .hero-slider .slide.active{ opacity:1; position:relative; }
+
+    /* Giữ tỉ lệ 16:9 bằng padding trick */
+    .hero-slider .slide .media-wrap{
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 */
+      overflow: hidden;
+    }
+    .hero-slider img{
+      position: absolute;
+      inset: 0;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+    .hero-slider figcaption{
+      background: linear-gradient( to right, rgba(0,0,0,.55), rgba(0,0,0,.15) );
+      color:#fff;
+      padding:8px 12px;
+      font-size:14px;
+    }
+
+    /* Nút điều hướng */
+    .hero-slider .nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:42px; height:42px;
+      border:none; border-radius:50%;
+      background:rgba(0,0,0,.45);
+      color:#fff; font-size:22px; line-height:42px;
+      text-align:center; cursor:pointer;
+      transition: background .2s, transform .2s;
+      user-select:none;
+    }
+    .hero-slider .nav:hover{ background:rgba(0,0,0,.65); transform:translateY(-50%) scale(1.05); }
+    .hero-slider .nav.prev{ left:10px; }
+    .hero-slider .nav.next{ right:10px; }
+
+    /* Dots */
+    .hero-slider .dots{
+      position:absolute;
+      left:0; right:0; bottom:10px;
+      display:flex; gap:8px; justify-content:center;
+    }
+    .hero-slider .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:rgba(255,255,255,.5);
+      border:0; cursor:pointer;
+      transition: transform .2s, background .2s;
+    }
+    .hero-slider .dot:hover{ transform:scale(1.12); background:#fff; }
+    .hero-slider .dot.active{ background:#fff; }
+
+    @media (max-width: 576px){
+      .hero-slider figcaption{ font-size:13px; }
+    }
   </style>
 </head>
 
@@ -174,48 +255,84 @@
       </aside>
 
       <!-- Nội dung chính -->
-     <section class="col-lg-9">
-  <section id="main-content" class="content-card text-center">
-    <h1 class="content-title text-danger font-weight-bold mb-4">
-      MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006
-    </h1>
+      <section class="col-lg-9">
+        <section id="main-content" class="content-card text-center">
+          <h1 class="content-title text-danger font-weight-bold mb-3">
+            MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006
+          </h1>
 
-    <!-- Các ô chọn hệ thống -->
-    <div class="system-cards">
-      <!-- Nguyên lý hoạt động -->
-      <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
-        <img src="img/HT-chieu-sang.png" alt="Chiếu sáng">
-        <h4>HỆ THỐNG CHIẾU SÁNG</h4>
-      </a>
+          <!-- SLIDESHOW CAMRY -->
+          <div class="hero-slider" id="camry-slider">
+            <div class="slides">
+              <figure class="slide active">
+                <div class="media-wrap">
+                  <img src="img/camry_1.jpg" alt="Toyota Camry - góc 1">
+                </div>
+                <figcaption>Camry – Góc tổng quan</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="media-wrap">
+                  <img src="img/camry_2.jpg" alt="Toyota Camry - góc 2">
+                </div>
+                <figcaption>Thiết kế phía trước</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="media-wrap">
+                  <img src="img/camry_3.jpg" alt="Toyota Camry - góc 3">
+                </div>
+                <figcaption>Đuôi xe & cụm đèn</figcaption>
+              </figure>
+            </div>
 
-      <a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html" class="system-card">
-        <img src="img/HT_Tin_hieu.png" alt="Tín hiệu">
-        <h4>HỆ THỐNG TÍN HIỆU</h4>
-      </a>
+            <!-- điều hướng -->
+            <button class="nav prev" aria-label="Ảnh trước">‹</button>
+            <button class="nav next" aria-label="Ảnh sau">›</button>
 
-      <a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html" class="system-card">
-        <img src="img/HT_PhunNuoc_GatMua.png" alt="Phun nước">
-        <h4>HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
-      </a>
+            <!-- chấm chỉ số -->
+            <div class="dots" aria-label="Chọn ảnh">
+              <button class="dot active" data-index="0" aria-label="Ảnh 1"></button>
+              <button class="dot" data-index="1" aria-label="Ảnh 2"></button>
+              <button class="dot" data-index="2" aria-label="Ảnh 3"></button>
+            </div>
+          </div>
+          <!-- /SLIDESHOW CAMRY -->
 
-      <!-- PAN -->
-      <a data-ajax href="Pan/HT_chieu_sang/PANCS.html" class="system-card">
-        <img src="img/Pan_HT_Chieu_sang.png" alt="Pan chiếu sáng">
-        <h4>PAN HỆ THỐNG CHIẾU SÁNG</h4>
-      </a>
+          <!-- Các ô chọn hệ thống -->
+          <div class="system-cards">
+            <!-- Nguyên lý hoạt động -->
+            <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
+              <img src="img/HT-chieu-sang.png" alt="Chiếu sáng">
+              <h4>HỆ THỐNG CHIẾU SÁNG</h4>
+            </a>
 
-      <a data-ajax href="Pan/HT_tin_hieu/PANTH.html" class="system-card">
-        <img src="img/Pan-HT-tín-hiệu.png" alt="Pan tín hiệu">
-        <h4>PAN HỆ THỐNG TÍN HIỆU</h4>
-      </a>
+            <a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html" class="system-card">
+              <img src="img/HT_Tin_hieu.png" alt="Tín hiệu">
+              <h4>HỆ THỐNG TÍN HIỆU</h4>
+            </a>
 
-      <a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html" class="system-card">
-        <img src="img/Pan_PhunNuoc_Gat_Mua.png" alt="Pan phun nước gạt mưa">
-        <h4>PAN HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
-      </a>
-    </div>
-  </section>
-</section>
+            <a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html" class="system-card">
+              <img src="img/HT_PhunNuoc_GatMua.png" alt="Phun nước">
+              <h4>HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
+            </a>
+
+            <!-- PAN -->
+            <a data-ajax href="Pan/HT_chieu_sang/PANCS.html" class="system-card">
+              <img src="img/Pan_HT_Chieu_sang.png" alt="Pan chiếu sáng">
+              <h4>PAN HỆ THỐNG CHIẾU SÁNG</h4>
+            </a>
+
+            <a data-ajax href="Pan/HT_tin_hieu/PANTH.html" class="system-card">
+              <img src="img/Pan-HT-tín-hiệu.png" alt="Pan tín hiệu">
+              <h4>PAN HỆ THỐNG TÍN HIỆU</h4>
+            </a>
+
+            <a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html" class="system-card">
+              <img src="img/Pan_PhunNuoc_Gat_Mua.png" alt="Pan phun nước gạt mưa">
+              <h4>PAN HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
+            </a>
+          </div>
+        </section>
+      </section>
 
     </div>
   </main>
@@ -388,7 +505,7 @@
   });
 
 
-(function () {
+  (function () {
     // Click tab -> kích hoạt trong phạm vi fragment gần nhất (.overview hoặc container)
     document.addEventListener('click', function (e) {
       const btn = e.target.closest('.pill-tabs .tab-btn');
@@ -424,25 +541,64 @@
       } catch (_) {}
     });
 
-    // Khi đổi hash (vd: #ly-do / #loi-ich / #thoi-luong) -> kích hoạt tab tương ứng
     function activateByHash() {
       const id = location.hash.replace('#', '');
       if (!id) return;
-      // Tìm fragment hiển thị hiện tại
       const scope = document.querySelector('.overview');
       if (!scope) return;
-
       const btn = scope.querySelector(`.pill-tabs .tab-btn[data-tab="${id}"]`);
       if (!btn) return;
-      btn.click(); // dùng cùng logic ở trên
+      btn.click();
     }
 
     window.addEventListener('hashchange', activateByHash);
-    // chạy 1 lần khi trang/fragment vừa render xong
     document.addEventListener('DOMContentLoaded', activateByHash);
-    // Trường hợp load fragment bằng AJAX: đợi 0 chút rồi kích hoạt hash (an toàn)
     const obs = new MutationObserver(() => activateByHash());
     obs.observe(document.getElementById('main-content'), { childList: true, subtree: false });
+  })();
+
+  /* ===== Hero Slider – JS ===== */
+  (function initCamrySlider(){
+    const root = document.getElementById('camry-slider');
+    if (!root) return;
+
+    const slides = Array.from(root.querySelectorAll('.slide'));
+    const dots   = Array.from(root.querySelectorAll('.dot'));
+    const prevBtn = root.querySelector('.nav.prev');
+    const nextBtn = root.querySelector('.nav.next');
+
+    let i = 0;
+    let timer = null;
+    const AUTOPLAY_MS = 4000;
+
+    function show(n){
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    }
+    function next(){ show(i + 1); }
+    function prev(){ show(i - 1); }
+
+    function play(){
+      stop();
+      timer = setInterval(next, AUTOPLAY_MS);
+    }
+    function stop(){
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    nextBtn.addEventListener('click', () => { next(); play(); });
+    prevBtn.addEventListener('click', () => { prev(); play(); });
+    dots.forEach(d => d.addEventListener('click', () => { show(+d.dataset.index); play(); }));
+
+    // pause on hover (desktop)
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', play);
+
+    // init
+    show(0);
+    play();
   })();
   </script>
 </body>
