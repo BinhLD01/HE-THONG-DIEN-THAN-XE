@@ -151,6 +151,38 @@
     @media (max-width: 576px){
       .hero-slider figcaption{ font-size:13px; }
     }
+
+    /* === Slideshow nhỏ gọn === */
+.hero-slider.hero--sm{
+  max-width: 720px;   /* chiều rộng tối đa (có thể chỉnh 680/640 tuỳ ý) */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* nếu muốn thấp hơn nữa: dùng tỉ lệ 14:9 thay vì 16:9 */
+/* bỏ comment dòng dưới để áp dụng */
+/*
+.hero-slider.hero--sm .slide .media-wrap{
+  padding-bottom: 64.28%;  /* ~14:9, cao vừa phải */
+}
+*/
+
+/* Thu nhỏ caption & nút điều hướng */
+.hero-slider.hero--sm figcaption{
+  font-size: 13px;
+  padding: 6px 10px;
+}
+.hero-slider.hero--sm .nav{
+  width: 34px; height: 34px;
+  font-size: 18px; line-height: 34px;
+}
+.hero-slider.hero--sm .nav.prev{ left: 8px; }
+.hero-slider.hero--sm .nav.next{ right: 8px; }
+
+/* Dots nhỏ hơn */
+.hero-slider.hero--sm .dot{
+  width: 8px; height: 8px;
+}
   </style>
 </head>
 
