@@ -5,272 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Giới thiệu thành viên</title>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
   <style>
     :root{
       --brand:#184e9e;
-      --brand-2:#0a4bb1;
-      --bg:#eff9fc;
-      --card:#ffffff;
       --ink:#262261;
-      --muted:#6b7280;
-      --ring:rgba(10,75,177,.35);
-      --shadow:0 8px 20px rgba(0,0,0,.12);
-      --shadow-sm:0 4px 10px rgba(0,0,0,.10);
+      --bg:#f4f9fc;
+      --panel:#fff;
+      --shadow:0 8px 20px rgba(0,0,0,.08);
+      --radius:16px;
     }
-
-    /* Base */
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{
-      font-family:"Times New Roman", serif;
-      background:var(--bg);
-      color:var(--ink);
-      overflow-x:hidden;
-    }
-
-    /* Layout */
-    .container{
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
-    }
-
-    /* Top bar */
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      margin-bottom: 18px;
-    }
-    .back-btn{
-      display:inline-flex;align-items:center;gap:10px;
-      background:linear-gradient(180deg, #1f67d8, var(--brand));
-      color:#fff;text-decoration:none;font-weight:700;
-      padding:10px 14px;border-radius:999px;
-      box-shadow:var(--shadow-sm);
-      transition:transform .15s, box-shadow .15s, opacity .15s;
-    }
-    .back-btn:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
-    .back-btn:active{ transform:translateY(0); opacity:.9; }
-    .back-btn svg{ width:18px;height:18px; }
-
-    h1.page-title{
-      font-family:"Patua One", serif;
-      text-align:center;
-      color:#d21313;
-      font-size: clamp(24px, 4.8vw, 44px);
-      letter-spacing:.3px;
-      margin: 10px 0 8px;
-      text-wrap: balance;
-    }
-    p.page-sub{
-      text-align:center;margin:0 0 20px;color:var(--muted);
-    }
-
-    /* Team grid */
-    .team{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 20px;
-      align-items: stretch;
-    }
-    @media (max-width: 1024px){
-      .team{ grid-template-columns: repeat(3, minmax(0,1fr)); }
-    }
-    @media (max-width: 768px){
-      .team{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media (max-width: 520px){
-      .team{ grid-template-columns: 1fr; }
-    }
-
-    /* Member card */
-    .member{
-      background:var(--card);
-      border-radius:18px;
-      padding:18px 16px;
-      text-align:center;
-      box-shadow:var(--shadow-sm);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      cursor:pointer;
-      border:2px solid transparent;
-      height:100%;
-      display:flex;flex-direction:column;justify-content:space-between;
-    }
-    .member:hover{
-      transform:translateY(-6px);
-      box-shadow:var(--shadow);
-      border-color:var(--ring);
-    }
-    .avatar{
-      width:160px;height:160px;margin:0 auto 14px;
-      border-radius:50%;
-      overflow:hidden;border:4px solid #e5eefc;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
-    }
-    .avatar img{
-      width:100%;height:100%;object-fit:cover;display:block;
-    }
-    .member h2{
-      margin:6px 0 6px;
-      font-size: clamp(18px, 2.4vw, 22px);
-      color:var(--ink);
-      line-height:1.2;
-    }
-    .role{ color:#445; font-style:italic; margin:0 0 6px; }
-    .meta{ color:var(--muted); margin:0 0 6px; font-size:14px; }
-
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Times New Roman", serif;}
+    .container-narrow{max-width:1100px;margin:0 auto;padding:24px 16px;}
+    .page-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+    h1.page-title{margin:0;color:#d21313;font-weight:800;letter-spacing:.3px;font-size:clamp(22px,4vw,36px);}
+    .home-btn{background:var(--brand);color:#fff;padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:700;transition:.2s;}
+    .home-btn:hover{background:#0a4bb1;transform:translateY(-2px);}
+    .team{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:18px;}
+    @media(max-width:767px){.team{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:480px){.team{grid-template-columns:1fr;}}
+    .member{background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;text-align:center;cursor:pointer;transition:.2s;}
+    .member:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(0,0,0,.12);}
+    .member img{width:160px;height:160px;border-radius:50%;object-fit:cover;margin-bottom:12px;box-shadow:0 6px 14px rgba(0,0,0,.1);}
+    .member h2{font-size:20px;margin:0 0 6px;color:var(--ink);font-weight:800;}
+    .member .role{font-style:italic;color:#5b6a85;margin:0 0 8px;}
+    .member p.note{color:#667;margin:0;font-size:15px;}
     /* Modal */
-    .modal{
-      position: fixed; inset:0; display:none;
-      background: rgba(0,0,0,.45);
-      z-index: 1000;
-      padding: 20px;
-    }
-    .modal[open]{ display:block; }
-    .modal-card{
-      max-width: 720px; margin: 6svh auto 0;
-      background:#fff; border-radius:16px; padding:20px;
-      box-shadow: var(--shadow);
-      position:relative;
-      animation: pop .18s ease;
-    }
-    @keyframes pop{ from{transform:scale(.98);opacity:.6} to{transform:none;opacity:1} }
-    .modal-close{
-      position:absolute; top:10px; right:10px;
-      width:36px;height:36px; border-radius:999px; border:none;
-      background:#f3f6ff; color:#002;
-      font-size:20px; line-height:36px; text-align:center;
-      cursor:pointer;
-      transition: filter .15s;
-    }
-    .modal-close:hover{ filter: brightness(.95); }
-    .modal h3{ margin:0 0 8px; font-size:22px; color:var(--brand-2); }
-    .modal p{ margin:6px 0; color:#333; }
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px;}
+    .modal-backdrop.show{display:flex;}
+    .modal-card{width:min(720px,100%);background:#fff;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.25);}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:linear-gradient(90deg,var(--brand),#3a79d3);color:#fff;}
+    .btn-close{background:transparent;border:0;color:#fff;font-size:26px;cursor:pointer;}
+    .modal-body{padding:16px;}
+    .modal-photo img{width:180px;height:180px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow);}
+    .badge-role{display:inline-block;background:#eef6ff;color:#0a4bb1;padding:4px 10px;border-radius:999px;margin-bottom:8px;}
+    .contact{margin-top:10px;padding-top:8px;border-top:1px dashed #dde6f3;}
+    .contact a{color:#0a4bb1;text-decoration:none;font-weight:700;}
+    .contact a:hover{text-decoration:underline;}
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <!-- Top -->
-    <div class="topbar">
-      <a class="back-btn" href="index.html" data-hard>
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Về trang chủ
-      </a>
+  <div class="container-narrow">
+    <div class="page-head">
+      <h1 class="page-title">THÀNH VIÊN TRONG NHÓM</h1>
+      <a class="home-btn" href="index.html">← Về trang chủ</a>
     </div>
 
-    <h1 class="page-title">THÀNH VIÊN TRONG NHÓM</h1>
-    <p class="page-sub">Nhấn vào từng thẻ để xem chi tiết</p>
-
-    <div class="team">
-      <!-- 1 -->
-      <article class="member" data-modal="modal1">
-        <div class="avatar"><img src="img/Nghiep.jpg" alt="Đỗ Trung Thành"></div>
-        <h2>Đỗ Trung Thành</h2>
-        <!-- <p class="role">DHOT16C</p>
-        <p class="meta">Điện - Điện tử ô tô</p> -->
+    <section class="team">
+      <!-- LÊ TRỌNG PHÚC -->
+      <article class="member"
+        data-name="LÊ TRỌNG PHÚC"
+       
+        data-img="img/members/PHUC.png"
+        data-bio="MSSV: 20000565"
+        data-email="phucle.02052002@gmail.com"
+        data-phone="0336177395">
+        <img src="img/members/PHUC.png" alt="LÊ TRỌNG PHÚC">
+        <h2>LÊ TRỌNG PHÚC</h2>
+        <p class="role">DHOT16C</p>
+        <p class="note">Nhấp để xem chi tiết</p>
       </article>
 
-      <!-- 2 -->
-      <article class="member" data-modal="modal2">
-        <div class="avatar"><img src="img/Nghia.jpg" alt="Đoàn Quang Thái"></div>
-        <h2>Đoàn Quang Thái</h2>
-        <!-- <p class="role">—</p>
-        <p class="meta">Thiết kế & tài liệu</p> -->
+      <!-- ĐỖ TRUNG THÀNH -->
+      <article class="member"
+        data-name="ĐỖ TRUNG THÀNH"
+        
+        data-img="img/members/TRUNGTHANH.png"
+        data-bio="MSSV: 20080621"
+        data-email="thanh.thcsbh026@gmail.com"
+        data-phone="0344285837">
+        <img src="img/members/TRUNGTHANH.png" alt="ĐỖ TRUNG THÀNH">
+        <h2>ĐỖ TRUNG THÀNH</h2>
+        <p class="role">DHOT16C</p>
+        <p class="note">Nhấp để xem chi tiết</p>
       </article>
 
-      <!-- 3 -->
-      <article class="member" data-modal="modal3">
-        <div class="avatar"><img src="img/Vy.jpg" alt="Phan Tấn Thành"></div>
-        <h2>Phan Tấn Thành</h2>
-        <!-- <p class="role">—</p>
-        <p class="meta">Mạch & đấu nối</p> -->
+      <!-- PHAN TẤN THÀNH -->
+      <article class="member"
+        data-name="PHAN TẤN THÀNH"
+        
+        data-img="img/members/PHANTHANH.png"
+        data-bio="MSSV: 20082061"
+        data-email="phantanthanh407@gmail.com"
+        data-phone="0397575165">
+        <img src="img/members/PHANTHANH.png" alt="PHAN TẤN THÀNH">
+        <h2>PHAN TẤN THÀNH</h2>
+        <p class="role">DHOT16B</p>
+        <p class="note">Nhấp để xem chi tiết</p>
       </article>
-
-      <!-- 4 -->
-      <article class="member" data-modal="modal4">
-        <div class="avatar"><img src="img/Phi.jpg" alt="Lê Trọng Phúc"></div>
-        <h2>Lê Trọng Phúc</h2>
-        <!-- <p class="role">—</p>
-        <p class="meta">Lắp đặt & vận hành</p> -->
-      </article>
-    </div>
+    </section>
   </div>
 
-  <!-- Modals -->
-  <div id="modal1" class="modal" aria-modal="true" role="dialog">
+  <!-- Modal -->
+  <div id="member-modal" class="modal-backdrop">
     <div class="modal-card">
-      <button class="modal-close" aria-label="Đóng" data-close>×</button>
-      <h3>Đỗ Trung Thành</h3>
-      <!-- <p><strong>Lớp:</strong> DHOT16C</p>
-      <p><strong>Nhiệm vụ:</strong> Đi dây, kiểm tra tín hiệu, hoàn thiện sơ đồ chiếu sáng.</p> -->
+      <div class="modal-header">
+        <h2 id="modal-title" class="modal-title">Tên thành viên</h2>
+        <button class="btn-close" aria-label="Đóng">×</button>
+      </div>
+      <div class="modal-body row align-items-center">
+        <div class="col-md-4 text-center modal-photo">
+          <img id="modal-photo" src="" alt="">
+        </div>
+        <div class="col-md-8">
+          <span id="modal-role" class="badge-role">Vai trò</span>
+          <p id="modal-bio"></p>
+          <div class="contact" id="modal-contact">
+            <div>📧 Email: <a id="contact-email" href="#"></a></div>
+            <div>📞 SĐT: <a id="contact-phone" href="#"></a></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div id="modal2" class="modal" aria-modal="true" role="dialog">
-    <div class="modal-card">
-      <button class="modal-close" aria-label="Đóng" data-close>×</button>
-      <h3>Đoàn Quang Thái</h3>
-      <!-- <p><strong>Nhiệm vụ:</strong> Tài liệu kỹ thuật, trình bày nội dung & hình ảnh hệ thống tín hiệu.</p> -->
-    </div>
-  </div>
+<script>
+const modal=document.getElementById('member-modal');
+const title=document.getElementById('modal-title');
+const role=document.getElementById('modal-role');
+const bio=document.getElementById('modal-bio');
+const img=document.getElementById('modal-photo');
+const mail=document.getElementById('contact-email');
+const phone=document.getElementById('contact-phone');
 
-  <div id="modal3" class="modal" aria-modal="true" role="dialog">
-    <div class="modal-card">
-      <button class="modal-close" aria-label="Đóng" data-close>×</button>
-      <h3>Phan Tấn Thành</h3>
-      <!-- <p><strong>Nhiệm vụ:</strong> Sơ đồ mạch, test phun nước gạt mưa & an toàn điện.</p> -->
-    </div>
-  </div>
+function openMember(card){
+  title.textContent=card.dataset.name;
+  role.textContent=card.dataset.role;
+  bio.textContent=card.dataset.bio;
+  img.src=card.dataset.img;
+  img.alt=card.dataset.name;
+  mail.textContent=card.dataset.email;
+  mail.href=`mailto:${card.dataset.email}`;
+  phone.textContent=card.dataset.phone;
+  phone.href=`tel:${card.dataset.phone}`;
+  modal.classList.add('show');
+}
+function closeModal(){modal.classList.remove('show');}
 
-  <div id="modal4" class="modal" aria-modal="true" role="dialog">
-    <div class="modal-card">
-      <button class="modal-close" aria-label="Đóng" data-close>×</button>
-      <h3>Lê Trọng Phúc</h3>
-      <!-- <p><strong>Nhiệm vụ:</strong> Lắp đặt phần cơ khí, cố định giắc & bố trí dây dẫn.</p> -->
-    </div>
-  </div>
-
-  <script>
-    // Mở/đóng modal
-    function openModal(id){
-      const m = document.getElementById(id);
-      if (!m) return;
-      m.setAttribute('open','');
-      // trap Esc
-      function onEsc(ev){
-        if (ev.key === 'Escape'){ closeModal(id); }
-      }
-      m._esc = onEsc;
-      document.addEventListener('keydown', onEsc);
-    }
-    function closeModal(id){
-      const m = document.getElementById(id);
-      if (!m) return;
-      m.removeAttribute('open');
-      if (m._esc){ document.removeEventListener('keydown', m._esc); m._esc = null; }
-    }
-
-    // Delegation: click card để mở modal
-    document.addEventListener('click', (e)=>{
-      const card = e.target.closest('.member');
-      if (card && card.dataset.modal){
-        openModal(card.dataset.modal);
-        return;
-      }
-      // nút đóng
-      if (e.target.matches('[data-close]')){
-        const modal = e.target.closest('.modal');
-        if (modal) closeModal(modal.id);
-        return;
-      }
-      // click ra nền tối
-      const modalBg = e.target.classList.contains('modal') ? e.target : null;
-      if (modalBg && modalBg.hasAttribute('open')){
-        closeModal(modalBg.id);
-      }
-    });
-  </script>
+document.addEventListener('click',e=>{
+  if(e.target.closest('.member')) openMember(e.target.closest('.member'));
+  if(e.target.matches('.btn-close')||e.target===modal) closeModal();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&modal.classList.contains('show')) closeModal();
+});
+</script>
 </body>
 </html>
