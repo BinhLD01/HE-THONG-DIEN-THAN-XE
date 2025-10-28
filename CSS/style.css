@@ -11,6 +11,10 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ========== HEADER ========== */
 .site-header { background-color: #b9cfd7; }
+/* ★ ép header container full width */
+.site-header .container,
+.site-header .container-fluid { max-width: 100% !important; padding-left: 12px; padding-right: 12px; }
+
 .site-header .brand-row { align-items: center; padding: 10px 0; }
 .site-header .logo img { width: 100%; max-width: 120px; }
 .site-header h3{
@@ -99,7 +103,21 @@ nav.navbar ul li .dropdown li a:hover{
 .divider{ background-color: #3696b9; height: 3px; width: 100%; }
 
 /* ========== MAIN CONTENT ========== */
-.page{ max-width: 1400px; margin: 0 auto; padding: 24px 16px; }
+/* ★ full màn + padding ngoài nhỏ để card to hơn */
+.page{
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 12px;
+}
+
+/* ★ giảm gutter giữa menu (aside) và nội dung để "sát" hơn */
+.row.align-items-start { margin-left: 0; margin-right: 0; }
+.row.align-items-start > [class^="col-"],
+.row.align-items-start > [class*=" col-"]{
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 .content-card{
   background: #fff;
   border-radius: 24px;
@@ -135,7 +153,7 @@ footer.site-footer{
 /* ========== RESPONSIVE ========== */
 @media (max-width: 992px){
   .site-header .logo{ text-align: center; margin-bottom: 8px; }
-  .page{ padding: 16px 14px; }
+  .page{ padding: 16px 10px; }
   .content-card{ padding: 22px 14px; border-radius: 20px; }
 }
 @media (max-width: 576px){
@@ -276,9 +294,10 @@ nav.navbar .dropdown a.active { background-color: #0a4bb1; color: #fff; }
 }
 
 /* ========== HOME: THẺ CHỌN HỆ THỐNG (3×3) ========== */
+/* ★ vẫn 3 cột cố định desktop, nhưng do .page đã full-width nên ô sẽ to ra */
 .system-cards{
   display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 cột cố định trên desktop */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
   justify-items: stretch;
   align-items: stretch;
@@ -305,21 +324,21 @@ nav.navbar .dropdown a.active { background-color: #0a4bb1; color: #fff; }
 }
 .system-card img{
   width:100%;
-  aspect-ratio: 16 / 9;   /* đồng bộ chiều cao ảnh */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 .system-card h4{
   font-weight:700;
-  margin:1rem 0;
+  margin:1rem 0 1.1rem;
   color:#0b2c6b;
 }
 
 /* Tablet: 2 cột */
-@media (max-width: 768px){
+@media (max-width: 992px){
   .system-cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 /* Mobile: 1 cột */
-@media (max-width: 520px){
+@media (max-width: 576px){
   .system-cards{ grid-template-columns: 1fr; }
 }
 
