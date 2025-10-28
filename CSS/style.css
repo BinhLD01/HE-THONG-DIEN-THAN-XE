@@ -492,30 +492,50 @@ nav.navbar .dropdown a.active { background-color: #0a4bb1; color: #fff; }
 /*
 .hero-slider .slide .media-wrap{ padding-bottom:64.28%; }
 */
-/* 2 ảnh song song, luôn bằng nhau */
-.duo-photos{
-  display:flex;
-  gap:16px;                 /* khoảng cách giữa 2 ảnh */
-  align-items:stretch;
-  margin: 6px 0 8px;
-}
-.duo-photos .photo{
-  flex:1;                   /* mỗi ảnh chiếm 1/2 */
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 6px 16px rgba(0,0,0,.12);
+
+
+
+/* Hai ảnh song song, bằng nhau, căn giữa */
+.duo-photos {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap; /* để khi nhỏ lại thì tự xuống dòng */
 }
 
-/* Giữ cùng tỉ lệ & lấp đầy khung */
-.duo-photos .photo img{
-  display:block;
-  width:100%;
-  height:100%;
-  aspect-ratio: 4 / 3;      /* tỉ lệ khung ảnh, đổi 16/9 nếu muốn */
-  object-fit:cover;         /* cắt vừa khung, không méo */
+.duo-photos .photo {
+  flex: 1 1 45%;
+  max-width: 48%;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  text-align: center;
 }
 
-/* Mobile: xếp dọc cho dễ nhìn */
-@media (max-width: 768px){
-  .duo-photos{ flex-direction:column; }
+.duo-photos img {
+  display: block;
+  width: 100%;
+  height: 350px;              /* ép cùng chiều cao */
+  object-fit: cover;          /* cắt vừa khung, không méo */
+}
+
+.duo-photos figcaption {
+  font-size: 16px;
+  color: #0b2c6b;
+  font-weight: 600;
+  padding: 8px 0 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .duo-photos {
+    flex-direction: column;
+    align-items: center;
+  }
+  .duo-photos .photo {
+    max-width: 90%;
+  }
 }
