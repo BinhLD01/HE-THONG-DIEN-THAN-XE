@@ -379,8 +379,6 @@ nav.navbar .dropdown a.active { background-color: #0a4bb1; color: #fff; }
   box-shadow: 0 6px 14px rgba(0,0,0,.15);
 }
 
-
-
 /* ===== Điều chỉnh layout sidebar/nội dung để menu hẹp hơn ===== */
 @media (min-width: 992px){
   aside.col-lg-3 { flex: 0 0 19%; max-width: 19%; }
