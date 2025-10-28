@@ -1,417 +1,178 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Giới thiệu thành viên</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thành viên nhóm</title>
 
-  <!-- Bootstrap (giống index của bạn) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Font -->
+  <link rel="stylesheet" href="CSS/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
-  <!-- CSS chung của site -->
-  <link rel="stylesheet" href="CSS/style.css" />
 
   <style>
-    /* ====== Trang thành viên (chỉ phần riêng) ====== */
-    .members-page {
+    /* ===== TRANG THÀNH VIÊN ===== */
+    body {
+      background-color: #eff9fc;
+      font-family: "Times New Roman", serif;
+      color: #262261;
+    }
+    .members-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 16px 12px 24px;
-    }
-
-    .members-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+      padding: 30px 15px;
+      text-align: center;
     }
     .members-title {
       font-family: "Patua One", serif;
       color: #d21313;
+      font-size: clamp(26px, 4vw, 40px);
+      margin-bottom: 20px;
       font-weight: 700;
-      font-size: clamp(22px, 5vw, 38px);
-      margin: 0;
     }
-
-    .btn-home {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #184e9e;
-      color: #fff !important;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform .15s, box-shadow .15s, background .15s;
-      box-shadow: 0 3px 10px rgba(0,0,0,.08);
-      white-space: nowrap;
-    }
-    .btn-home:hover {
-      background: #0a4bb1;
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(0,0,0,.12);
-    }
-a
+    .members-row {
       display: flex;
+      justify-content: center;
       align-items: stretch;
-      gap: 18px;
-      padding: 8px 2px 2px;
+      flex-wrap: nowrap;
       overflow-x: auto;
+      gap: 18px;
       scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
     }
-    /* Ẩn thanh cuộn xấu trên 1 số trình duyệt */
-    .team-row::-webkit-scrollbar { height: 8px; }
-    .team-row::-webkit-scrollbar-thumb { background: #cfd8e3; border-radius: 8px; }
-    .team-row:hover::-webkit-scrollbar-thumb { background: #b2bfd0; }
-
     .member-card {
-      flex: 0 0 340px; /* rộng cố định để đảm bảo 3 thẻ nằm cùng hàng trên desktop */
-      max-width: 360px;
+      flex: 0 0 280px;
       background: #fff;
       border-radius: 16px;
+      box-shadow: 0 6px 14px rgba(0,0,0,.1);
       overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0,0,0,.08);
-      transition: transform .18s ease, box-shadow .2s ease;
+      transition: transform .2s, box-shadow .2s;
       scroll-snap-align: start;
-      cursor: pointer;
-      border: 1px solid rgba(24,78,158,.08);
     }
     .member-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 24px rgba(0,0,0,.12);
+      box-shadow: 0 8px 20px rgba(0,0,0,.15);
     }
-
     .member-photo {
       width: 100%;
-      aspect-ratio: 1 / 1;      /* vuông gọn gàng */
+      aspect-ratio: 1/1;
       object-fit: cover;
       background: #eef3f9;
     }
-
-    .member-body {
-      padding: 14px 14px 16px;
-      text-align: center;
+    .member-info {
+      padding: 14px;
+      text-align: left;
     }
     .member-name {
       font-size: 20px;
       font-weight: 800;
       color: #0b2c6b;
-      letter-spacing: .2px;
-      margin: 4px 0 6px;
-      text-transform: uppercase;
-    }
-    .member-role {
-      display: inline-block;
-      font-size: 13px;
-      font-weight: 700;
-      color: #184e9e;
-      background: #e7f1fb;
-      padding: 4px 8px;
-      border-radius: 999px;
       margin-bottom: 8px;
     }
-    .member-cta {
-      margin-top: 8px;
-    }
-    .member-cta .btn-detail {
-      display: inline-block;
-      background: #184e9e;
-      color: #fff;
-      font-weight: 700;
-      padding: 8px 12px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: background .15s, transform .15s, box-shadow .15s;
-      box-shadow: 0 3px 10px rgba(0,0,0,.08);
-    }
-    .member-cta .btn-detail:hover {
-      background: #0a4bb1;
-      transform: translateY(-1px);
-      text-decoration: none;
-      box-shadow: 0 6px 16px rgba(0,0,0,.12);
-    }
-
-    /* Modal đẹp hơn một chút */
-    .modal-content {
-      border: 0;
-      border-radius: 16px;
-      box-shadow: 0 12px 36px rgba(0,0,0,.2);
-    }
-    .modal-header {
-      border-bottom: 0;
-      background: linear-gradient(90deg, #184e9e, #3696b9);
-      color: #fff;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-    }
-    .modal-title {
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-    .modal-body .info-line {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin: 6px 0;
+    .member-info p {
+      margin: 4px 0;
       font-size: 15px;
+      line-height: 1.5;
     }
-    .info-label {
-      min-width: 56px;
-      color: #0b2c6b;
-      font-weight: 800;
-    }
-    .info-value a {
+    .member-info a {
       color: #184e9e;
-      font-weight: 700;
       text-decoration: none;
+      font-weight: 700;
     }
-    .info-value a:hover { text-decoration: underline; }
+    .member-info a:hover {
+      text-decoration: underline;
+    }
 
-    @media (max-width: 420px){
-      .member-card { flex: 0 0 300px; }
+    @media (max-width: 768px) {
+      .member-card { flex: 0 0 240px; }
+    }
+    @media (max-width: 480px) {
+      .member-card { flex: 0 0 220px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header dùng style chung -->
   <header class="site-header">
     <div class="container">
       <div class="row brand-row">
         <div class="col-12 col-md-2 logo text-center">
-          <img src="img/logo-iuh-1.png" alt="Logo IUH" style="max-width:120px; width:80%; height:auto;">
+          <img src="img/logo-iuh-1.png" alt="Logo IUH" style="max-width:120px;">
         </div>
         <div class="col-12 col-md-10">
-          <h3 class="text-center font-weight-bold">TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP THÀNH PHỐ HỒ CHÍ MINH</h3>
+          <h3 class="text-center font-weight-bold">TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP. HỒ CHÍ MINH</h3>
           <h3 class="text-center font-weight-bold">KHOA CÔNG NGHỆ ĐỘNG LỰC</h3>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- NAVBAR (giữ giống index để đồng bộ) -->
-  <nav class="navbar" role="navigation">
+  <nav class="navbar">
     <ul>
-      <li><a href="index.html" data-hard>Trang chủ</a></li>
-      <li><a data-ajax href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
-      <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Nguyên lý</a></li>
-      <li><a data-ajax href="Lien_he.html">Liên hệ</a></li>
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
+      <li><a href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Nguyên lý</a></li>
+      <li><a href="Lien_he.html">Liên hệ</a></li>
     </ul>
   </nav>
 
   <div class="divider"></div>
 
-  <!-- Nội dung trang Thành viên -->
-  <main class="members-page">
-    <div class="members-header">
-      <h1 class="members-title">THÀNH VIÊN THỰC HIỆN</h1>
-      <a class="btn-home" href="index.html">
-        ← Về Trang chủ
-      </a>
+  <main class="members-container">
+    <h1 class="members-title">THÀNH VIÊN THỰC HIỆN</h1>
+
+    <div class="members-row">
+      <!-- Thành viên 1 -->
+      <div class="member-card">
+        <img src="img/members/LETRONGPHUC.png" alt="LÊ TRỌNG PHÚC" class="member-photo">
+        <div class="member-info">
+          <p class="member-name">LÊ TRỌNG PHÚC</p>
+          <p><strong>MSSV:</strong> 20000565</p>
+          <p><strong>Mail:</strong> <a href="mailto:phucle.02052002@gmail.com">phucle.02052002@gmail.com</a></p>
+          <p><strong>SĐT:</strong> <a href="tel:0336177395">0336 177 395</a></p>
+        </div>
+      </div>
+
+      <!-- Thành viên 2 -->
+      <div class="member-card">
+        <img src="img/members/TRUNGTHANH.png" alt="ĐỖ TRUNG THÀNH" class="member-photo">
+        <div class="member-info">
+          <p class="member-name">ĐỖ TRUNG THÀNH</p>
+          <p><strong>MSSV:</strong> 20080621</p>
+          <p><strong>Mail:</strong> <a href="mailto:thanh.thcsbh026@gmail.com">thanh.thcsbh026@gmail.com</a></p>
+          <p><strong>SĐT:</strong> <a href="tel:0344285837">0344 285 837</a></p>
+        </div>
+      </div>
+
+      <!-- Thành viên 3 -->
+      <div class="member-card">
+        <img src="img/members/PHANTANTHANH.png" alt="PHAN TẤN THÀNH" class="member-photo">
+        <div class="member-info">
+          <p class="member-name">PHAN TẤN THÀNH</p>
+          <p><strong>MSSV:</strong> 20082061</p>
+          <p><strong>Mail:</strong> <a href="mailto:phantanthanh407@gmail.com">phantanthanh407@gmail.com</a></p>
+          <p><strong>SĐT:</strong> <a href="tel:0397575165">0397 575 165</a></p>
+        </div>
+      </div>
+
+      <!-- Thành viên 4 -->
+      <div class="member-card">
+        <img src="img/members/DOANQUANGTHAI.png" alt="ĐOÀN QUANG THÁI" class="member-photo">
+        <div class="member-info">
+          <p class="member-name">ĐOÀN QUANG THÁI</p>
+          <p><strong>MSSV:</strong> 20077321</p>
+          <p><strong>Mail:</strong> <a href="mailto:doanquangthai1609@gmail.com">doanquangthai1609@gmail.com</a></p>
+          <p><strong>SĐT:</strong> <a href="tel:0975980442">0975 980 442</a></p>
+        </div>
+      </div>
     </div>
-
-    <!-- 3 thành viên: luôn chung 1 hàng, kéo ngang khi hẹp -->
-    <section class="team-row">
-      <!-- Thành viên 1: LÊ TRỌNG PHÚC -->
-      <article class="member-card" data-toggle="modal" data-target="#memberPHUC">
-        <img class="member-photo"
-             src="img/members/PHUC.png"
-             onerror="this.src='img/avatar_placeholder.png';"
-             alt="LÊ TRỌNG PHÚC">
-        <div class="member-body">
-          <div class="member-name">LÊ TRỌNG PHÚC</div>
-          <div class="member-role">MSSV: 20000565</div>
-          <div class="member-mail">Mail: phucle.02052002@gmail.com</div>
-          <div class="member-cta">
-            <!-- <a class="btn-detail" href="#" data-toggle="modal" data-target="#memberPHUC">Xem chi tiết</a> -->
-          </div>
-        </div>
-      </article>
-
-      <!-- Thành viên 2: Đỗ Trung Thành -->
-      <article class="member-card" data-toggle="modal" data-target="#memberTRUNGTHANH">
-        <img class="member-photo"
-             src="img/members/TRUNGTHANH.png"
-             onerror="this.src='img/avatar_placeholder.png';"
-             alt="Đỗ Trung Thành">
-        <div class="member-body">
-          <div class="member-name">ĐỖ TRUNG THÀNH</div>
-          <div class="member-role">MSSV: 20080621</div>
-          <div class="member-mail">Mail: thanh.thcsbh026@gmail.com</div>
-          <div class="member-cta">
-            <!-- <a class="btn-detail" href="#" data-toggle="modal" data-target="#memberTRUNGTHANH">Xem chi tiết</a> -->
-          </div>
-        </div>
-      </article>
-
-      <!-- Thành viên 3: Phan Tấn Thành -->
-      <article class="member-card" data-toggle="modal" data-target="#memberTANTHANH">
-        <img class="member-photo"
-             src="img/members/TANTHANH.png"
-             onerror="this.src='img/avatar_placeholder.png';"
-             alt="Phan Tấn Thành">
-        <div class="member-body">
-          <div class="member-name">PHAN TẤN THÀNH</div>
-          <div class="member-role">MSSV: 20082061</div>
-          <div class="member-mail">Mail: phantanthanh407@gmail.com  </div>
-          <div class="member-cta">
-            <!-- <a class="btn-detail" href="#" data-toggle="modal" data-target="#memberTANTHANH">Xem chi tiết</a> -->
-          </div>
-        </div>
-      </article>
-
-      <!-- Thành viên 4: Đoán Quang Thái -->
-      <article class="member-card" data-toggle="modal" data-target="#memberDOANQUANGTHAI">
-        <img class="member-photo"
-             src="img/members/TANTHANH.png"
-             onerror="this.src='img/avatar_placeholder.png';"
-             alt="Phan Tấn Thành">
-        <div class="member-body">
-          <div class="member-name">Đoàn Quang Thái</div>
-          <div class="member-role">MSSV: 20077321</div>
-          <div class="member-mail">Mail: doanquangthai1609@gmail.com</div>
-          <div class="member-cta">
-            <!-- <a class="btn-detail" href="#" data-toggle="modal" data-target="#memberTANTHANH">Xem chi tiết</a> -->
-          </div>
-        </div>
-      </article>
-    </section>
   </main>
 
   <div class="divider"></div>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <p class="footer-left">GVHD: Th.S Đỗ Sĩ Hải</p>
     <div class="links-container">
-      <a href="index.html" class="arrow">← Trang chủ</a>
+      <a href="index.html">← Trang chủ</a>
     </div>
   </footer>
-
-  <!-- ===== Modals ===== -->
-  <!-- PHÚC -->
-  <div class="modal fade" id="memberPHUC" tabindex="-1" role="dialog" aria-labelledby="memberPHUCLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 id="memberPHUCLabel" class="modal-title">LÊ TRỌNG PHÚC</h5>
-          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Đóng">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="info-line"><span class="info-label">MSSV:</span><span class="info-value">20000565</span></div>
-          <div class="info-line">
-            <span class="info-label">Mail:</span>
-            <span class="info-value"><a href="mailto:phucle.02052002@gmail.com">phucle.02052002@gmail.com</a></span>
-          </div>
-          <div class="info-line">
-            <span class="info-label">SĐT:</span>
-            <span class="info-value"><a href="tel:0336177395">0336 177 395</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TRUNG THÀNH -->
-  <div class="modal fade" id="memberTRUNGTHANH" tabindex="-1" role="dialog" aria-labelledby="memberTRUNGTHANHLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 id="memberTRUNGTHANHLabel" class="modal-title">ĐỖ TRUNG THÀNH</h5>
-          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Đóng">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="info-line"><span class="info-label">MSSV:</span><span class="info-value">20080621</span></div>
-          <div class="info-line">
-            <span class="info-label">Mail:</span>
-            <span class="info-value"><a href="mailto:thanh.thcsbh026@gmail.com">thanh.thcsbh026@gmail.com</a></span>
-          </div>
-          <div class="info-line">
-            <span class="info-label">SĐT:</span>
-            <span class="info-value"><a href="tel:0344285837">0344 285 837</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TẤN THÀNH -->
-  <div class="modal fade" id="memberTANTHANH" tabindex="-1" role="dialog" aria-labelledby="memberTANTHANHLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 id="memberTANTHANHLabel" class="modal-title">PHAN TẤN THÀNH</h5>
-          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Đóng">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="info-line"><span class="info-label">MSSV:</span><span class="info-value">20082061</span></div>
-          <div class="info-line">
-            <span class="info-label">Mail:</span>
-            <span class="info-value"><a href="mailto:phantanthanh407@gmail.com">phantanthanh407@gmail.com</a></span>
-          </div>
-          <div class="info-line">
-            <span class="info-label">SĐT:</span>
-            <span class="info-value"><a href="tel:0397575165">0397 575 165</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-   <!-- Đoàn quang thái -->
-  <div class="modal fade" id="memberDOANQUANGTHAI" tabindex="-1" role="dialog" aria-labelledby="memberDOANQUANGTHAI" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 id="memberDOANQUANGTHAI" class="modal-title">Đoàn Quang Thái</h5>
-          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Đóng">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="info-line"><span class="info-label">MSSV:</span><span class="info-value">20077321</span></div>
-          <div class="info-line">
-            <span class="info-label">Mail:</span>
-            <span class="info-value"><a href="mailto:doanquangthai1609@gmail.com">doanquangthai1609@gmail.com</a></span>
-          </div>
-          <div class="info-line">
-            <span class="info-label">SĐT:</span>
-            <span class="info-value"><a href="tel:0397575165">0975 980 442</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- JS nhỏ: mở modal khi click vào card (đã set data-target, phần này chỉ hỗ trợ phím ESC/ra ngoài – Bootstrap đã xử lý) -->
-  <script>
-    // Không cần JS thêm vì đã dùng data-toggle="modal" của Bootstrap.
-    // Nếu muốn mở modal bằng Enter khi focus vào card:
-    document.querySelectorAll('.member-card').forEach((card) => {
-      card.setAttribute('tabindex', '0');
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          const target = card.getAttribute('data-target');
-          if (target) $(target).modal('show');
-        }
-      });
-    });
-  </script>
 </body>
 </html>
