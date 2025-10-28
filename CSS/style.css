@@ -539,3 +539,13 @@ nav.navbar .dropdown a.active { background-color: #0a4bb1; color: #fff; }
     max-width: 90%;
   }
 }
+/* Ảnh trong phần Tổng quan (hoặc trang con nạp động) */
+.overview img {
+  display: block;
+  margin: 12px auto;         /* căn giữa ngang */
+  max-width: 95%;            /* giới hạn chiều rộng */
+  height: auto;              /* giữ nguyên tỉ lệ ảnh */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  object-fit: contain;       /* đảm bảo không bị méo hoặc cắt */
+}
