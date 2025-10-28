@@ -91,80 +91,85 @@
 
   <!-- CSS -->
   <style>
-    /* Toàn bộ nội dung sát lề trái */
     .overview {
-      padding: 0;
-    }
-    .overview p,
-    .overview .plain-list {
-      margin: 0 0 14px 0;
-      padding: 0;
-      text-indent: 0;
-      font-size: 18px;
-      line-height: 1.7;
-      color: #1f2a5a;
-      text-align: justify;
-    }
-    .overview h3,
-    .overview h4 {
-      margin: 10px 0 6px 0;
-      padding: 0;
-      color: #0b2c6b;
-    }
+  padding: 0;
+}
+.overview p,
+.overview .plain-list {
+  margin: 0 0 14px 0;
+  padding: 0;
+  text-indent: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #1f2a5a;
+  text-align: justify;
+}
 
-    /* Tabs */
-    .pill-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin: 6px 0 16px 0;
-    }
-    .pill-tabs .tab-btn {
-      background: #eaf2ff;
-      color: #184e9e;
-      border: none;
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,.08);
-      transition: all .2s ease;
-    }
-    .pill-tabs .tab-btn:hover {
-      background: #dbe8ff;
-      transform: translateY(-1px);
-    }
-    .pill-tabs .tab-btn.active {
-      background: #184e9e;
-      color: #fff;
-    }
+/* ======= Tiêu đề ======= */
+.overview h3 {
+  margin: 20px 0 10px 0;
+  color: #0b2c6b;
+  text-align: left; /* Căn trái */
+  font-weight: 700;
+}
 
-    .tab-panel[hidden] {
-      display: none !important;
-    }
+.overview h4 {
+  margin: 10px 0 8px 0;
+  color: #1f2a5a;
+  font-weight: 400; /* bỏ in đậm */
+  text-align: left; /* Căn trái, không giữa */
+  text-indent: 0;
+}
 
-    /* Bảng thời lượng */
-    .time-table-wrap { overflow-x: auto; margin-top: 8px; }
-    .time-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid #cfd8e3;
-      border-radius: 8px;
-      background: #fff;
-    }
-    .time-table th {
-      background: #184e9e;
-      color: #fff;
-      padding: 10px;
-      text-align: left;
-    }
-    .time-table td {
-      padding: 8px 10px;
-      border-top: 1px solid #e8eef9;
-    }
-    .time-table tbody tr:nth-child(odd) { background: #f7fbff; }
-    .time-table tbody tr:hover { background: #eef6ff; }
+/* ======= Tabs ======= */
+.pill-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 6px 0 16px 0;
+}
+.pill-tabs .tab-btn {
+  background: #eaf2ff;
+  color: #184e9e;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  transition: all .2s ease;
+}
+.pill-tabs .tab-btn:hover {
+  background: #dbe8ff;
+  transform: translateY(-1px);
+}
+.pill-tabs .tab-btn.active {
+  background: #184e9e;
+  color: #fff;
+}
+
+/* ======= Bảng thời lượng ======= */
+.time-table-wrap { overflow-x: auto; margin-top: 8px; }
+.time-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #cfd8e3;
+  border-radius: 8px;
+  background: #fff;
+}
+.time-table th {
+  background: #184e9e;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+.time-table td {
+  padding: 8px 10px;
+  border-top: 1px solid #e8eef9;
+}
+.time-table tbody tr:nth-child(odd) { background: #f7fbff; }
+.time-table tbody tr:hover { background: #eef6ff; }
   </style>
 
   <!-- JS -->
