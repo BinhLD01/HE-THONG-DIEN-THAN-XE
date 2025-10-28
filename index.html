@@ -388,7 +388,62 @@
   });
 
 
+(function () {
+    // Click tab -> kích hoạt trong phạm vi fragment gần nhất (.overview hoặc container)
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('.pill-tabs .tab-btn');
+      if (!btn) return;
 
+      e.preventDefault();
+      const id = btn.dataset.tab;
+      if (!id) return;
+
+      // Tìm scope: ưu tiên fragment .overview gần nhất, fallback #main-content
+      const scope = btn.closest('.overview') || document.querySelector('#main-content');
+      if (!scope) return;
+
+      // Cập nhật nút
+      scope.querySelectorAll('.pill-tabs .tab-btn').forEach(b => {
+        const on = b.dataset.tab === id;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+
+      // Hiện/ẩn panel
+      scope.querySelectorAll('.tab-panel').forEach(p => {
+        const on = p.id === id;
+        p.toggleAttribute('hidden', !on);
+        p.classList.toggle('active', on);
+      });
+
+      // Cập nhật hash (để quay lại đúng tab khi reload / back)
+      try {
+        const url = new URL(location.href);
+        url.hash = id;
+        history.replaceState(null, '', url);
+      } catch (_) {}
+    });
+
+    // Khi đổi hash (vd: #ly-do / #loi-ich / #thoi-luong) -> kích hoạt tab tương ứng
+    function activateByHash() {
+      const id = location.hash.replace('#', '');
+      if (!id) return;
+      // Tìm fragment hiển thị hiện tại
+      const scope = document.querySelector('.overview');
+      if (!scope) return;
+
+      const btn = scope.querySelector(`.pill-tabs .tab-btn[data-tab="${id}"]`);
+      if (!btn) return;
+      btn.click(); // dùng cùng logic ở trên
+    }
+
+    window.addEventListener('hashchange', activateByHash);
+    // chạy 1 lần khi trang/fragment vừa render xong
+    document.addEventListener('DOMContentLoaded', activateByHash);
+    // Trường hợp load fragment bằng AJAX: đợi 0 chút rồi kích hoạt hash (an toàn)
+    const obs = new MutationObserver(() => activateByHash());
+    obs.observe(document.getElementById('main-content'), { childList: true, subtree: false });
+  })();
   </script>
 </body>
 </html>
