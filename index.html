@@ -310,14 +310,34 @@
            root.querySelector('section') ||
            root;
   }
-  function absolutizeAttr(root, selector, attr, baseAbs) {
-    root.querySelectorAll(selector).forEach(el => {
-      const val = el.getAttribute(attr);
-      if (!val) return;
-      if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
+ 
+function absolutizeAttr(root, selector, attr, baseAbs) {
+  const SITE_ROOT = new URL('./', location.href); // Gốc site (chứa index.html)
+
+  root.querySelectorAll(selector).forEach(el => {
+    let val = el.getAttribute(attr);
+    if (!val) return;
+
+    // Bỏ qua các đường dẫn tuyệt đối hoặc đặc biệt
+    if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
+
+    // Bỏ ./ hoặc ../ ở đầu
+    const normalized = val
+      .replace(/^(\.\/)+/i, '')   // ./img/... -> img/...
+      .replace(/^(\.\.\/)+/i, ''); // ../../img/... -> img/...
+
+    // Nếu nằm trong thư mục img hoặc các thư mục con (img/members, img/xe, img/NLHD, img/Pan, ...)
+    if (/^img\//i.test(normalized)) {
+      el.setAttribute(attr, new URL(normalized, SITE_ROOT).href);
+    } else {
+      // Ngược lại thì resolve theo file đang tải
       el.setAttribute(attr, new URL(val, baseAbs).href);
-    });
-  }
+    }
+  });
+}
+ 
+ 
+
   async function loadPanContent(url) {
     const area = document.getElementById('content-area');
     if (!area) return;
