@@ -3,11 +3,9 @@
 
   <table class="pancs-table" border="1" cellspacing="0" cellpadding="8">
     <!-- Bước 1 -->
-    <tr class="step-header">
-      <td colspan="2">BƯỚC 1: CHUẨN BỊ DỤNG CỤ</td>
-    </tr>
     <tr>
-      <td colspan="2">
+      <th style="width: 25%;">BƯỚC 1: CHUẨN BỊ DỤNG CỤ</th>
+      <td>
         <ul class="fs-5">
           <li>1. Mô hình hệ thống điện thân xe</li>
           <li>2. Đồng hồ VOM</li>
@@ -17,11 +15,9 @@
     </tr>
 
     <!-- Bước 2 -->
-    <tr class="step-header">
-      <td colspan="2">BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG</td>
-    </tr>
     <tr>
-      <td colspan="2">
+      <th>BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG</th>
+      <td>
         <ul class="fs-5">
           <li>Dữ liệu trong hộp không được lưu trữ sau khi tắt khóa điện.</li>
           <li>TAIL: hoạt động bình thường.</li>
@@ -33,29 +29,29 @@
     </tr>
 
     <!-- Bước 3 -->
-    <tr class="step-header">
-      <td colspan="2">BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ</td>
-    </tr>
     <tr>
-      <td style="width:40%; vertical-align:top;">
-        <ul class="fs-5">
-          <li>1. Đứt cầu chì 10A ECU B NO.1</li>
-          <li>2. Đứt dây nối giữa cầu chì 10A ECU B NO.1 với chân BECU (BCM)</li>
-        </ul>
-      </td>
-      <td style="text-align:center;">
-        <img src="../../img/Pan/BECU.png" alt="Sơ đồ BECU" class="img-fluid rounded shadow-sm" style="max-width:100%; border:1px solid #ccc;">
+      <th>BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ</th>
+      <td>
+        <div class="row" style="display: flex; align-items: flex-start;">
+          <div style="flex: 1;">
+            <ul class="fs-5">
+              <li>1. Đứt cầu chì 10A ECU B NO.1</li>
+              <li>2. Đứt dây nối giữa cầu chì 10A ECU B NO.1 với chân BECU (BCM)</li>
+            </ul>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <img src="../../img/Pan/BECU.png" alt="Sơ đồ BECU" class="img-fluid rounded shadow-sm" style="max-width: 100%; border: 1px solid #ccc;">
+          </div>
+        </div>
       </td>
     </tr>
 
     <!-- Bước 4 -->
-    <tr class="step-header">
-      <td colspan="2">BƯỚC 4: ĐO KIỂM</td>
-    </tr>
     <tr>
-      <td colspan="2">
-        <h5>* Khóa điện bật On</h5>
-        <table class="table table-bordered fs-5 align-middle" style="width:100%; border-collapse:collapse;">
+      <th>BƯỚC 4: ĐO KIỂM</th>
+      <td>
+        <h5>* Khóa điện bật ON</h5>
+        <table class="table table-bordered fs-5 align-middle" style="width: 100%; border-collapse: collapse;">
           <thead class="table-light">
             <tr>
               <th>Khu vực nghi ngờ</th>
@@ -80,11 +76,9 @@
     </tr>
 
     <!-- Bước 5 -->
-    <tr class="step-header">
-      <td colspan="2">BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG</td>
-    </tr>
     <tr>
-      <td colspan="2">
+      <th>BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG</th>
+      <td>
         <ul class="fs-5">
           <li>Điện áp tại BECU = 0V → Đứt dây từ cầu chì 10A ECU B NO.1 đến chân ID10.</li>
         </ul>
@@ -92,11 +86,9 @@
     </tr>
 
     <!-- Bước 6 -->
-    <tr class="step-header">
-      <td colspan="2">BƯỚC 6: KHẮC PHỤC HƯ HỎNG</td>
-    </tr>
     <tr>
-      <td colspan="2">
+      <th>BƯỚC 6: KHẮC PHỤC HƯ HỎNG</th>
+      <td>
         <ul class="fs-5">
           <li>Tiến hành nối lại dây từ cầu chì 10A ECU B NO.1 đến chân ID10.</li>
         </ul>
@@ -112,18 +104,23 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       border-radius: 8px;
       overflow: hidden;
+      background: #fff;
     }
 
-    .pancs-table td, .pancs-table th {
-      border: 1px solid #007bff;
-      padding: 10px;
-    }
-
-    .pancs-table tr.step-header td {
+    .pancs-table th {
       background-color: #f1f7ff;
-      font-weight: bold;
       color: #0d47a1;
       text-transform: uppercase;
+      width: 25%;
+      font-weight: bold;
+      border: 1px solid #007bff;
+      vertical-align: top;
+    }
+
+    .pancs-table td {
+      border: 1px solid #007bff;
+      padding: 10px 15px;
+      vertical-align: top;
     }
 
     .pancs-table ul {
@@ -131,9 +128,14 @@
       padding-left: 20px;
     }
 
-    .pancs-table tbody tr:hover {
-      background-color: #f0f8ff;
+    .pancs-table tr:hover {
+      background-color: #f9fbff;
       transition: 0.3s;
+    }
+
+    .table th, .table td {
+      border: 1px solid #007bff !important;
+      text-align: center;
     }
   </style>
 </section>
