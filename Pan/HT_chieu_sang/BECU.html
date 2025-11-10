@@ -1,91 +1,90 @@
-<section>
-  <h3>BECU/10A ECU B NO.1</h3>
+<section id="pancs" style="padding: 20px;">
+  <h2 class="text-center mb-4">BECU/10A ECU B NO.1</h2>
 
-  <div class="container-fluid mt-4">
-    <div class="accordion" role="tablist">
-      <!-- Step 1 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a data-toggle="collapse" href="#step1Content" aria-expanded="true" style="color: black;">
-              BƯỚC 1: CHUẨN BỊ DỤNG CỤ
-            </a>
-          </h5>
-        </div>
-        <div id="step1Content" class="collapse show" role="tabpanel">
-          <div class="card-body">
-            <ul>
-              <li style="font-size: larger;">1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
-              <li style="font-size: larger;">2. ĐỒNG HỒ VOM</li>
-              <li style="font-size: larger;">3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
-            </ul>
-          </div>
+  <div class="accordion" id="pancsAccordion">
+    <!-- Bước 1 -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#step1" aria-expanded="true">
+            BƯỚC 1: CHUẨN BỊ DỤNG CỤ
+          </button>
+        </h5>
+      </div>
+      <div id="step1" class="collapse show" data-bs-parent="#pancsAccordion">
+        <div class="card-body">
+          <ul class="fs-5">
+            <li>1. Mô hình hệ thống điện thân xe</li>
+            <li>2. Đồng hồ VOM</li>
+            <li>3. Phần mềm tra cứu sơ đồ mạch điện</li>
+          </ul>
         </div>
       </div>
+    </div>
 
-      <!-- Step 2 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#step2Content" style="color: black;">
-              BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
-            </a>
-          </h5>
-        </div>
-        <div id="step2Content" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <ul style="font-size: larger;">
-              <li>Dữ liệu trong hộp không được lưu trữ sau khi tắt khóa điện.</li>
-              <li>TAIL: Đèn Tail hoạt động bình thường.</li>
-              <li>HEAD-LOW: Hoạt động bình thường.</li>
-              <li>HEAD-HIGH: Hoạt động bình thường.</li>
-              <li>FLASH: Hoạt động bình thường.</li>
-              <li>AUTO: Đèn Tail không sáng.</li>
-            </ul>
-          </div>
+    <!-- Bước 2 -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#step2">
+            BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
+          </button>
+        </h5>
+      </div>
+      <div id="step2" class="collapse" data-bs-parent="#pancsAccordion">
+        <div class="card-body">
+          <ul class="fs-5">
+            <li>Dữ liệu trong hộp không được lưu trữ sau khi tắt khóa điện.</li>
+            <li>TAIL: hoạt động bình thường.</li>
+            <li>HEAD-LOW: hoạt động bình thường.</li>
+            <li>HEAD-HIGH: hoạt động bình thường.</li>
+            <li>AUTO: Đèn Tail không sáng.</li>
+          </ul>
         </div>
       </div>
+    </div>
 
-      <!-- Step 3 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#step3Content" style="color: black;">
-              BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
-            </a>
-          </h5>
-        </div>
-        <div id="step3Content" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-4">
-                <ul style="font-size: larger;">
-                  <li>1. Đứt cầu chì 10A ECU B NO.1</li>
-                  <li>2. Đứt dây nối giữa cầu chì 10A ECU B NO.1 với chân BECU (BCM)</li>
-                </ul>
-              </div>
-              <div class="col-md-8">
-                <img src="img/Pan/BECU.png" alt="Head Light Tail" style="width: 100%; border-radius: 10px;">
-              </div>
+    <!-- Bước 3 -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#step3">
+            BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
+          </button>
+        </h5>
+      </div>
+      <div id="step3" class="collapse" data-bs-parent="#pancsAccordion">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="fs-5">
+                <li>1. Đứt cầu chì 10A ECU B NO.1</li>
+                <li>2. Đứt dây nối giữa cầu chì 10A ECU B NO.1 với chân BECU (BCM)</li>
+              </ul>
+            </div>
+            <div class="col-md-8">
+              <img src="../../img/Pan/BECU.png" alt="Sơ đồ BECU" class="img-fluid rounded shadow-sm">
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Step 4 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#step4Content" style="color: black;">
-              BƯỚC 4: ĐO KIỂM
-            </a>
-          </h5>
-        </div>
-        <div id="step4Content" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <h4>* Khóa điện bật On</h4>
-            <table class="table table-bordered" style="font-size: larger;">
-              <thead>
+    <!-- Bước 4 -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#step4">
+            BƯỚC 4: ĐO KIỂM
+          </button>
+        </h5>
+      </div>
+      <div id="step4" class="collapse" data-bs-parent="#pancsAccordion">
+        <div class="card-body">
+          <h5>* Khóa điện bật On</h5>
+          <div class="table-responsive">
+            <table class="table table-bordered fs-5 align-middle">
+              <thead class="table-light">
                 <tr>
                   <th>Khu vực nghi ngờ</th>
                   <th>Vị trí đo</th>
@@ -108,59 +107,58 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Step 5 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#step5Content" style="color: black;">
-              BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
-            </a>
-          </h5>
-        </div>
-        <div id="step5Content" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <ul style="font-size: larger;">
-              <li>Điện áp tại BECU = 0V → Đứt dây từ cầu chì 10A ECU B NO.1 đến chân ID10.</li>
-            </ul>
-          </div>
+    <!-- Bước 5 -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#step5">
+            BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
+          </button>
+        </h5>
+      </div>
+      <div id="step5" class="collapse" data-bs-parent="#pancsAccordion">
+        <div class="card-body">
+          <ul class="fs-5">
+            <li>Điện áp tại BECU = 0V → Đứt dây từ cầu chì 10A ECU B NO.1 đến chân ID10.</li>
+          </ul>
         </div>
       </div>
+    </div>
 
-      <!-- Step 6 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#step6Content" style="color: black;">
-              BƯỚC 6: KHẮC PHỤC HƯ HỎNG
-            </a>
-          </h5>
-        </div>
-        <div id="step6Content" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <ul style="font-size: larger;">
-              <li>Tiến hành nối lại dây từ cầu chì 10A ECU B NO.1 đến chân ID10.</li>
-            </ul>
-          </div>
+    <!-- Bước 6 -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#step6">
+            BƯỚC 6: KHẮC PHỤC HƯ HỎNG
+          </button>
+        </h5>
+      </div>
+      <div id="step6" class="collapse" data-bs-parent="#pancsAccordion">
+        <div class="card-body">
+          <ul class="fs-5">
+            <li>Tiến hành nối lại dây từ cầu chì 10A ECU B NO.1 đến chân ID10.</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 
-  <script>
-    document.querySelectorAll('.card-header a').forEach(button => {
-      button.addEventListener('click', function () {
-        const collapseElement = document.querySelector(this.getAttribute('href'));
-        if (collapseElement) $(collapseElement).collapse('toggle');
-      });
-    });
-  </script>
-
   <style>
     table tbody tr:hover {
       background-color: #f0f8ff;
+      transition: 0.3s;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+    }
+    .btn-link {
+      text-decoration: none;
+      font-weight: bold;
+      color: #333;
+    }
+    .btn-link:hover {
+      color: #0d6efd;
     }
   </style>
 </section>
