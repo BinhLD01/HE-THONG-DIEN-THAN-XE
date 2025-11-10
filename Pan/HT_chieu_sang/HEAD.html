@@ -1,5 +1,5 @@
 <section style="padding:20px;">
-  <h2 class="text-center mb-4">E2</h2>
+  <h2 class="text-center mb-4">HEAD & HRLY</h2>
 
   <table class="pan-table" border="1" cellspacing="0" cellpadding="8">
     <!-- BƯỚC 1 -->
@@ -19,11 +19,11 @@
       <th>BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG</th>
       <td>
         <ul>
-          <li>TAIL: Đèn Tail không hoạt động.</li>
+          <li>TAIL: Đèn Tail hoạt động bình thường.</li>
           <li>HEAD-LOW: Không hoạt động.</li>
           <li>HEAD-HIGH: Không hoạt động.</li>
           <li>FLASH: Không hoạt động.</li>
-          <li>AUTO: Không hoạt động.</li>
+          <li>AUTO: Hoạt động bình thường.</li>
         </ul>
       </td>
     </tr>
@@ -35,12 +35,18 @@
         <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
           <div style="flex:1 1 260px;">
             <ul>
-              <li>1. Đứt dây mass E2.</li>
+              <li>1. Đứt cầu chì FL MAIN 3.0W.</li>
+              <li>2. Hư HEAD RELAY NO.1</li>
+              <li>3. Đứt dây tại chân số 2 của HEAD RELAY NO.1 và chân HRLY của hộp BCM.</li>
+              <li>4. Đứt dây tại chân số 4 của HEAD RELAY NO.1 và chân số 3 của HEAD RELAY NO.2.</li>
+              <li>5. Đứt dây mass A1.</li>
+              <li>6. Đứt dây chân HEAD của hộp BCM với chân H của công tắc Light Control Switch.</li>
+              <li>7. Đứt tiếp điểm HEAD trong công tắc Light Control Switch.</li>
             </ul>
           </div>
           <div style="flex:1 1 260px; text-align:center;">
             <!-- chỉnh đường dẫn ảnh theo vị trí file thực tế của bạn -->
-            <img src="img/Pan/E2.png" alt="Sơ đồ E2"
+            <img src="img/Pan/Pan_Head.png" alt="Sơ đồ E2"
                  style="max-width:100%; border-radius:10px; border:1px solid #ccc;">
           </div>
         </div>
@@ -51,21 +57,52 @@
     <tr>
       <th>BƯỚC 4: ĐO KIỂM</th>
       <td>
-        <h5>* Khóa điện bật On</h5>
+        <h5>*Khóa điện bật On và công tắc bật ở vị trí HEAD</h5>
         <table class="inner-table" style="width:100%; border-collapse:collapse;">
           <thead>
             <tr>
-              <th>Vị trí đo kiểm</th>
-              <th>Điện áp</th>
+              <th>Khu vực nghi ngờ</th>
+              <th>Vị trí đo	</th>
               <th>Ghi chú</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Kiểm tra mass E2</td>
-              <td>EL dimmer SW &amp; mass E2 = 0V</td>
-              <td>Nếu điện áp = 12V → đứt mass E2.</td>
+              <td>Relay NO.1</td>
+              <td>Chân 2 relay & Mass =12V	</td>
+              <td>Nếu giá trị điện áp là 0v => relay hỏng</td>
             </tr>
+
+            <tr>
+              <td>ID9</td>
+              <td>ID3 & E2</td>
+              <td>Giá trị điện áp 0V đứt dây ID9</td>
+            </tr>
+
+            <tr>
+              <td>Relay NO.02</td>
+              <td>Chân 2 relay & mass E2</td>
+              <td>Giá trị điện áp 0V đứt relay NO.02</td>
+            </tr>
+
+            <tr>
+              <td>Head-low</td>
+              <td>Nút sau đèn Head-low</td>
+              <td>Giá trị điện áp 0V đứt mass, và ngược lại</td>
+            </tr>
+
+            <tr>
+              <td>HEAD(BCM)	</td>
+              <td>17A BCM & mass E2	</td>
+              <td>Điện áp 12V còn sử dụng được và ngược lại</td>
+            </tr>
+
+            <tr>
+              <td>Chế độ HEAD SW</td>
+              <td>Tiếp điểm HEAD SW & MASS E2</td>
+              <td>Bật công tắc chế độ HEAD kiểm tra thông mạch</td>
+            </tr>
+
           </tbody>
         </table>
       </td>
@@ -76,7 +113,9 @@
       <th>BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG</th>
       <td>
         <ul>
-          <li>Nếu điện áp tại EL là 12V → đứt dây mass E2.</li>
+          <li>Điện áp tại chân HEAD (BCM) là 12V thì đứt dây nối từ chân HEAD (BCM) đến chân H của Light Control SW.</li>
+          <li>Điện áp tại chân ID3 là 0V thì đứt dây nối từ chân 9(1D) đến chân ID3.</li>
+          <li>Điên áp tại đèn Head là 12V thì đứt mass A1.</li>
         </ul>
       </td>
     </tr>
@@ -86,7 +125,9 @@
       <th>BƯỚC 6: KHẮC PHỤC HƯ HỎNG</th>
       <td>
         <ul>
-          <li>Tiến hành nối lại dây mass E2.</li>
+          <li>Ta tiến hành nối dây nối từ chân HEAD (BCM) đến chân H của Light Control SW.</li>
+          <li>Ta tiến hành nối dây từ chân 9(1D) đến chân ID3.</li>
+          <li>Nối lại dây mass A1.</li>
         </ul>
       </td>
     </tr>
