@@ -70,7 +70,8 @@
                 </ul>
               </div>
               <div class="col-md-8">
-<img src="img/Tail.png" alt="Sơ đồ Tail" style="width:100%; border-radius:10px;">
+                <!-- Đặt data-src và để JS set src tuyệt đối -->
+                <img id="tail-main" data-src="img/Tail.png" alt="Sơ đồ Tail" style="width:100%; border-radius:10px;">
               </div>
             </div>
           </div>
@@ -98,29 +99,30 @@
                 </tr>
               </thead>
               <tbody>
-                <tr data-img-src="Tail.2.png">
+                <!-- data-img-src để JS set ảnh tuyệt đối -->
+                <tr data-img-src="img/Tail.2.png">
                   <td>IP8</td>
-                  <td>IP8 & Mass E2 = 12V</td>
+                  <td>IP8 &amp; Mass E2 = 12V</td>
                   <td>Kiểm tra dây nối từ chân IP8 đến S15.</td>
                 </tr>
-                <tr data-img-src="Tail.3.png">
+                <tr data-img-src="img/Tail.3.png">
                   <td>Mass S1</td>
-                  <td>S1 & E2</td>
+                  <td>S1 &amp; E2</td>
                   <td>Kiểm tra nối Mass.</td>
                 </tr>
-                <tr data-img-src="Tail.4.png">
+                <tr data-img-src="img/Tail.4.png">
                   <td>IA1</td>
-                  <td>IA1 & Mass E2</td>
+                  <td>IA1 &amp; Mass E2</td>
                   <td>Kiểm tra dây nối từ chân 1F đến chân IA1.</td>
                 </tr>
-                <tr data-img-src="Tail.5.png">
+                <tr data-img-src="img/Tail.5.png">
                   <td>TAIL (BCM)</td>
-                  <td>TAIL (BCM) & Mass E2</td>
+                  <td>TAIL (BCM) &amp; Mass E2</td>
                   <td>Kiểm tra dây nối từ chân T đến chân TAIL (BCM).</td>
                 </tr>
-                <tr data-img-src="Tail.6.png">
+                <tr data-img-src="img/Tail.6.png">
                   <td>TAIL SW</td>
-                  <td>TAIL & Mass E2</td>
+                  <td>TAIL &amp; Mass E2</td>
                   <td>Kiểm tra tiếp điểm TAIL.</td>
                 </tr>
               </tbody>
@@ -177,7 +179,10 @@
   </div>
 
   <script>
-    // Tự động bật/tắt các bước
+    // Helper: chuẩn hoá URL tương đối -> tuyệt đối dựa trên trang hiện tại
+    const toAbs = (p) => new URL(p, window.location.href).href;
+
+    // Toggle collapse cho các bước (Bootstrap 4)
     document.querySelectorAll('#tail-section .card-header a').forEach(link => {
       link.addEventListener('click', () => {
         const target = document.querySelector(link.getAttribute('href'));
@@ -185,13 +190,26 @@
       });
     });
 
-    // Hiển thị ảnh khi click bảng đo
-    const rows = document.querySelectorAll('#tail-section table tbody tr');
-    const img = document.getElementById('tail-img');
-    rows.forEach(row => {
-      row.addEventListener('click', () => {
-        img.src = row.getAttribute('data-img-src');
+    // Set ảnh chính ở bước 3 bằng URL tuyệt đối
+    (function setMainImage(){
+      const mainImg = document.getElementById('tail-main');
+      if (mainImg && mainImg.dataset.src) {
+        mainImg.src = toAbs(mainImg.dataset.src);
+      }
+    })();
+
+    // Hiển thị ảnh theo từng dòng trong bảng (chuẩn hoá URL ảnh)
+    (function bindMeasureRows(){
+      const rows = document.querySelectorAll('#tail-section table tbody tr');
+      const img = document.getElementById('tail-img');
+      rows.forEach(row => {
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', () => {
+          const rel = row.getAttribute('data-img-src');
+          if (!rel || !img) return;
+          img.src = toAbs(rel);
+        });
       });
-    });
+    })();
   </script>
 </section>
