@@ -1,189 +1,136 @@
-<section id="e2-section">
-  <h3 class="text-center mb-4">E2</h3>
+<section id="e2" style="padding: 20px;">
+  <h2 class="text-center mb-4">E2</h2>
 
-  <div class="container-fluid mt-4">
-    <div class="accordion" role="tablist">
+  <table class="pancs-table" border="1" cellspacing="0" cellpadding="8">
+    <!-- Bước 1 -->
+    <tr>
+      <th style="width:25%;">BƯỚC 1: CHUẨN BỊ DỤNG CỤ</th>
+      <td>
+        <ul class="fs-5">
+          <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
+          <li>2. ĐỒNG HỒ VOM</li>
+          <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+        </ul>
+      </td>
+    </tr>
 
-      <!-- BƯỚC 1 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a data-toggle="collapse" href="#e2-step1" aria-expanded="true" style="color:black;">
-              BƯỚC 1: CHUẨN BỊ DỤNG CỤ
-            </a>
-          </h5>
-        </div>
-        <div id="e2-step1" class="collapse show" role="tabpanel">
-          <div class="card-body">
+    <!-- Bước 2 -->
+    <tr>
+      <th>BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG</th>
+      <td>
+        <ul class="fs-5">
+          <li>TAIL: Đèn Tail không hoạt động.</li>
+          <li>HEAD-LOW: Không hoạt động.</li>
+          <li>HEAD-HIGH: Không hoạt động.</li>
+          <li>FLASH: Không hoạt động.</li>
+          <li>AUTO: Không hoạt động.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- Bước 3 -->
+    <tr>
+      <th>BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ</th>
+      <td>
+        <div style="display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+          <div style="flex:1 1 260px;">
             <ul class="fs-5">
-              <li>1. MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE</li>
-              <li>2. ĐỒNG HỒ VOM</li>
-              <li>3. PHẦN MỀM TRA CỨU SƠ ĐỒ MẠCH ĐIỆN</li>
+              <li>1. Đứt dây mass E2.</li>
             </ul>
           </div>
-        </div>
-      </div>
-
-      <!-- BƯỚC 2 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#e2-step2" style="color:black;">
-              BƯỚC 2: TRIỆU CHỨNG HƯ HỎNG
-            </a>
-          </h5>
-        </div>
-        <div id="e2-step2" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <ul class="fs-5">
-              <li>TAIL: Đèn Tail không hoạt động.</li>
-              <li>HEAD-LOW: Không hoạt động.</li>
-              <li>HEAD-HIGH: Không hoạt động.</li>
-              <li>FLASH: Không hoạt động.</li>
-              <li>AUTO: Không hoạt động.</li>
-            </ul>
+          <div style="flex:1 1 320px; text-align:center;">
+            <!-- DÙNG data-src để script bên dưới chuẩn hoá đường dẫn khi load động -->
+            <img data-src="img/Pan/E2.png" alt="Sơ đồ E2" class="img-fluid rounded shadow-sm" style="max-width:100%; border:1px solid #ccc;">
           </div>
         </div>
-      </div>
+      </td>
+    </tr>
 
-      <!-- BƯỚC 3 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#e2-step3" style="color:black;">
-              BƯỚC 3: XÁC ĐỊNH KHU VỰC NGHI NGỜ
-            </a>
-          </h5>
-        </div>
-        <div id="e2-step3" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-4">
-                <ul class="fs-5">
-                  <li>1. Đứt dây mass E2.</li>
-                </ul>
-              </div>
-              <div class="col-md-8 text-center">
-                <img data-src="img/Pan/E2.png" id="e2-img" alt="Sơ đồ E2" style="width:100%;border-radius:10px;">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Bước 4 -->
+    <tr>
+      <th>BƯỚC 4: ĐO KIỂM</th>
+      <td>
+        <h5>* Khóa điện bật ON</h5>
+        <table class="table table-bordered fs-5 align-middle" style="width:100%; border-collapse:collapse;">
+          <thead class="table-light">
+            <tr>
+              <th>Vị trí đo kiểm</th>
+              <th>Điện áp</th>
+              <th>Ghi chú</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kiểm tra mass E2</td>
+              <td>EL Dimmer SW &amp; Mass E2 = 0V</td>
+              <td>Nếu điện áp = 12V → đứt mass E2.</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
 
-      <!-- BƯỚC 4 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#e2-step4" style="color:black;">
-              BƯỚC 4: ĐO KIỂM
-            </a>
-          </h5>
-        </div>
-        <div id="e2-step4" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <h4>* Khóa điện bật ON</h4>
-            <table class="table table-bordered fs-5 align-middle text-center">
-              <thead class="table-light">
-                <tr>
-                  <th>Vị trí đo kiểm</th>
-                  <th>Điện áp</th>
-                  <th>Ghi chú</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Kiểm tra mass E2</td>
-                  <td>EL Dimmer SW & Mass E2 = 0V</td>
-                  <td>Nếu điện áp = 12V → đứt mass E2.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <!-- Bước 5 -->
+    <tr>
+      <th>BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG</th>
+      <td>
+        <ul class="fs-5">
+          <li>Nếu điện áp tại EL là 12V → đứt dây mass E2.</li>
+        </ul>
+      </td>
+    </tr>
 
-      <!-- BƯỚC 5 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#e2-step5" style="color:black;">
-              BƯỚC 5: XÁC ĐỊNH VỊ TRÍ HƯ HỎNG
-            </a>
-          </h5>
-        </div>
-        <div id="e2-step5" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <ul class="fs-5">
-              <li>Nếu điện áp tại EL là 12V → đứt dây mass E2.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- BƯỚC 6 -->
-      <div class="card">
-        <div class="card-header" role="tab">
-          <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#e2-step6" style="color:black;">
-              BƯỚC 6: KHẮC PHỤC HƯ HỎNG
-            </a>
-          </h5>
-        </div>
-        <div id="e2-step6" class="collapse" role="tabpanel">
-          <div class="card-body">
-            <ul class="fs-5">
-              <li>Tiến hành nối lại dây mass E2.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    // Toggle accordion steps
-    document.querySelectorAll('#e2-section .card-header a').forEach(a => {
-      a.addEventListener('click', () => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) $(target).collapse('toggle');
-      });
-    });
-
-    // Chuẩn hóa đường dẫn ảnh
-    const e2img = document.getElementById('e2-img');
-    if (e2img && e2img.dataset.src) {
-      const absURL = new URL(e2img.dataset.src, window.location.href).href;
-      e2img.src = absURL;
-    }
-  </script>
+    <!-- Bước 6 -->
+    <tr>
+      <th>BƯỚC 6: KHẮC PHỤC HƯ HỎNG</th>
+      <td>
+        <ul class="fs-5">
+          <li>Tiến hành nối lại dây mass E2.</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
 
   <style>
-    /* Hiệu ứng hover bảng đo kiểm */
-    #e2-section table tbody tr:hover {
-      background-color: #f0f8ff;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
+    .pancs-table{
+      width:100%;
+      border-collapse:collapse;
+      border:2px solid #007bff;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      border-radius:8px;
+      overflow:hidden;
+      background:#fff;
     }
+    .pancs-table th{
+      background:#f1f7ff;
+      color:#0d47a1;
+      text-transform:uppercase;
+      width:25%;
+      font-weight:bold;
+      border:1px solid #007bff;
+      vertical-align:top;
+      padding:10px 12px;
+    }
+    .pancs-table td{
+      border:1px solid #007bff;
+      padding:10px 15px;
+      vertical-align:top;
+    }
+    .pancs-table ul{ margin:0; padding-left:20px; }
+    .pancs-table tr:hover{ background:#f9fbff; transition:.3s; }
 
-    /* Cải thiện card header */
-    .card-header a {
-      text-decoration: none;
-      font-weight: bold;
-      display: block;
-      padding: 8px 10px;
-      transition: color 0.3s ease;
-    }
-    .card-header a:hover {
-      color: #0d6efd;
-    }
-
-    /* Ảnh E2 đẹp hơn */
-    #e2-img {
-      max-width: 90%;
-      margin: 12px auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,.1);
-    }
+    /* đồng bộ viền trong bảng con */
+    .table th, .table td{ border:1px solid #007bff !important; text-align:center; }
   </style>
+
+  <script>
+    // Chuẩn hoá mọi <img data-src> -> src tuyệt đối (an toàn khi load động/GitHub Pages)
+    document.querySelectorAll('#e2 img[data-src]').forEach(img=>{
+      try{
+        img.src = new URL(img.getAttribute('data-src'), window.location.href).href;
+      }catch(e){
+        img.src = img.getAttribute('data-src'); // fallback
+      }
+    });
+  </script>
 </section>
