@@ -49,7 +49,7 @@ nav.navbar ul > li > a{
   font-weight: bold;
   text-decoration: none;
   transition: background .3s;
-  font-size: 16px;
+  font-size: 26px;
   line-height: 1.2;
 }
 nav.navbar ul > li > a:hover,
@@ -76,7 +76,7 @@ nav.navbar ul li:focus-within > .dropdown{
 }
 nav.navbar ul li .dropdown li a{
   color: #262261;
-  font-size: 15px;
+  font-size: 24px;
   padding: 10px 15px;
   display: block;
   white-space: nowrap;
