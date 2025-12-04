@@ -1,64 +1,66 @@
-/* ===== HEADER NEW ===== */
+/* ===== HEADER FIX CENTER ===== */
 .site-header {
-  background-color: #b9cfd7;
-  padding: 14px 20px;
+  background-color: #c6dde3;
+  padding: 16px 20px;
 }
 
-/* layout ngang */
-.header-inner {
-  display: flex;
+.header-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 18px;
 }
 
-/* LOGO */
-.header-logo img {
-  height: 72px;      /* chỉnh nhỏ / lớn tại đây */
+/* LOGO TRÁI */
+.header-left img {
+  height: 72px;
   width: auto;
-  object-fit: contain;
 }
 
-/* TEXT */
-.header-text {
-  flex: 1;
+/* CHỮ GIỮA */
+.header-center {
   text-align: center;
 }
 
-.header-text .line-1 {
+.header-center .line-1 {
   font-size: 30px;
   font-weight: 800;
-  color: #262261;
+  color: #1f2b6c;
   letter-spacing: 1px;
 }
 
-.header-text .line-2 {
+.header-center .line-2 {
   font-size: 26px;
   font-weight: 800;
-  color: #262261;
-  letter-spacing: 1px;
+  color: #1f2b6c;
   margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+/* CỘT PHẢI TRỐNG ĐỂ CÂN */
+.header-right {
+  width: 72px; /* bằng gần logo */
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
+  .header-bar {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
   }
 
-  .header-text {
+  .header-left {
     text-align: center;
   }
 
-  .header-logo img {
-    height: 64px;
+  .header-right {
+    display: none;
   }
 
-  .header-text .line-1 {
+  .header-center .line-1 {
     font-size: 22px;
   }
 
-  .header-text .line-2 {
+  .header-center .line-2 {
     font-size: 20px;
   }
 }
