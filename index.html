@@ -65,15 +65,15 @@
     padding-right: 8px;
   }
 
-  /* cột sidebar full nền xanh */
+  /* cột sidebar: nền xanh full cột, không bo góc */
   aside.sidebar{
     background:#184e9e;
-    border-radius:16px;
-    padding:10px 0;
+    padding:18px 0;
+    border-radius:0;
     display:flex;
   }
 
-  /* navbar bên trong: trong suốt, chiếm full chiều cao sidebar */
+  /* navbar trong suốt, chiếm full chiều cao sidebar */
   nav.navbar{
     background-color: transparent;
     padding: 0;
@@ -139,7 +139,6 @@
 
   @media (max-width: 992px){
     aside.sidebar{
-      border-radius: 12px;
       margin-bottom: 10px;
     }
     nav.navbar ul > li > a{
@@ -169,7 +168,7 @@
 
   /* ẢNH HERO GIỮA TRANG */
   .hero-main{
-    margin: 10px auto 32px;
+    margin: 10px auto 20px;
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0,0,0,0.18);
@@ -177,7 +176,7 @@
   }
   .hero-main img{
     width: 100%;
-    height: 420px;          /* đủ cao để cards phải kéo xuống mới thấy */
+    height: 420px;
     object-fit: cover;
   }
   @media (max-width: 768px){
@@ -186,15 +185,32 @@
     }
   }
 
-  /* Hệ thống cards */
+  /* ===== NÚT XEM THÊM ===== */
+  #toggle-systems{
+    background-color:#184e9e;
+    border-color:#184e9e;
+    font-weight:bold;
+    padding:10px 26px;
+    border-radius:999px;
+  }
+  #toggle-systems:hover{
+    background-color:#0f3c7a;
+    border-color:#0f3c7a;
+  }
+
+  /* Hệ thống cards – ẩn mặc định */
   .system-cards{
-    display:grid;
+    display:none; /* sẽ bật bằng class .show */
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
     justify-items: stretch;
     align-items: stretch;
     margin-top: 2.5rem;
   }
+  .system-cards.show{
+    display:grid;
+  }
+
   .system-card{
     width:100%;
     height:100%;
@@ -371,7 +387,14 @@
             <img src="img/hero-camry-main.jpg" alt="Mô hình hệ thống điện thân xe Toyota Camry 2006">
           </div>
 
-          <!-- Các ô chọn hệ thống (3×3) – kéo xuống mới thấy hết -->
+          <!-- Nút XEM THÊM -->
+          <div class="text-center">
+            <button id="toggle-systems" class="btn btn-primary btn-lg mt-2">
+              Xem các hệ thống
+            </button>
+          </div>
+
+          <!-- Các ô chọn hệ thống (3×3) – ẩn cho tới khi bấm nút -->
           <div class="system-cards">
             <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
               <img src="img/HT-chieu-sang.png" alt="Chiếu sáng">
@@ -423,6 +446,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     const mainContent = document.getElementById('main-content');
 
+    /* ====== AJAX LOAD ====== */
     document.addEventListener('click', function (e) {
       const link = e.target.closest('a[data-ajax], a[data-hard]');
       if (!link) return;
@@ -478,9 +502,26 @@
       }
       return temp.innerHTML;
     }
+
+    /* ====== NÚT XEM THÊM / ẨN BỚT ====== */
+    const toggleBtn = document.getElementById('toggle-systems');
+    const systemCards = document.querySelector('.system-cards');
+
+    if (toggleBtn && systemCards) {
+      toggleBtn.addEventListener('click', function () {
+        const isShowing = systemCards.classList.toggle('show');
+        if (isShowing) {
+          toggleBtn.textContent = 'Ẩn các hệ thống';
+          systemCards.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          toggleBtn.textContent = 'Xem các hệ thống';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
   });
 
-  // PAN loader helpers
+  /* ===== PAN loader helpers (nếu bạn dùng cho trang Pan) ===== */
   function pickFragment(root) {
     return root.querySelector('[data-fragment]') ||
            root.querySelector('main#page-content') ||
