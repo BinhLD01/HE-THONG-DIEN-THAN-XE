@@ -5,452 +5,271 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY</title>
 
-  <!-- Bootstrap 4.6 (CSS/JS) -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
-
-  <!-- Optional external CSS file (kept for backward compatibility) -->
-  <!-- <link rel="stylesheet" href="CSS/style.css" /> -->
-
   <style>
-/* ========== RESET & BASE ========== */
-* { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; }
-body {
-  font-family: "Times New Roman", serif;
-  background-color: #eff9fc;
-  color: #262261;
-  overflow-x: hidden;
-}
-img { max-width: 100%; height: auto; display: block; }
-
-/* ========== HEADER ========== */
-.site-header { background-color: #b9cfd7; }
-/* ★ ép header container full width */
-.site-header .container,
-.site-header .container-fluid { max-width: 100% !important; padding-left: 12px; padding-right: 12px; }
-
-.site-header .brand-row { align-items: center; padding: 10px 0; }
-.site-header .logo img { width: 100%; max-width: 120px; }
-.site-header h1{
-  margin: 0; text-align: center; font-weight: 700; letter-spacing: 1.5px;
-  color: #262261; text-shadow: 1px 1px 2px rgba(0,0,0,.2);
-  line-height: 1.15; font-size: clamp(18px, 2.2vw, 28px);
-}
-
-/* ========== NAVBAR ========== */
-nav.navbar{
-  display: block;
-  background-color: #184e9e;
-  text-align: center;
-  padding: 0;
-  width: 100%;
-  position: relative;
-  z-index: 20;
-}
-nav.navbar ul{
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-nav.navbar ul > li{ position: relative; }
-nav.navbar ul > li > a{
-  display: block;
-  padding: 12px 18px;
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background .3s;
-  font-size: 18px;
-  line-height: 1.2;
-}
-nav.navbar ul > li > a:hover,
-nav.navbar ul > li > a.active{ background-color: #3696b9; }
-
-/* DROPDOWN */
-nav.navbar ul li .dropdown{
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  background-color: #b9cfd7;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.2);
-  text-align: left;
-  min-width: 220px;
-  z-index: 1000;
-  padding: 6px 0;
-}
-nav.navbar ul li:hover > .dropdown,
-nav.navbar ul li:focus-within > .dropdown{
-  display: block;
-  animation: fadeIn .25s ease;
-}
-nav.navbar ul li .dropdown li a{
-  color: #262261;
-  font-size: 15px;
-  padding: 10px 15px;
-  display: block;
-  white-space: nowrap;
-}
-nav.navbar ul li .dropdown li a:hover{
-  background-color: #3696b9;
-  color: #fff;
-}
-@keyframes fadeIn{ from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:none} }
-
-@media (max-width: 992px){
-  nav.navbar ul{ display: block; width: 100%; }
-  nav.navbar ul > li{ display: block; width: 100%; }
-  nav.navbar ul > li > a{ text-align: left; padding: 12px 20px; }
-  nav.navbar ul li .dropdown{
-    position: static; box-shadow: none; border-radius: 0; background: #e7f1f6; padding: 0;
+  /* ===== BASE ===== */
+  body {
+    font-family: "Times New Roman", serif;
+    background: #eff9fc;
+    color: #262261;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
   }
-  nav.navbar ul li:not(:focus-within) .dropdown{ display: none; }
-  nav.navbar ul li:focus-within > .dropdown{ display: block; }
-}
 
-/* ========== DIVIDER ========== */
-.divider{ background-color: #3696b9; height: 3px; width: 100%; }
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: 260px;
+    background: #184e9e;
+    color: #fff;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
 
-/* ========== MAIN CONTENT ========== */
-.page{
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 20px 12px;
-}
+  .sidebar .logo {
+    text-align: center;
+    margin-bottom: 16px;
+  }
 
-.content-card{
-  background: #fff;
-  border-radius: 24px;
-  padding: 28px 18px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.06);
-}
-.content-title{
-  font-family: "Times New Roman", serif;
-  color: #d21313;
-  text-align: center;
-  font-weight: bold;
-  font-size: clamp(26px, 5.2vw, 48px);
-  margin: 0 0 16px;
-}
+  .sidebar .logo img {
+    max-width: 160px;
+    border-radius: 8px;
+  }
 
-/* ========== FOOTER ========== */
-footer.site-footer{
-  background-color: #b9cfd7; color: #262261;
-  padding: 14px 18px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 8px 16px;
-}
-.site-footer .footer-left{ font-size: clamp(16px, 2vw, 22px); margin: 0; }
-.site-footer .links-container a{ color: #262261; text-decoration: none; font-size: clamp(16px, 2vw, 20px); }
-.site-footer .links-container a:hover{ text-decoration: underline; }
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
-/* ========== HOME: THẺ CHỌN HỆ THỐNG (3×3) ========== */
-.system-cards{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
-  justify-items: stretch;
-  align-items: stretch;
-  margin-top: 2rem;
-}
-.system-card{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  text-align:center;
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  transition: transform .2s, box-shadow .2s;
-  text-decoration:none;
-  color:inherit;
-}
-.system-card:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.system-card img{
-  width:100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-.system-card h4{
-  font-weight:700;
-  margin:1rem 0 1.1rem;
-  color:#0b2c6b;
-}
+  .sidebar nav ul li {
+    position: relative;
+  }
 
-/* Responsive */
-@media (max-width: 992px){ .system-cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 576px){ .system-cards{ grid-template-columns: 1fr; } }
+  .sidebar nav ul li a {
+    display: block;
+    color: #fff;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.2s;
+  }
 
-/* small helpers */
-.fs-5 { font-size: 1.1rem; }
-.text-center { text-align: center; }
-.mb-4 { margin-bottom: 1.5rem; }
-</style>
+  .sidebar nav ul li a:hover {
+    background: #3696b9;
+  }
+
+  /* Dropdown */
+  .sidebar ul li ul.dropdown {
+    display: none;
+    background: #0f3573;
+  }
+  .sidebar ul li:hover > ul.dropdown {
+    display: block;
+  }
+
+  .sidebar ul li ul.dropdown li a {
+    font-weight: normal;
+    padding-left: 32px;
+    font-size: 15px;
+  }
+
+  /* ===== MAIN AREA ===== */
+  .main-content {
+    flex-grow: 1;
+    padding: 20px 28px;
+    overflow-x: hidden;
+  }
+
+  .content-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.06);
+  }
+
+  .content-title {
+    color: #d21313;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* ===== SYSTEM CARDS ===== */
+  .system-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .system-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #0b2c6b;
+    font-weight: 700;
+    transition: transform .2s, box-shadow .2s;
+  }
+
+  .system-card img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+
+  .system-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+  }
+
+  /* ===== FOOTER ===== */
+  footer.site-footer {
+    text-align: center;
+    padding: 12px;
+    color: #262261;
+    font-weight: bold;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 992px) {
+    body { flex-direction: column; }
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sidebar nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sidebar nav ul li ul.dropdown {
+      position: static;
+      background: #0f3573;
+      width: 100%;
+    }
+  }
+  </style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container">
-      <div class="row brand-row">
-        <div class="col-12 col-md-2 logo text-center">
-          <img src="img/logo-iuh-1.png" alt="Logo IUH" style="max-width:340px; width:100%; height:auto;">
-        </div>
-        <div class="col-10 col-md-10 mt-3">
-          <h1 class="text-center font-weight-bold">TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP THÀNH PHỐ HỒ CHÍ MINH</h1>
-          <h1 class="text-center font-weight-bold">KHOA CÔNG NGHỆ ĐỘNG LỰC</h1>
-        </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="img/logo-iuh-1.png" alt="Logo IUH">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" data-hard>Trang chủ</a></li>
+        <li>
+          <a href="#">Giới thiệu ▾</a>
+          <ul class="dropdown">
+            <li><a data-ajax href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
+            <li><a data-ajax href="Gioi_thieu/Chi_tiet_mo_hinh.html">Chi tiết mô hình</a></li>
+            <li><a data-ajax href="Gioi_thieu/Hoat_dong_mo_hinh.html">Hoạt động mô hình</a></li>
+            <li><a data-ajax href="Gioi_thieu/Ket_qua.html">Kết quả đạt được</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Nguyên lý hoạt động ▾</a>
+          <ul class="dropdown">
+            <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Hệ thống chiếu sáng</a></li>
+            <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html">Hệ thống tín hiệu</a></li>
+            <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html">Phun nước gạt mưa</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Pan ▾</a>
+          <ul class="dropdown">
+            <li><a data-ajax href="Pan/HT_chieu_sang/PANCS.html">Chiếu sáng</a></li>
+            <li><a data-ajax href="Pan/HT_tin_hieu/PANTH.html">Tín hiệu</a></li>
+            <li><a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Phun nước gạt mưa</a></li>
+          </ul>
+        </li>
+        <li><a data-ajax href="Lien_he.html">Liên hệ</a></li>
+        <li><a data-ajax href="TAI_LIEU.html">Tài liệu tham khảo</a></li>
+        <li><a data-ajax href="Cac_cuc_ECU/Cu1.html">Phụ lục</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <section id="main-content" class="content-card">
+      <h1 class="content-title mb-3">MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006</h1>
+
+      <div class="system-cards">
+        <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
+          <img src="img/HT-chieu-sang.png" alt="Chiếu sáng">
+          <h4>HỆ THỐNG CHIẾU SÁNG</h4>
+        </a>
+
+        <a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html" class="system-card">
+          <img src="img/HT_Tin_hieu.png" alt="Tín hiệu">
+          <h4>HỆ THỐNG TÍN HIỆU</h4>
+        </a>
+
+        <a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html" class="system-card">
+          <img src="img/HT_PhunNuoc_GatMua.png" alt="Phun nước">
+          <h4>HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
+        </a>
+
+        <a data-ajax href="Pan/HT_chieu_sang/PANCS.html" class="system-card">
+          <img src="img/Pan_HT_Chieu_sang.png" alt="Pan chiếu sáng">
+          <h4>PAN HỆ THỐNG CHIẾU SÁNG</h4>
+        </a>
+
+        <a data-ajax href="Pan/HT_tin_hieu/PANTH.html" class="system-card">
+          <img src="img/Pan-HT-tín-hiệu.png" alt="Pan tín hiệu">
+          <h4>PAN HỆ THỐNG TÍN HIỆU</h4>
+        </a>
+
+        <a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html" class="system-card">
+          <img src="img/Pan_PhunNuoc_Gat_Mua.png" alt="Pan phun nước gạt mưa">
+          <h4>PAN HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
+        </a>
       </div>
-    </div>
-  </header>
+    </section>
 
-  <!-- NAVBAR -->
-  <nav class="navbar" role="navigation">
-    <ul>
-      <li><a href="index.html" data-hard>Trang chủ</a></li>
-      <li>
-        <a href="#">Giới thiệu ▾</a>
-        <ul class="dropdown">
-          <li><a data-ajax href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
-          <li><a data-ajax href="Gioi_thieu/Chi_tiet_mo_hinh.html">Chi tiết mô hình</a></li>
-          <li><a data-ajax href="Gioi_thieu/Hoat_dong_mo_hinh.html">Hoạt động mô hình</a></li>
-          <li><a data-ajax href="Gioi_thieu/Ket_qua.html">Kết quả đạt được</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Nguyên lý hoạt động ▾</a>
-        <ul class="dropdown">
-          <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Hệ thống chiếu sáng</a></li>
-          <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html">Hệ thống tín hiệu</a></li>
-          <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html">Phun nước gạt mưa</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Pan ▾</a>
-        <ul class="dropdown">
-          <li><a data-ajax href="Pan/HT_chieu_sang/PANCS.html">Chiếu sáng</a></li>
-          <li><a data-ajax href="Pan/HT_tin_hieu/PANTH.html">Tín hiệu</a></li>
-          <li><a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Phun nước gạt mưa</a></li>
-        </ul>
-      </li>
-      <li><a data-ajax href="Lien_he.html">Liên hệ</a></li>
-      <li><a data-ajax href="TAI_LIEU.html">Tài liệu tham khảo</a></li>
-      <li><a data-ajax href="Cac_cuc_ECU/Cu1.html">Phụ lục</a></li>
-    </ul>
-  </nav>
-
-  <div class="divider"></div>
-
-  <!-- MAIN -->
-  <main class="page">
-    <div class="row align-items-start">
-      <!-- Nội dung chính -->
-      <section class="col-lg-12">
-        <section id="main-content" class="content-card">
-
-          <div class="hero-split row no-gutters align-items-center mb-3">
-            <div class="col-lg-12 pr-lg-3 hero-text text-left text-lg-left text-center">
-              <h1 class="content-title hero-title text-danger font-weight-bold mb-2">
-                MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006
-              </h1>
-            </div>
-          </div>
-
-          <!-- Các ô chọn hệ thống (3×3) -->
-          <div class="system-cards">
-            <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
-              <img src="img/HT-chieu-sang.png" alt="Chiếu sáng">
-              <h4>HỆ THỐNG CHIẾU SÁNG</h4>
-            </a>
-
-            <a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html" class="system-card">
-              <img src="img/HT_Tin_hieu.png" alt="Tín hiệu">
-              <h4>HỆ THỐNG TÍN HIỆU</h4>
-            </a>
-
-            <a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html" class="system-card">
-              <img src="img/HT_PhunNuoc_GatMua.png" alt="Phun nước">
-              <h4>HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
-            </a>
-
-            <a data-ajax href="Pan/HT_chieu_sang/PANCS.html" class="system-card">
-              <img src="img/Pan_HT_Chieu_sang.png" alt="Pan chiếu sáng">
-              <h4>PAN HỆ THỐNG CHIẾU SÁNG</h4>
-            </a>
-
-            <a data-ajax href="Pan/HT_tin_hieu/PANTH.html" class="system-card">
-              <img src="img/Pan-HT-tín-hiệu.png" alt="Pan tín hiệu">
-              <h4>PAN HỆ THỐNG TÍN HIỆU</h4>
-            </a>
-
-            <a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html" class="system-card">
-              <img src="img/Pan_PhunNuoc_Gat_Mua.png" alt="Pan phun nước gạt mưa">
-              <h4>PAN HỆ THỐNG PHUN NƯỚC GẠT MƯA</h4>
-            </a>
-          </div>
-        </section>
-      </section>
-    </div>
+    <footer class="site-footer mt-4">
+      GVHD: Th.S Đỗ Sĩ Hải — <a href="Instructors.html" style="color:#184e9e;text-decoration:none;">→ Sinh Viên Thực Hiện</a>
+    </footer>
   </main>
 
-  <div class="divider"></div>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p class="footer-left">GVHD: Th.S Đỗ Sĩ Hải</p>
-    <div class="links-container">
-      <a href="Instructors.html" class="arrow">→ Sinh Viên Thực Hiện</a>
-    </div>
-  </footer>
-
-  <!-- SCRIPT: navigation + ajax loader + pan loader -->
+  <!-- SCRIPT -->
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const mainContent = document.getElementById('main-content');
-
-    document.addEventListener('click', function (e) {
-      const link = e.target.closest('a[data-ajax], a[data-hard]');
-      if (!link) return;
-      const url = link.getAttribute('href') || '';
-      const isSpecial = !url || url === '#' || /\.pdf$/i.test(url);
-      if (isSpecial) return;
-
-      const isHome = link.hasAttribute('data-hard') ||
-                     /(^|\/)index\.html(?:[#?].*)?$/i.test(url) ||
-                     url === '/' || url === window.location.pathname;
-      if (isHome) return;
-
-      e.preventDefault();
-      loadInto('#main-content', url);
-    });
-
-    function loadInto(targetSelector, url) {
-      const target = document.querySelector(targetSelector);
-      if (!target) return;
-      target.classList.add('loading');
-      target.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-
-      fetch(url)
-        .then(res => {
-          if (!res.ok) throw new Error('Không thể tải nội dung: ' + url);
-          return res.text();
-        })
-        .then(html => {
-          target.innerHTML = extractContent(html);
-          target.classList.remove('loading');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        })
-        .catch(err => {
-          target.classList.remove('loading');
-          target.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-        });
-    }
-
-    function extractContent(html) {
-      const temp = document.createElement('div');
-      temp.innerHTML = html;
-      const pickers = [
-        'main#page-content',
-        'section[data-content="main"]',
-        'main .content-card',
-        'main',
-        'section.content-card',
-        'section'
-      ];
-      for (const sel of pickers) {
-        const node = temp.querySelector(sel);
-        if (node) return node.innerHTML;
-      }
-      return temp.innerHTML;
-    }
-  });
-
-  // PAN loader helpers
-  function pickFragment(root) {
-    return root.querySelector('[data-fragment]') ||
-           root.querySelector('main#page-content') ||
-           root.querySelector('main') ||
-           root.querySelector('section') ||
-           root;
-  }
-
-  function absolutizeAttr(root, selector, attr, baseAbs) {
-    const SITE_ROOT = new URL('./', location.href);
-    root.querySelectorAll(selector).forEach(el => {
-      let val = el.getAttribute(attr);
-      if (!val) return;
-      if (/^(https?:|mailto:|tel:|#|data:)/i.test(val)) return;
-      const normalized = val.replace(/^(\.\/)+/i, '').replace(/^(\.\.\/)+/i, '');
-      if (/^img\//i.test(normalized)) {
-        el.setAttribute(attr, new URL(normalized, SITE_ROOT).href);
-      } else {
-        el.setAttribute(attr, new URL(val, baseAbs).href);
-      }
-    });
-  }
-
-  async function loadPanContent(url) {
-    const area = document.getElementById('content-area');
-    if (!area) return;
-    const absUrl = new URL(url, location.href).href;
-
-    area.innerHTML = '<p class="text-center" style="color:#184e9e;">Đang tải nội dung...</p>';
-    try {
-      const res = await fetch(absUrl);
-      if (!res.ok) throw new Error('Không thể tải nội dung: ' + absUrl);
-      const html = await res.text();
-
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      const frag = pickFragment(doc);
-
-      absolutizeAttr(frag, 'img', 'src', absUrl);
-      absolutizeAttr(frag, 'link', 'href', absUrl);
-      absolutizeAttr(frag, 'script', 'src', absUrl);
-      absolutizeAttr(frag, 'a', 'href', absUrl);
-
-      area.innerHTML = frag.innerHTML;
-
-      area.querySelectorAll('a[href]').forEach(a => {
-        const href = a.getAttribute('href');
-        if (!href || href.startsWith('#') || /\.pdf$/i.test(href) || a.target === '_blank') return;
-        let u; try { u = new URL(href, absUrl); } catch { return; }
-        if (u.origin === location.origin) {
-          a.addEventListener('click', ev => {
-            ev.preventDefault();
-            loadPanContent(u.href);
-          });
-        }
-      });
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } catch (err) {
-      area.innerHTML = `<p style="color:red;text-align:center;">${err.message}</p>`;
-    }
-  }
-
-  // Bắt click các ô chọn trong PAN (nếu hiện diện)
-  document.addEventListener('click', function (e) {
-    const link = e.target.closest('.selectable-box, a[data-pan]');
-    if (!link) return;
-    if (!document.getElementById('content-area')) return;
+  document.addEventListener("click", function(e){
+    const link = e.target.closest("a[data-ajax]");
+    if(!link) return;
     e.preventDefault();
-    const href = link.getAttribute('href') || link.dataset.href;
-    if (href) loadPanContent(href);
+    const url = link.getAttribute("href");
+    const target = document.querySelector("#main-content");
+    target.innerHTML = '<p class="text-center text-primary">Đang tải nội dung...</p>';
+    fetch(url).then(r=>r.text()).then(html=>{
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      const sec = div.querySelector("section") || div.querySelector("main") || div;
+      target.innerHTML = sec.innerHTML;
+      window.scrollTo({top:0,behavior:"smooth"});
+    }).catch(err=>{
+      target.innerHTML = `<p class="text-center text-danger">${err}</p>`;
+    });
   });
   </script>
 </body>
