@@ -13,7 +13,6 @@
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
   <style>
   * { box-sizing: border-box; }
   body {
@@ -26,159 +25,180 @@
     min-height: 100vh;
   }
 
-  /* ===== HEADER ===== */
+  /* ========== HEADER ========== */
   .site-header {
     background-color: #b9cfd7;
-    text-align: center;
-    padding: 20px 10px;
+    padding: 18px 10px 8px;
   }
   .site-header img {
-    max-width: 320px;
+    max-width: 260px;
     height: auto;
   }
-  .site-header h1 {
+  .site-header h1{
     font-weight: bold;
-    margin: 5px 0;
+    margin: 2px 0;
     color: #262261;
   }
 
-  /* ===== MAIN WRAPPER ===== */
-  .main-wrapper {
-    display: flex;
-    flex: 1;
-    min-height: 0;
+  /* ========== MAIN WRAPPER ========== */
+  .main-wrapper{
+    display:flex;
+    flex:1;
+    min-height:0;
   }
 
-  /* ===== SIDEBAR ===== */
-  .sidebar {
-    width: 260px;
-    background: #184e9e;
-    color: #fff;
-    flex-shrink: 0;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
+  /* ========== SIDEBAR (LEFT MENU) ========== */
+  .sidebar{
+    width: 240px;
+    background: #0f3f8f;
+    color:#fff;
+    flex-shrink:0;
+    padding: 16px 0;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    box-shadow: 3px 0 8px rgba(0,0,0,.15);
   }
-  .sidebar .logo {
-    text-align: center;
-    margin-bottom: 10px;
+  .sidebar-title{
+    font-weight:700;
+    font-size:17px;
+    padding: 0 20px 10px;
+    text-transform: uppercase;
+    letter-spacing:.5px;
+    color:#f1f5ff;
   }
-  .sidebar .logo img {
-    width: 150px;
-    border-radius: 8px;
+  .sidebar-nav ul{
+    list-style:none;
+    margin:0;
+    padding:0;
   }
-  .sidebar nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .sidebar-nav li{
+    position:relative;
   }
-  .sidebar nav ul li {
-    position: relative;
+  .sidebar-nav a,
+  .sidebar-toggle{
+    display:block;
+    width:100%;
+    padding:8px 22px;
+    border:none;
+    background:transparent;
+    text-align:left;
+    text-decoration:none;
+    color:#eaf2ff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .2s, padding-left .2s;
   }
-  .sidebar nav ul li a,
-  .sidebar nav ul li button.sidebar-toggle {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    font-size: 18px;
-    width: 100%;
-    text-align: left;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
+  .sidebar-nav a:hover,
+  .sidebar-toggle:hover{
+    background:#2467c5;
+    padding-left:26px;
   }
-  .sidebar nav ul li a:hover,
-  .sidebar nav ul li button.sidebar-toggle:hover {
-    background: #3696b9;
-  }
-  .sidebar nav ul li ul.dropdown {
-    display: none;
-    background: #0f3573;
-    margin: 0;
-    padding: 0;
-  }
-  .sidebar nav ul li.open > ul.dropdown {
-    display: block;
-  }
-  .sidebar nav ul li ul.dropdown li a {
-    padding: 8px 35px;
-    font-weight: normal;
-    font-size: 16px;
-    color: #e7f1ff;
-  }
-  .sidebar nav ul li ul.dropdown li a:hover {
-    background: #3696b9;
-    color: #fff;
+  .sidebar-nav a.active{
+    background:#1b54a6;
+    border-left:4px solid #ffdd57;
+    padding-left:26px;
   }
 
-  /* ===== MAIN CONTENT ===== */
-  .main-content {
-    flex: 1;
-    padding: 20px;
+  /* dropdown level 2 */
+  .sidebar-nav ul.dropdown{
+    display:none;
+    margin:0;
+    padding:4px 0 6px;
+    background:#0b2f6a;
   }
-  .content-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.06);
+  .sidebar-nav li.open > ul.dropdown{
+    display:block;
   }
-  .content-title {
-    color: #d21313;
-    font-weight: bold;
-    text-align: center;
+  .sidebar-nav ul.dropdown a{
+    font-size:15px;
+    font-weight:500;
+    padding:6px 34px;
+    color:#f3f6ff;
+  }
+  .sidebar-nav ul.dropdown a:hover{
+    background:#2a72d3;
+  }
+  .sidebar-toggle .caret{
+    float:right;
+    transition: transform .2s;
+  }
+  .sidebar-nav li.open > .sidebar-toggle .caret{
+    transform: rotate(180deg);
   }
 
-  /* ===== SYSTEM CARDS ===== */
-  .system-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+  /* ========== MAIN CONTENT ========== */
+  .main-content{
+    flex:1;
+    padding:20px;
   }
-  .system-card {
-    background: #fff;
-    border-radius: 14px;
-    overflow: hidden;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-decoration: none;
-    color: #0b2c6b;
-    font-weight: 700;
-    transition: transform .2s, box-shadow .2s;
+  .content-card{
+    background:#fff;
+    border-radius:18px;
+    padding:24px 22px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
   }
-  .system-card img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+  .content-title{
+    color:#d21313;
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:14px;
   }
-  .system-card:hover {
+
+  /* cards trên trang chủ */
+  .system-cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap:1.5rem;
+    margin-top:1.5rem;
+  }
+  .system-card{
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+    text-decoration:none;
+    color:#0b2c6b;
+    font-weight:700;
+    transition: transform .18s, box-shadow .18s;
+  }
+  .system-card img{
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+  }
+  .system-card:hover{
     transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    box-shadow:0 8px 18px rgba(0,0,0,.2);
   }
 
-  /* ===== FOOTER ===== */
-  footer.site-footer {
-    background: #b9cfd7;
-    padding: 14px;
-    text-align: center;
-    font-weight: bold;
-    color: #262261;
+  /* ========== FOOTER ========== */
+  footer.site-footer{
+    background:#b9cfd7;
+    padding:12px 18px;
+    text-align:center;
+    color:#262261;
+    font-weight:600;
+  }
+  footer a{
+    color:#184e9e;
+    text-decoration:none;
+  }
+  footer a:hover{
+    text-decoration:underline;
   }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 992px) {
-    .main-wrapper {
-      flex-direction: column;
-    }
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 992px){
+    .main-wrapper{ flex-direction:column; }
+    .sidebar{
+      position:relative;
+      width:100%;
+      height:auto;
+      box-shadow:none;
     }
   }
   </style>
@@ -189,12 +209,12 @@
   <header class="site-header">
     <div class="container">
       <div class="row brand-row align-items-center">
-        <div class="col-12 col-md-2 logo text-center">
+        <div class="col-12 col-md-2 text-center">
           <img src="img/logo-iuh-1.png" alt="Logo IUH">
         </div>
         <div class="col-12 col-md-10">
-          <h1>TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP. HỒ CHÍ MINH</h1>
-          <h1>KHOA CÔNG NGHỆ ĐỘNG LỰC</h1>
+          <h1 class="text-center">TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP. HỒ CHÍ MINH</h1>
+          <h1 class="text-center">KHOA CÔNG NGHỆ ĐỘNG LỰC</h1>
         </div>
       </div>
     </div>
@@ -204,14 +224,15 @@
   <div class="main-wrapper">
     <!-- SIDEBAR -->
     <aside class="sidebar">
-      <div class="logo">
-        <img src="img/logo-iuh-1.png" alt="Logo IUH">
-      </div>
-      <nav>
+      <div class="sidebar-title">Trang chính</div>
+      <nav class="sidebar-nav">
         <ul>
-          <li><a href="index.html" data-hard>Trang chủ</a></li>
+          <li><a href="index.html" data-hard class="active">Trang chủ</a></li>
+
           <li>
-            <button class="sidebar-toggle">Giới thiệu ▾</button>
+            <button class="sidebar-toggle">
+              Giới thiệu <span class="caret">▾</span>
+            </button>
             <ul class="dropdown">
               <li><a data-ajax href="Gioi_thieu/Tong_quan.html">Tổng quan</a></li>
               <li><a data-ajax href="Gioi_thieu/Chi_tiet_mo_hinh.html">Chi tiết mô hình</a></li>
@@ -219,22 +240,29 @@
               <li><a data-ajax href="Gioi_thieu/Ket_qua.html">Kết quả đạt được</a></li>
             </ul>
           </li>
+
           <li>
-            <button class="sidebar-toggle">Nguyên lý hoạt động ▾</button>
+            <button class="sidebar-toggle">
+              Nguyên lý hoạt động <span class="caret">▾</span>
+            </button>
             <ul class="dropdown">
               <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html">Hệ thống chiếu sáng</a></li>
               <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_tin_hieu.html">Hệ thống tín hiệu</a></li>
               <li><a data-ajax href="Nguyen_ly_hoat_dong/HT_phun_nuoc_gat_mua.html">Phun nước gạt mưa</a></li>
             </ul>
           </li>
+
           <li>
-            <button class="sidebar-toggle">Pan ▾</button>
+            <button class="sidebar-toggle">
+              Pan <span class="caret">▾</span>
+            </button>
             <ul class="dropdown">
-              <li><a data-ajax href="Pan/HT_chieu_sang/PANCS.html">Chiếu sáng</a></li>
-              <li><a data-ajax href="Pan/HT_tin_hieu/PANTH.html">Tín hiệu</a></li>
-              <li><a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Phun nước gạt mưa</a></li>
+              <li><a data-ajax href="Pan/HT_chieu_sang/PANCS.html">Pan chiếu sáng</a></li>
+              <li><a data-ajax href="Pan/HT_tin_hieu/PANTH.html">Pan tín hiệu</a></li>
+              <li><a data-ajax href="Pan/HT_phun_nuoc_gat_mua/PANGM.html">Pan phun nước gạt mưa</a></li>
             </ul>
           </li>
+
           <li><a data-ajax href="Lien_he.html">Liên hệ</a></li>
           <li><a data-ajax href="TAI_LIEU.html">Tài liệu tham khảo</a></li>
           <li><a data-ajax href="Cac_cuc_ECU/Cu1.html">Phụ lục</a></li>
@@ -245,7 +273,9 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
       <section id="main-content" class="content-card">
-        <h1 class="content-title mb-3">MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006</h1>
+        <h1 class="content-title">
+          MÔ HÌNH HỆ THỐNG ĐIỆN THÂN XE TOYOTA CAMRY 2006
+        </h1>
 
         <div class="system-cards">
           <a data-ajax href="Nguyen_ly_hoat_dong/HT_chieu_sang.html" class="system-card">
@@ -285,17 +315,52 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     GVHD: Th.S Đỗ Sĩ Hải — 
-    <a href="Instructors.html" style="color:#184e9e;text-decoration:none;">→ Sinh Viên Thực Hiện</a>
+    <a href="Instructors.html">→ Sinh Viên Thực Hiện</a>
   </footer>
 
   <!-- SCRIPT -->
   <script>
-  // Toggle dropdown trong sidebar
+  // Mở/đóng nhóm trong sidebar
   document.querySelectorAll('.sidebar-toggle').forEach(btn => {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function(){
       const li = this.closest('li');
       li.classList.toggle('open');
     });
   });
 
-  // AJAX load content kh
+  // AJAX load content vào #main-content
+  document.addEventListener('click', function(e){
+    const link = e.target.closest('a[data-ajax]');
+    if (!link) return;
+
+    const url = link.getAttribute('href');
+    const target = document.getElementById('main-content');
+    if (!url || !target) return;
+
+    e.preventDefault();
+
+    // set active cho menu
+    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+    link.classList.add('active');
+
+    target.innerHTML = '<p class="text-center text-primary">Đang tải nội dung...</p>';
+
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error('Không thể tải nội dung: ' + url);
+        return res.text();
+      })
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const section = temp.querySelector('section') || temp.querySelector('main') || temp;
+        target.innerHTML = section.innerHTML;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      })
+      .catch(err => {
+        target.innerHTML = '<p class="text-danger text-center">'+ err.message +'</p>';
+      });
+  });
+  </script>
+</body>
+</html>
