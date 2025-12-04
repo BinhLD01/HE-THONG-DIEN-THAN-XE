@@ -1,0 +1,64 @@
+/* ===== HEADER NEW ===== */
+.site-header {
+  background-color: #b9cfd7;
+  padding: 14px 20px;
+}
+
+/* layout ngang */
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* LOGO */
+.header-logo img {
+  height: 72px;      /* chỉnh nhỏ / lớn tại đây */
+  width: auto;
+  object-fit: contain;
+}
+
+/* TEXT */
+.header-text {
+  flex: 1;
+  text-align: center;
+}
+
+.header-text .line-1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #262261;
+  letter-spacing: 1px;
+}
+
+.header-text .line-2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #262261;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-text {
+    text-align: center;
+  }
+
+  .header-logo img {
+    height: 64px;
+  }
+
+  .header-text .line-1 {
+    font-size: 22px;
+  }
+
+  .header-text .line-2 {
+    font-size: 20px;
+  }
+}
